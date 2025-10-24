@@ -1,0 +1,830 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Partners & patrons - be-BOP</title>
+  <style>
+    :root {
+      --blue: #003760;
+      --light-blue: #31A5DD;
+      --sky: #C9E7F5;
+      --sky-2: #A5D3EE;
+      --glass: rgba(255,255,255,0.6);
+      --glass-2: rgba(255,255,255,0.4);
+      --radius-xl: 20px;
+      --radius-pill: 999px;
+      --container-pad: clamp(16px, 4vw, 80px);
+      --section-pad-y: clamp(48px, 6vw, 100px);
+    }
+
+    * { 
+      box-sizing: border-box; 
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      background-color: var(--sky);
+      color: var(--blue);
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: clamp(16px, 1.4vw, 20px);
+      line-height: 1.6;
+      padding-top: 8rem;
+    }
+
+    .my-5{
+      margin: 0;
+    }
+
+    a{ 
+      color: inherit; 
+      transition: opacity 0.3s ease, transform 0.2s ease;
+    }
+    
+    a:hover {
+      opacity: 0.85;
+    }
+
+    .btn{
+      display: inline-block;
+      background-color: var(--light-blue);
+      color: #FFF;
+      border-radius: var(--radius-pill);
+      padding: 0.6rem 1.4rem;
+      text-decoration: none;
+      font-weight: 600;
+      white-space: nowrap;
+      transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    }
+    
+    .btn:hover {
+      background-color: #2892C4;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(49, 165, 220, 0.3);
+      opacity: 1;
+    }
+
+    /* Nav */
+    nav{
+      position: fixed;
+      top: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(1100px, calc(100% - 2*var(--container-pad)));
+      z-index: 30;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      justify-content: space-between;
+      border-radius: var(--radius-pill);
+      padding: 0.5rem 1rem;
+    }
+
+    nav .brand { 
+      display: flex; 
+      align-items: center; 
+      gap: .5rem; 
+      text-decoration: none;
+      transition: transform 0.3s ease;
+      margin-left: 1rem;
+    }
+    
+    nav .brand:hover {
+      transform: scale(1.05);
+      opacity: 1;
+    }
+    
+    nav .brand img{ width: auto; height: 44px; object-fit: cover; }
+
+    nav ul{
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: clamp(0.5rem, 4vw, 2rem);
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    
+    nav ul a{ 
+      text-decoration: none; 
+      font-weight: 600;
+      position: relative;
+      padding-bottom: 2px;
+    }
+    
+    nav ul a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--light-blue);
+      transition: width 0.3s ease;
+    }
+    
+    nav ul a:hover::after {
+      width: 100%;
+    }
+    
+    nav ul a:hover {
+      opacity: 1;
+    }
+
+    /* Desktop Get Started button */
+    nav > .btn {
+      display: inline-block;
+    }
+
+    /* Mobile menu toggle (CSS-only) */
+    .nav-toggle{ display: none; }
+    .hamburger{
+      display: none;
+      width: 44px; height: 44px;
+      border-radius: 10px;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    
+    .hamburger:hover {
+      background-color: rgba(0, 55, 96, 0.1);
+    }
+    
+    .hamburger span{
+      display: block;
+      width: 24px; height: 2px;
+      background: var(--blue);
+      position: relative;
+      transition: background-color 0.3s ease;
+    }
+    .hamburger span::before,
+    .hamburger span::after{
+      content: "";
+      position: absolute;
+      left: 0;
+      width: 24px; height: 2px;
+      background: var(--blue);
+      transition: transform 0.3s ease;
+    }
+    .hamburger span::before{ top: -7px; }
+    .hamburger span::after{ top: 7px; }
+    
+    .nav-toggle:checked ~ .hamburger span {
+      background-color: transparent;
+    }
+    
+    .nav-toggle:checked ~ .hamburger span::before {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    
+    .nav-toggle:checked ~ .hamburger span::after {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 var(--container-pad);
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: clamp(40px, 5vw, 60px);
+    }
+
+    h2 {
+      color: var(--light-blue);
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      margin-bottom: 1.5rem;
+      font-weight: 600;
+      position: relative;
+      padding-left: 1rem;
+    }
+
+    h2::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 4px;
+      height: 70%;
+      background: var(--light-blue);
+      border-radius: var(--radius-pill);
+    }
+
+    /* patrons & Partners Section */
+    .patrons, .partners {
+      background: var(--glass);
+      backdrop-filter: blur(8px);
+      border-radius: var(--radius-xl);
+      padding: clamp(24px, 4vw, 40px);
+      margin-bottom: clamp(24px, 4vw, 40px);
+      box-shadow: 
+        0 1px 2px rgba(255, 255, 255, 0.9) inset,
+        0 8px 32px rgba(0, 55, 96, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+    }
+
+    /* Grid layout for consistency */
+    .patrons > div {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: clamp(16px, 2.5vw, 20px);
+    }
+
+    .partners > div {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: clamp(16px, 2.5vw, 20px);
+    }
+
+    .patrons a, .partners a {
+      background: var(--sky);
+      border-radius: 12px;
+      padding: clamp(16px, 2vw, 20px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      aspect-ratio: 16 / 10; /* Consistent rectangular ratio */
+      min-height: 90px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 2px solid transparent;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .patrons a::before, .partners a::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 0;
+      height: 0;
+      background: radial-gradient(circle, var(--light-blue), transparent);
+      opacity: 0.3;
+      transition: all 0.5s ease;
+      border-radius: 50%;
+    }
+
+    .patrons a:hover, .partners a:hover {
+      transform: translateY(-4px);
+      background: white;
+      border-color: var(--light-blue);
+      box-shadow: 
+        0 10px 30px rgba(49, 165, 221, 0.25),
+        0 4px 12px rgba(0, 55, 96, 0.1);
+    }
+
+    .patrons a:hover::before, .partners a:hover::before {
+      width: 150%;
+      height: 150%;
+    }
+
+    .patrons img, .partners img {
+      max-width: 75%;
+      max-height: 55px;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      filter: grayscale(20%);
+      transition: filter 0.3s ease, transform 0.3s ease;
+      position: relative;
+      z-index: 1;
+    }
+
+    .patrons a:hover img, .partners a:hover img {
+      filter: grayscale(0%) contrast(1.1);
+      transform: scale(1.08);
+    }
+
+    /* Join Us Section */
+    .join-us {
+      background: linear-gradient(135deg, var(--blue) 0%, var(--light-blue) 100%);
+      color: white;
+      border-radius: var(--radius-xl);
+      padding: clamp(32px, 5vw, 56px);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 320px;
+    }
+
+    .join-us > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .join-us h2 {
+      color: white;
+      padding-left: 0;
+      margin-bottom: 2rem;
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+    }
+
+    .join-us h2::before {
+      display: none;
+    }
+
+    .join-us p {
+      margin-bottom: 2rem;
+      opacity: 0.95;
+      line-height: 1.7;
+      max-width: 600px;
+    }
+
+    .join-us a {
+      display: inline-block;
+      background: white;
+      color: var(--blue);
+      padding: 0.75rem 2rem;
+      border-radius: var(--radius-pill);
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      align-self: flex-start;
+    }
+
+    .join-us a:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+      background: var(--sky);
+    }
+
+    /* Footer */
+            footer {
+            background-color: var(--blue);
+            color: white;
+            padding-top: var(--section-pad-y);
+            padding-bottom: clamp(32px, 5vw, 60px);
+            padding-inline: 1rem;
+            margin-top: var(--section-pad-y);
+        }
+
+        .footer-content {
+            padding-inline: var(--container-pad);
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: clamp(32px, 5vw, 48px);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-main {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: clamp(24px, 4vw, 40px);
+        }
+
+        .legal-address {
+            font-size: clamp(0.9rem, 1.2vw, 1rem);
+            line-height: 1.8;
+            opacity: 0.9;
+        }
+
+        .legal-address::before {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 3px;
+            background-color: var(--light-blue);
+            margin-bottom: 1rem;
+            border-radius: var(--radius-pill);
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        footer a:hover {
+            color: var(--light-blue);
+            transform: translateX(3px);
+        }
+
+        .contact-link {
+            font-size: clamp(1rem, 1.4vw, 1.2rem);
+            font-weight: 600;
+            color: var(--light-blue);
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        .btn[href^="mailto"] {
+            color: white;
+        }
+
+        .contact-link:hover {
+            color: white;
+        }
+
+        .boring-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .boring-links a {
+            font-size: clamp(0.85rem, 1.1vw, 0.95rem);
+            opacity: 0.7;
+            position: relative;
+            padding-left: 1rem;
+        }
+
+        .boring-links a:before {
+            content: '›';
+            position: absolute;
+            left: 0;
+            opacity: 0.5;
+        }
+
+        .boring-links a:hover {
+            opacity: 1;
+        }
+
+    /* Desktop optimizations */
+    @media (min-width: 1024px) {
+      .container {
+        grid-template-columns: 1.6fr 1fr;
+        align-items: start;
+      }
+
+
+      .patrons > div {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .partners > div {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .patrons a, .partners a {
+        min-height: 100px;
+      }
+
+      .patrons img, .partners img {
+        max-height: 60px;
+        max-width: 80%;
+      }
+      
+      .join-us {
+        position: sticky;
+        top: 2rem;
+      }
+
+    }
+
+
+    @media (min-width: 1400px) {
+      .patrons > div {
+        grid-template-columns: repeat(4, 1fr);
+      }
+
+      .partners > div {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    /* Tablet optimizations */
+    @media (min-width: 768px) and (max-width: 1023px) {
+      .patrons > div {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .partners > div {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .patrons img, .partners img {
+        max-height: 50px;
+      }
+    }
+
+    /* Tablet and up */
+    @media (min-width: 700px){
+      nav {
+        background-color: var(--glass);
+        backdrop-filter: blur(8px);
+        box-shadow: 
+          0 1px 2px rgba(255, 255, 255, 0.9) inset,
+          0 -1px 2px rgba(255, 255, 255, 0.9) inset,
+          0 8px 32px rgba(0, 55, 96, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.5);
+      }
+      
+      nav ul {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: clamp(0.5rem, 4vw, 2rem);
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .btn-nav-hidden{
+        display: none;
+      }
+
+      .footer-main {
+      grid-template-columns: 1.5fr 1fr 1.5fr;
+      align-items: start;
+    }
+
+    .legal-address {
+      text-align: center;
+    }
+
+    .legal-address::before {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .boring-links {
+      border-top: none;
+      padding-top: 0;
+      text-align: right;
+    }
+
+    .boring-links a {
+      padding-left: 0;
+      padding-right: 1rem;
+    }
+
+    .boring-links a:before {
+      content: '‹';
+      left: auto;
+      right: 0;
+    }
+
+    .boring-links a:hover {
+      transform: translateX(-3px);
+    }
+
+    }
+
+    /* Mobile optimizations */
+    @media (max-width: 767px) {
+      .patrons > div, .partners > div {
+        grid-template-columns: repeat(2, 1fr);
+        gap: clamp(12px, 3vw, 16px);
+      }
+
+      .patrons a, .partners a {
+        aspect-ratio: 1 / 1; /* Square on mobile */
+        min-height: 0;
+      }
+
+      .patrons img, .partners img {
+        max-height: 60px;
+        max-width: 85%;
+      }
+
+      .join-us {
+        text-align: center;
+      }
+
+      .join-us a {
+        align-self: center;
+      }
+    }
+
+    /* Mobile (nav + layout tweaks) */
+    @media (max-width: 699.98px){
+      nav{
+        background-color: var(--glass);
+        width: calc(100% - 2*12px);
+        left: 12px; right: 12px; transform: none;
+        box-shadow: 
+          0 1px 0 rgba(255, 255, 255, 0.8) inset,
+          0 4px 12px rgba(0, 55, 96, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.4);
+      }
+      
+      /* Hide desktop Get Started button on mobile */
+      nav > .btn {
+        display: none;
+      }
+
+      nav::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-color: transparent;
+        backdrop-filter: blur(8px);
+        border-radius: inherit;
+        pointer-events: none;
+        z-index: -1;
+      }
+      
+      nav > *:not(ul) {
+        position: relative;
+        z-index: 1;
+      }
+      
+      nav ul{
+        position: fixed;
+        top: calc(12px + 60px);
+        left: 0; right: 0;
+        text-align: right;
+        margin-top: .5rem;
+        background: var(--glass);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        box-shadow: 
+          0px 3px 4px 0px rgba(255, 255, 255, 0.8) inset, 
+          0px -3px 4px 0px rgba(255, 255, 255, 0.8) inset,
+          0 8px 24px rgba(0, 55, 96, 0.12);
+        border-radius: 14px;
+        padding: .75rem 1rem;
+        flex-direction: column;
+        align-items: stretch;
+        gap: .5rem;
+        /* Initially hidden */
+        display: none;
+        width: calc(100% - 2 * 12px);
+        margin-inline: auto;
+      }
+      
+      /* Show menu when toggle is checked */
+      .nav-toggle:checked ~ ul{
+        display: flex;
+      }
+    
+      
+      .hamburger{ display: inline-flex; }
+
+
+    .footer-main {
+      text-align: center;
+    }
+
+    footer .contact-link {
+      padding-left: 0;
+      display: block;
+      margin: 1rem 0;
+    }
+
+    footer .contact-link:before {
+      position: static;
+      margin-right: 0.5rem;
+    }
+
+    .boring-links {
+      align-items: center;
+    }
+
+    .boring-links a {
+      padding-left: 0;
+    }
+
+    .boring-links a:before {
+      display: none;
+    }
+    }
+
+    /* Loading animation */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .patrons, .partners, .join-us {
+      animation: fadeInUp 0.6s ease-out backwards;
+    }
+
+    .partners {
+      animation-delay: 0.1s;
+    }
+
+    .join-us {
+      animation-delay: 0.2s;
+    }
+  </style>
+</head>
+<body>
+    <nav>
+        <a class="brand" href="https://be-bop.io" aria-label="Home">
+          <img src="https://be-bop.io/digital-file/raw/logo-light-n2I9oT?key=aaf591c6-6de3-41ad-aa17-bb045ea7b047" alt="be-BOP logo">
+        </a>
+    
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation">
+        <label for="nav-toggle" class="hamburger" aria-hidden="true">
+          <span></span>
+        </label>
+    
+        <ul>
+          <li><a href="/home#features" style="scroll-margin-top: 6rem">Features</a></li>
+          <li><a href="/partners" style="scroll-margin-top: 6rem">Partners</a></li>
+          <li><a href="/home#socials" style="scroll-margin-top: 6rem">Community</a></li>
+          <li class="btn-nav-hidden"><a class="btn" href="/home#get-started" style="scroll-margin-top: 6rem">Get Started</a></li>
+        </ul>
+    
+        <a class="btn" href="/home#get-started" style="scroll-margin-top: 6rem">Get Started</a>
+    </nav>
+  <div class="container">
+    <div>
+      <div class="patrons">
+        <h2>Patrons</h2>
+        <div>
+          <a  target="_blank" href="https://www.ne.ch/Pages/accueil.aspx">
+            <img src="https://be-bop.io/digital-file/raw/ne-transparent-NbEALD?key=b8503da9-7e7f-4a35-b366-1bdd789a409a" alt="Canton de Neuchâtel">
+          </a>
+          <a  target="_blank" href="https://www.seco.admin.ch/seco/fr/home/Standortfoerderung/Regional_Raumordnungspolitik/nrp.html">
+            <img src="https://be-bop.io/digital-file/raw/npr-transparent-81ZJJh?key=1cfce8c1-a057-41e0-b6cf-83b43d18e758" alt="Nouvelles Politiques Régionales">
+          </a>
+          <a  target="_blank" href="https://www.watchmakersunited.com/">
+            <img src="https://be-bop.io/digital-file/raw/watchmakersunited-X7FBGa?key=27809770-ca2b-4ec8-808e-296e656705ae" alt="Watchmakers United">
+          </a>
+          <a  target="_blank" href="https://leparadigmebitcoin.ch/">
+            <img src="https://be-bop.io/digital-file/raw/paradigme-3btjMm?key=1657e692-994a-4af7-b84d-3eded544b763" alt="Le Paradigme Bitcoin">
+          </a>
+          <a  target="_blank" href="https://coworking-neuchatel.ch/">
+            <img src="https://coworking-neuchatel.ch/wp-content/uploads/2020/08/cropped-cropped-Logo_coworkingneuchatel.png" alt="coworking neuchâtel">
+        </a>
+          <a  target="_blank" href="https://www.nedao.ch/">
+            <img src="https://be-bop.io/digital-file/raw/nedao-oCvmG6?key=f8acbe3d-4b51-43ee-86bd-ada5de853a0a" alt="NEDAO">
+          </a>
+        </div>
+      </div>
+      
+      <div class="partners">
+        <h2>Partners</h2>
+        <div>
+          <a  target="_blank" href="https://agiltoo.fr/">
+            <img src="https://agiltoo.fr/wp-content/uploads/2022/04/logo-agiltoo.png" alt="agiltoo">
+          </a>
+          <a  target="_blank" href="">
+            <img src="https://be-bop.io/digital-file/raw/b2bitcoin-6ZuAqt?key=7e06fd94-a437-4c55-a46f-d30a0bbe04d7" alt="B2Bitcoin">
+          </a>
+          <a  target="_blank" href="https://bridgesats.com/">
+            <img src="https://bridgesats.com/wp-content/uploads/2025/07/cropped-Asset-6-261x300.png" alt="BridgeSats">
+          </a>
+          <a  target="_blank" href="https://coyo.dev/">
+            <img src="https://coyo.dev/icons/logo.png" alt="CoyoTech">
+          </a>
+          <a  target="_blank" href="https://crypto-solutions-sarl.ch/">
+            <img src="https://crypto-solutions-sarl.ch/wp-content/uploads/2023/09/logo-CS-Crypto-Solutions-e1719220754727-768x214.png" alt="CryptoSolution Sàrl">
+          </a>
+          <a  target="_blank" href="https://hodling.ch/">
+            <img src="https://hodling.ch/assets/img/hodling-logo.svg" alt="Hodling SA">
+          </a>
+          <a  target="_blank" href="https://leax.ch/">
+            <img src="https://be-bop.io/digital-file/raw/leax-yQMwtb?key=cacb77f3-5a95-4452-8fa6-05ac92b04e2a" alt="LEAX">
+          </a>
+          <a  target="_blank" href="https://www.nodl.eu/">
+            <img src="https://www.nodl.eu/wp-content/uploads/2022/03/nodl-logo-sticker-600x561.png" alt="Nodl">
+          </a>
+          <a  target="_blank" href="https://planb.network/">
+            <img src="https://be-bop.io/digital-file/raw/plan-b-wpVBFE?key=12eff78b-9951-48dc-9a8d-7d9d14441331" alt="Plan B Network">
+          </a>
+          <a  target="_blank" href="https://pvh-editions.com/">
+            <img src="https://be-bop.io/digital-file/raw/pvh-transparent-iiQHvL?key=cf128ce7-3dd8-49fa-a10f-7c5108dc79ef" alt="PVH Editions">
+          </a>
+          <a  target="_blank" href="https://swiss-bitcoin-pay.ch/">
+            <img src="https://swiss-bitcoin-pay.ch/d6a3c5f7023ed0ff951c.png" alt="Swiss Bitcoin Pay">
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="join-us">
+        <h2>Join us as partners!</h2>
+        <p>We work with partners who believe in open, sovereign, and responsible technology. Together, we build alternatives that respect users’ rights, data, and autonomy.</p>
+        <p>Partners contribute to the evolution of the software by sharing insights, co-developing features, and improving integration between be-BOP and their existing tools or services.</p>
+        <p>Partnerships open the door to collaborative projects, technical integrations, and future commercial collaborations with organizations deploying be-BOP solutions.</p>
+        <a href="/contact?lang=en">Contact us!</a>
+      </div>
+    </div>
+    <footer>
+        <div class="legal-address">
+          be-BOP.io SA<br/>
+          Ch. du Petit-Catéchisme 17<br/>
+          2000 Neuchâtel<br/>
+          Switzerland
+        </div>
+        <a href="/contact?lang=en">contact@be-bop.io</a>
+        <div class="boring-links">
+          <a id="partners" href="https://be-bop.io/terms">Conditions d'utilisation</a>
+          <a href="https://be-bop.io/privacy">Politique de confidentialité</a>
+        </div>
+      </footer>
+  </body>
+  </html>
+
+
+

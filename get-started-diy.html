@@ -1,0 +1,1222 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Install be-BOP</title>
+        <style>
+            :root {
+                --blue: #003760;
+                --light-blue: #31a5dd;
+                --sky: #c9e7f5;
+                --sky-2: #a5d3ee;
+                --glass: rgba(255, 255, 255, 0.6);
+                --glass-2: rgba(255, 255, 255, 0.4);
+                --radius-xl: 20px;
+                --radius-pill: 999px;
+                --container-pad: clamp(16px, 6vw, 120px);
+                --section-pad-y: clamp(48px, 8vw, 120px);
+            }
+
+            * {
+                box-sizing: border-box;
+            }
+
+            body {
+                margin: 0;
+                padding: 0;
+                background-color: var(--sky);
+                color: var(--blue);
+                font-family:
+                    system-ui,
+                    -apple-system,
+                    sans-serif;
+                font-size: clamp(16px, 1.4vw, 20px);
+                line-height: 1.5;
+                min-height: 100vh;
+            }
+
+            /* Nav */
+            nav {
+                position: fixed;
+                top: 12px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: min(1100px, calc(100% - 2 * var(--container-pad)));
+                z-index: 30;
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+                justify-content: space-between;
+                border-radius: var(--radius-pill);
+                padding: 0.5rem 1rem;
+            }
+
+            nav .brand {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                text-decoration: none;
+                transition: transform 0.3s ease;
+                margin-left: 1rem;
+            }
+
+            nav .brand:hover {
+                transform: scale(1.05);
+                opacity: 1;
+            }
+
+            nav .brand img {
+                width: auto;
+                height: 44px;
+                object-fit: cover;
+            }
+
+            nav ul {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                gap: clamp(0.5rem, 4vw, 2rem);
+                margin: 0;
+                padding: 0;
+                list-style: none;
+            }
+
+            nav ul a {
+                text-decoration: none;
+                font-weight: 600;
+                position: relative;
+                padding-bottom: 2px;
+            }
+
+            nav ul a::after {
+                content: "";
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 0;
+                height: 2px;
+                background-color: var(--light-blue);
+                transition: width 0.3s ease;
+            }
+
+            nav ul a:hover::after {
+                width: 100%;
+            }
+
+            nav ul a:hover {
+                opacity: 1;
+            }
+
+            /* Desktop Get Started button */
+            nav > .btn {
+                display: inline-block;
+            }
+
+            .btn {
+                display: inline-block;
+                background-color: var(--light-blue);
+                color: #fff;
+                border-radius: var(--radius-pill);
+                padding: 0.6rem 1.4rem;
+                text-decoration: none;
+                font-weight: 600;
+                white-space: nowrap;
+                transition:
+                    background-color 0.3s ease,
+                    transform 0.2s ease,
+                    box-shadow 0.3s ease;
+            }
+
+            .btn:hover {
+                background-color: #2892c4;
+                transform: translateY(-2px);
+                box-shadow: 0 4px 12px rgba(49, 165, 220, 0.3);
+                opacity: 1;
+            }
+
+            /* Mobile menu toggle (CSS-only) */
+            .nav-toggle {
+                display: none;
+            }
+            .hamburger {
+                display: none;
+                width: 44px;
+                height: 44px;
+                border-radius: 10px;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+            }
+
+            .hamburger:hover {
+                background-color: rgba(0, 55, 96, 0.1);
+            }
+
+            .hamburger span {
+                display: block;
+                width: 24px;
+                height: 2px;
+                background: var(--blue);
+                position: relative;
+                transition: background-color 0.3s ease;
+            }
+            .hamburger span::before,
+            .hamburger span::after {
+                content: "";
+                position: absolute;
+                left: 0;
+                width: 24px;
+                height: 2px;
+                background: var(--blue);
+                transition: transform 0.3s ease;
+            }
+            .hamburger span::before {
+                top: -7px;
+            }
+            .hamburger span::after {
+                top: 7px;
+            }
+
+            .nav-toggle:checked ~ .hamburger span {
+                background-color: transparent;
+            }
+
+            .nav-toggle:checked ~ .hamburger span::before {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+
+            .nav-toggle:checked ~ .hamburger span::after {
+                transform: rotate(-45deg) translate(5px, -5px);
+            }
+
+            .container {
+                max-width: 900px;
+                width: 94%;
+                margin: 0 auto;
+                margin-top: 8rem;
+                background-color: var(--glass);
+                backdrop-filter: blur(8px);
+                border-radius: var(--radius-xl);
+                padding: clamp(24px, 4vw, 48px);
+                box-shadow:
+                    0px 3px 4px 0px rgba(255, 255, 255, 0.8) inset,
+                    0px -3px 4px 0px rgba(255, 255, 255, 0.8) inset,
+                    0 10px 30px rgba(0, 55, 96, 0.1);
+            }
+
+            h1 {
+                color: var(--light-blue);
+                font-size: clamp(2rem, 5vw, 3.5rem);
+                margin: 0 0 1rem 0;
+                line-height: 1.2;
+            }
+
+            h2 {
+                color: var(--light-blue);
+                font-size: clamp(1.5rem, 4vw, 2.2rem);
+                margin: 2rem 0 1rem 0;
+                line-height: 1.2;
+            }
+
+            h3 {
+                color: var(--blue);
+                font-size: clamp(1.2rem, 3vw, 1.6rem);
+                margin: 1.5rem 0 0.8rem 0;
+                line-height: 1.3;
+            }
+
+            p {
+                color: var(--blue);
+                margin: 1rem 0;
+            }
+
+            ul {
+                margin: 1rem 0;
+                padding-left: 1.5rem;
+            }
+
+            li {
+                margin: 0.5rem 0;
+                color: var(--blue);
+            }
+
+            strong {
+                color: var(--blue);
+                font-weight: 600;
+            }
+
+            code {
+                background-color: rgba(0, 55, 96, 0.1);
+                padding: 0.2em 0.4em;
+                border-radius: 4px;
+                font-family: "Courier New", monospace;
+                font-size: 0.9em;
+                color: var(--blue);
+            }
+
+            section {
+                margin-top: 2rem;
+            }
+
+            header {
+                margin-bottom: 2rem;
+            }
+
+            form > div {
+                margin-bottom: 1.5rem;
+            }
+
+            label {
+                display: block;
+                margin-bottom: 0.5rem;
+                font-weight: 600;
+                color: var(--blue);
+            }
+
+            small {
+                display: block;
+                margin-top: 0.3rem;
+                color: rgba(0, 55, 96, 0.7);
+                font-size: 0.85rem;
+                line-height: 1.4;
+            }
+
+            input {
+                width: 100%;
+                padding: 0.75rem;
+                margin-top: 0.3rem;
+                border: 2px solid var(--sky-2);
+                border-radius: 10px;
+                font-size: 1rem;
+                background-color: rgba(255, 255, 255, 0.8);
+                color: var(--blue);
+                transition: all 0.3s ease;
+            }
+
+            input:focus {
+                outline: none;
+                border-color: var(--light-blue);
+                background-color: white;
+                box-shadow: 0 0 0 3px rgba(49, 165, 221, 0.1);
+            }
+
+            input:hover {
+                border-color: var(--light-blue);
+            }
+
+            input::placeholder {
+                color: rgba(0, 55, 96, 0.4);
+            }
+
+            pre {
+                padding: 1.2rem;
+                background-color: var(--blue);
+                color: #fff;
+                border-radius: 10px;
+                white-space: pre-wrap;
+                word-break: break-word;
+                margin: 1rem 0;
+                font-family: "Courier New", monospace;
+                font-size: 0.9rem;
+                line-height: 1.4;
+                box-shadow: 0 4px 6px rgba(0, 55, 96, 0.2);
+                overflow-x: auto;
+            }
+
+            pre code {
+                background: none;
+                padding: 0;
+                color: inherit;
+                font-size: inherit;
+            }
+
+            #copy-btn {
+                margin: 1rem 1rem 0 0;
+                padding: 0.75rem 1.5rem;
+                border: none;
+                border-radius: var(--radius-pill);
+                background: var(--light-blue);
+                color: white;
+                cursor: pointer;
+                font-weight: 600;
+                font-size: 1rem;
+                transition: all 0.3s ease;
+                transform: translateY(0);
+            }
+
+            #copy-btn:hover {
+                background: var(--blue);
+                transform: translateY(-2px);
+                box-shadow: 0 4px 12px rgba(0, 55, 96, 0.3);
+            }
+
+            #copy-btn:active {
+                transform: translateY(0);
+            }
+
+            #copy-status {
+                color: var(--blue);
+                font-weight: 600;
+                font-size: 0.9rem;
+            }
+
+            details {
+                margin: 2rem 0;
+                border: 2px solid var(--sky-2);
+                border-radius: 10px;
+                background-color: rgba(255, 255, 255, 0.3);
+            }
+
+            summary {
+                padding: 1rem;
+                cursor: pointer;
+                font-weight: 600;
+                color: var(--blue);
+                background-color: rgba(255, 255, 255, 0.2);
+                border-radius: 8px 8px 0 0;
+                transition: background-color 0.2s ease;
+            }
+
+            summary:hover {
+                background-color: rgba(255, 255, 255, 0.4);
+            }
+
+            details > div {
+                padding: 1rem;
+            }
+
+            details ol,
+            details ul {
+                margin: 1rem 0;
+                padding-left: 1.5rem;
+            }
+
+            details li {
+                margin: 0.8rem 0;
+                line-height: 1.5;
+            }
+
+            a {
+                color: var(--light-blue);
+                text-decoration: underline;
+                transition: color 0.2s ease;
+            }
+
+            a:hover {
+                color: var(--blue);
+            }
+
+            /* Footer */
+            footer {
+                background-color: var(--blue);
+                color: white;
+                padding-top: var(--section-pad-y);
+                padding-bottom: clamp(32px, 5vw, 60px);
+                margin-top: var(--section-pad-y);
+                padding-inline: var(--container-pad);
+            }
+
+            .patrons {
+                background-color: var(--sky);
+                padding: clamp(24px, 4vw, 40px) var(--container-pad);
+                margin-bottom: clamp(40px, 6vw, 80px);
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                align-items: center;
+                gap: clamp(20px, 4vw, 40px);
+                border-radius: 15px;
+            }
+
+            .patrons a {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                min-height: 60px;
+                padding: 10px;
+                border-radius: 10px;
+                background-color: var(--glass);
+                backdrop-filter: blur(4px);
+                transition: all 0.3s ease;
+                flex: 0 1 auto;
+            }
+
+            .patrons a:hover {
+                transform: translateY(-3px);
+                background-color: white;
+                box-shadow: 0 6px 20px rgba(0, 55, 96, 0.15);
+            }
+
+            .patrons img {
+                max-height: 50px;
+                max-width: 85%;
+                width: auto;
+                height: auto;
+                object-fit: contain;
+            }
+
+            .footer-content {
+                padding-inline: var(--container-pad);
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: clamp(32px, 5vw, 48px);
+                max-width: 1200px;
+                margin: 0 auto;
+            }
+
+            .footer-main {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: clamp(24px, 4vw, 40px);
+            }
+
+            .legal-address {
+                font-size: clamp(0.9rem, 1.2vw, 1rem);
+                line-height: 1.8;
+                opacity: 0.9;
+            }
+
+            .legal-address::before {
+                content: "";
+                display: block;
+                width: 40px;
+                height: 3px;
+                background-color: var(--light-blue);
+                margin-bottom: 1rem;
+                border-radius: var(--radius-pill);
+            }
+
+            footer a {
+                color: white;
+                text-decoration: none;
+                transition: all 0.3s ease;
+                display: inline-block;
+            }
+
+            footer a:hover {
+                color: var(--light-blue);
+                transform: translateX(3px);
+            }
+
+            a[href^="mailto"] {
+                font-size: clamp(1rem, 1.4vw, 1.2rem);
+                font-weight: 600;
+                color: var(--light-blue);
+                position: relative;
+                padding-left: 1.5rem;
+            }
+            .btn[href^="mailto"] {
+                color: white;
+            }
+
+            a[href^="mailto"]:hover {
+                color: white;
+            }
+
+            .boring-links {
+                display: flex;
+                flex-direction: column;
+                gap: 0.8rem;
+                padding-top: 1rem;
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .boring-links a {
+                font-size: clamp(0.85rem, 1.1vw, 0.95rem);
+                opacity: 0.7;
+                position: relative;
+                padding-left: 1rem;
+            }
+
+            .boring-links a:before {
+                content: "›";
+                position: absolute;
+                left: 0;
+                opacity: 0.5;
+            }
+
+            .boring-links a:hover {
+                opacity: 1;
+            }
+
+            /* Tablet and up */
+            @media (min-width: 700px) {
+                nav {
+                    background-color: var(--glass);
+                    backdrop-filter: blur(8px);
+                    box-shadow:
+                        0 1px 2px rgba(255, 255, 255, 0.9) inset,
+                        0 -1px 2px rgba(255, 255, 255, 0.9) inset,
+                        0 8px 32px rgba(0, 55, 96, 0.08);
+                    border: 1px solid rgba(255, 255, 255, 0.5);
+                }
+
+                nav ul {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    gap: clamp(0.5rem, 4vw, 2rem);
+                    margin: 0;
+                    padding: 0;
+                    list-style: none;
+                }
+
+                .btn-nav-hidden {
+                    display: none;
+                }
+
+                .footer-main {
+                    grid-template-columns: 1.5fr 1fr 1.5fr;
+                    align-items: start;
+                }
+
+                .legal-address {
+                    text-align: center;
+                }
+
+                .legal-address::before {
+                    margin-left: auto;
+                    margin-right: auto;
+                }
+
+                .boring-links {
+                    border-top: none;
+                    padding-top: 0;
+                    text-align: right;
+                }
+
+                .boring-links a {
+                    padding-left: 0;
+                    padding-right: 1rem;
+                }
+
+                .boring-links a:before {
+                    content: "‹";
+                    left: auto;
+                    right: 0;
+                }
+
+                .boring-links a:hover {
+                    transform: translateX(-3px);
+                }
+            }
+
+            /* Responsive adjustments */
+            @media (max-width: 700px) {
+                body {
+                    align-items: flex-start;
+                    padding-top: 2rem;
+                }
+                nav {
+                    background-color: var(--glass);
+                    width: calc(100% - 2 * 12px);
+                    left: 12px;
+                    right: 12px;
+                    transform: none;
+                    box-shadow:
+                        0 1px 0 rgba(255, 255, 255, 0.8) inset,
+                        0 4px 12px rgba(0, 55, 96, 0.08);
+                    border: 1px solid rgba(255, 255, 255, 0.4);
+                }
+
+                /* Hide desktop Get Started button on mobile */
+                nav > .btn {
+                    display: none;
+                }
+
+                nav::after {
+                    content: "";
+                    position: absolute;
+                    inset: 0;
+                    background-color: transparent;
+                    backdrop-filter: blur(8px);
+                    border-radius: inherit;
+                    pointer-events: none;
+                    z-index: -1;
+                }
+
+                nav > *:not(ul) {
+                    position: relative;
+                    z-index: 1;
+                }
+
+                nav ul {
+                    position: fixed;
+                    top: calc(12px + 60px);
+                    left: 0;
+                    right: 0;
+                    text-align: right;
+                    margin-top: 0.5rem;
+                    background: var(--glass);
+                    backdrop-filter: blur(8px);
+                    -webkit-backdrop-filter: blur(8px);
+                    box-shadow:
+                        0px 3px 4px 0px rgba(255, 255, 255, 0.8) inset,
+                        0px -3px 4px 0px rgba(255, 255, 255, 0.8) inset,
+                        0 8px 24px rgba(0, 55, 96, 0.12);
+                    border-radius: 14px;
+                    padding: 0.75rem 1rem;
+                    flex-direction: column;
+                    align-items: stretch;
+                    gap: 0.5rem;
+                    /* Initially hidden */
+                    display: none;
+                    width: calc(100% - 2 * 12px);
+                    margin-inline: auto;
+                }
+
+                /* Show menu when toggle is checked */
+                .nav-toggle:checked ~ ul {
+                    display: flex;
+                }
+
+                .hamburger {
+                    display: inline-flex;
+                }
+
+                .header section {
+                    grid-template-columns: 1fr;
+                    text-align: left;
+                }
+
+                .carousel-content {
+                    padding-inline: clamp(2rem, 1.5vw, 4rem);
+                }
+
+                .patrons {
+                    gap: clamp(16px, 3vw, 24px);
+                }
+
+                .patrons a {
+                    flex: 0 1 calc(50% - 10px);
+                    min-width: 120px;
+                }
+
+                .footer-main {
+                    text-align: center;
+                }
+
+                footer a[href^="mailto"] {
+                    padding-left: 0;
+                    display: block;
+                    margin: 1rem 0;
+                }
+
+                footer a[href^="mailto"]:before {
+                    position: static;
+                    margin-right: 0.5rem;
+                }
+
+                .boring-links {
+                    align-items: center;
+                }
+
+                .boring-links a {
+                    padding-left: 0;
+                }
+
+                .boring-links a:before {
+                    display: none;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <nav>
+            <a class="brand" href="https://be-bop.io" aria-label="Home">
+                <img
+                    src="https://be-bop.io/digital-file/raw/logo-light-n2I9oT?key=aaf591c6-6de3-41ad-aa17-bb045ea7b047"
+                    alt="be-BOP logo"
+                />
+            </a>
+
+            <input
+                type="checkbox"
+                id="nav-toggle"
+                class="nav-toggle"
+                aria-label="Toggle navigation"
+            />
+            <label for="nav-toggle" class="hamburger" aria-hidden="true">
+                <span></span>
+            </label>
+
+            <ul>
+                <li><a href="/home#features" style="scroll-margin-top: 6rem">Features</a></li>
+                <li><a href="/partners" style="scroll-margin-top: 6rem">Partners</a></li>
+                <li><a href="/home#socials" style="scroll-margin-top: 6rem">Community</a></li>
+                <li class="btn-nav-hidden">
+                    <a class="btn" href="/home#get-started" style="scroll-margin-top: 6rem"
+                        >Get Started</a
+                    >
+                </li>
+            </ul>
+
+            <a class="btn" href="https://be-bop.io#get-started" style="scroll-margin-top: 6rem">Get Started</a>
+        </nav>
+        <div class="container" role="main">
+            <header>
+                <h1>Install be-BOP in minutes</h1>
+                <p>
+                    Run a single command on your server and the installer will
+                    do the rest. When it finishes, be-BOP will be
+                    <strong>ready for initial configuration</strong>.
+                </p>
+            </header>
+
+            <section aria-labelledby="req-title">
+                <h2 id="req-title">Requirements</h2>
+                <ul>
+                    <li>
+                        <strong>A Linux machine</strong> running
+                        <strong>Debian</strong> or <strong>Ubuntu LTS</strong>.
+                        Minimum: 2&nbsp;GB RAM, 40&nbsp;GB disk, internet
+                        access.
+                    </li>
+                    <li>
+                        <strong>A domain name</strong> you control. Example:
+                        <code>example.com</code><br />
+                        You will need <strong>two DNS records</strong> pointing
+                        to your server:
+                        <pre><code>example.com      → A / AAAA → your server IP
+s3.example.com   → A / AAAA → your server IP</code></pre>
+                    </li>
+                    <li>
+                        <strong>An email address</strong> used <em>only</em> for
+                        Let's Encrypt TLS certificates. We don't store or
+                        receive it.
+                    </li>
+                </ul>
+                <p><a href="#dns-help">How do I get this?</a></p>
+            </section>
+
+            <section aria-labelledby="gen-title">
+                <h2 id="gen-title">Generate your install command</h2>
+                <p>
+                    Enter your details (for your own reference). The wizard will
+                    ask for them during setup.
+                </p>
+
+                <form onsubmit="event.preventDefault();">
+                    <div>
+                        <label for="domain">Domain</label>
+                        <input
+                            id="domain"
+                            name="domain"
+                            type="text"
+                            placeholder="myapp.example.com"
+                            aria-describedby="domain-help"
+                        />
+                        <small id="domain-help">
+                            be-BOP uses your main domain and an
+                            <code>s3.&lt;domain&gt;</code> subdomain. See the
+                            <a href="#req-title">Requirements</a> section above
+                            for which DNS records to create.
+                        </small>
+                    </div>
+
+                    <div>
+                        <label for="email">Email</label>
+                        <input
+                            id="email"
+                            name="email"
+                            type="email"
+                            placeholder="you@example.com"
+                            aria-describedby="email-help"
+                        />
+                        <small id="email-help"
+                            >Used only for certificate issuance and renewal
+                            reminders from Let's Encrypt. It's not sent to
+                            be-BOP.</small
+                        >
+                    </div>
+
+                    <p><strong>Run this on your server:</strong></p>
+                    <pre><code id="install-cmd">bash &lt;(curl -fsSL https://be-bop.io/wizard/install.sh)</code></pre>
+                    <button type="button" id="copy-btn">Copy command</button>
+                    <span
+                        id="copy-status"
+                        role="status"
+                        aria-live="polite"
+                    ></span>
+
+                    <p>
+                        Prefer to review first? Open
+                        <a
+                            href="https://be-bop.io/wizard/install.sh"
+                            target="_blank"
+                            rel="noopener"
+                        >
+                            https://be-bop.io/wizard/install.sh
+                        </a>
+                        in a browser to read the script before running it. The
+                        script will also display all planned tasks and ask for
+                        confirmation before making any changes to your system.
+                    </p>
+                    <p>
+                        Installation typically completes in
+                        <strong>3–10 minutes</strong>, depending on network
+                        speed and package updates.
+                    </p>
+                </form>
+            </section>
+
+            <section aria-labelledby="after-title">
+                <h2 id="after-title">After installation</h2>
+                <p>
+                    Visit your domain in a browser. be-BOP will be
+                    <strong>ready for initial configuration</strong> via the web
+                    interface.
+                </p>
+            </section>
+
+            <details id="dns-help" style="scroll-margin-top: 6rem">
+                <summary>
+                    How to get what you need (domains, servers, DNS)
+                </summary>
+                <div>
+                    <h3>1) Get access to a server</h3>
+                    <p>
+                        You'll need access to a server where you can run
+                        commands. This can be a virtual private server (VPS)
+                        from any hosting provider, a dedicated machine, or even
+                        a spare machine at home running Linux, as long as it
+                        meets the requirements
+                        <strong>
+                            and has a public IP address reachable from the
+                            internet.
+                        </strong>
+                    </p>
+                    <p>
+                        Once your server is ready, make sure you can connect to
+                        it:
+                    </p>
+                    <ul>
+                        <li>
+                            Via SSH (using your terminal or an SSH client), or
+                        </li>
+                        <li>
+                            Through your provider's web console, if they offer
+                            one.
+                        </li>
+                    </ul>
+                    <p>
+                        To confirm that you have shell access, try running a
+                        simple command like:
+                    </p>
+                    <pre><code>date</code></pre>
+                    <p>
+                        If it prints the current date and time, you’re in the
+                        right place.
+                    </p>
+                    <p>
+                        You don’t need to choose a specific provider — any that
+                        give you control over a
+                        <strong>Debian or Ubuntu LTS</strong> environment with a
+                        minimum of 2 GB RAM, 40 GB disk, and internet access
+                        will work fine.
+                    </p>
+                    <h3>2) Get a domain name</h3>
+                    <p>
+                        Register a domain with any provider you prefer. You may
+                        use your root domain (e.g. <code>example.com</code>) or
+                        a subdomain (e.g. <code>shop.example.com</code>).
+                    </p>
+                    <p>You will set up DNS for it in the next step.</p>
+                    <h3>3) Point DNS to your server</h3>
+                    <p>
+                        Configure DNS so that your chosen hostname
+                        <strong>and</strong> its companion
+                        <code>s3.</code> subdomain both resolve to your server:
+                    </p>
+                    <ul>
+                        <li>
+                            <strong>Create A records (IPv4)</strong>
+                            <pre><code>chosen-hostname       → A → your server IPv4
+s3.chosen-hostname    → A → your server IPv4</code></pre>
+
+                            You can usually find this setting in your domain
+                            registrar or DNS provider's dashboard, often under
+                            sections called “DNS Management” or “Zone Editor.”
+                            The IPv4 address is a series of four numbers
+                            separated by dots, like <code>203.0.113.42</code>.
+                        </li>
+                        <li>
+                            <strong
+                                >If your server has IPv6, create AAAA
+                                records</strong
+                            >
+                            <pre><code>chosen-hostname       → AAAA → your server IPv6
+s3.chosen-hostname    → AAAA → your server IPv6</code></pre>
+
+                            An IPv6 address looks different — for example,
+                            <code>2001:db8::1234</code>. If your provider
+                            doesn’t list an IPv6 address for your server, you
+                            can safely skip this step.
+                        </li>
+                        <li>
+                            <span
+                                title="TTL (Time To Live) means how long the internet remembers your DNS record before checking again. Leaving it at the default is usually fine."
+                                style="
+                                    border-bottom: 1px dotted currentColor;
+                                    cursor: help;
+                                "
+                            >
+                                TTL
+                            </span>
+                            can be left at the default (e.g. 300–3600 seconds).
+                        </li>
+                        <li>
+                            Wait for DNS to propagate (usually instantaneous for
+                            new domains; otherwise may take a few minutes, per
+                            the existing TTL).
+                        </li>
+                    </ul>
+                    <h3>4) Ready for takeoff</h3>
+                    <ul>
+                        <li>
+                            Once you have access to your server (see the “Get
+                            access to a server” section above), copy the
+                            installation command from this page, paste it into
+                            the terminal, and press <strong>Enter</strong> (or
+                            <strong>Return</strong>) to start the installation
+                            process.
+                        </li>
+                    </ul>
+                    <h3>5) Where and how to get help</h3>
+                    <p>
+                        If something doesn’t work as expected, don’t worry — we
+                        can help you troubleshoot. When reaching out, please
+                        include a few details so we can understand your setup
+                        quickly:
+                    </p>
+                    <ul>
+                        <li>
+                            The <strong>hosting provider</strong> where your
+                            server is running.
+                        </li>
+                        <li>
+                            The <strong>domain registrar</strong> you used for
+                            your DNS settings.
+                        </li>
+                        <li>
+                            Your <strong>domain name</strong> and basic
+                            <strong>server specs</strong> (a screenshot of your
+                            VPS page usually shows this).
+                        </li>
+                        <li>
+                            A
+                            <strong>screenshot of the error message</strong> and
+                            any visible output, or note if nothing appeared.
+                        </li>
+                    </ul>
+                    <p>
+                        You can also include the full command output if you
+                        already ran the installation.
+                    </p>
+                </div>
+            </details>
+
+            <details>
+                <summary>What the installer does</summary>
+                <div>
+                    <ol>
+                        <li>
+                            <strong>Environment checks</strong> — verifies OS,
+                            CPU/RAM/disk, network reachability, and required
+                            ports.
+                        </li>
+                        <li>
+                            <strong>TLS certificates</strong> — obtains and
+                            installs HTTPS certificates from Let's Encrypt
+                            automatically.
+                        </li>
+                        <li>
+                            <strong>Deployment</strong> — fetches be-BOP
+                            components, sets up services, configures networking
+                            and persistence.
+                        </li>
+                        <li>
+                            <strong>Bring-up</strong> — starts the web
+                            interface. At this point, be-BOP is ready for
+                            initial configuration.
+                        </li>
+                    </ol>
+                </div>
+            </details>
+
+            <details>
+                <summary>Security & transparency notes</summary>
+                <div>
+                    <ul>
+                        <li>
+                            You can always review the installer at
+                            <a
+                                href="https://be-bop.io/wizard/install.sh"
+                                target="_blank"
+                                rel="noopener"
+                            >
+                                https://be-bop.io/wizard/install.sh
+                            </a>
+                            before running it.
+                        </li>
+                        <li>
+                            The domain and email you provide are used locally by
+                            the wizard for certificate provisioning and are not
+                            sent to be-BOP.
+                        </li>
+                        <li>
+                            Run the command only on a machine you control and
+                            trust.
+                        </li>
+                    </ul>
+                </div>
+            </details>
+
+            <script>
+                const domainInput = document.getElementById("domain");
+                const emailInput = document.getElementById("email");
+                const cmdEl = document.getElementById("install-cmd");
+                const copyBtn = document.getElementById("copy-btn");
+                const statusEl = document.getElementById("copy-status");
+
+                // Accept real domains or localhost
+                const domainPattern =
+                    /^(localhost|[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/;
+
+                // Require both fields; tighten email a bit beyond the very-permissive HTML5 type=email
+                domainInput.required = true;
+                emailInput.required = true;
+                emailInput.setAttribute(
+                    "pattern",
+                    "^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$",
+                );
+
+                function validateDomain() {
+                    const val = domainInput.value.trim();
+                    domainInput.setCustomValidity(""); // clear previous custom error
+                    if (!val) {
+                        domainInput.setCustomValidity("Please enter a domain.");
+                    } else if (!domainPattern.test(val)) {
+                        domainInput.setCustomValidity(
+                            "Please enter a valid domain (e.g. myapp.example.com or localhost).",
+                        );
+                    }
+                }
+
+                function validateEmail() {
+                    const val = emailInput.value.trim();
+                    emailInput.setCustomValidity(""); // clear previous custom error *before* checkValidity()
+                    if (!val) {
+                        emailInput.setCustomValidity(
+                            "Please enter an email address.",
+                        );
+                    } else if (!emailInput.checkValidity()) {
+                        // Fails native type+pattern validation
+                        emailInput.setCustomValidity(
+                            "Please enter a valid email (e.g. you@example.com).",
+                        );
+                    }
+                }
+
+                function updateCommand() {
+                    validateDomain();
+                    validateEmail();
+                    const d = domainInput.value.trim();
+                    const e = emailInput.value.trim();
+                    let base =
+                        "bash <(curl -fsSL https://be-bop.io/wizard/install.sh)";
+                    if (domainInput.checkValidity()) base += ` --domain "${d}"`;
+                    if (emailInput.checkValidity()) base += ` --email "${e}"`;
+                    cmdEl.textContent = base;
+                }
+
+                domainInput.addEventListener("input", updateCommand);
+                emailInput.addEventListener("input", updateCommand);
+
+                copyBtn.addEventListener("click", async () => {
+                    validateDomain();
+                    validateEmail();
+
+                    if (!domainInput.checkValidity()) {
+                        domainInput.reportValidity();
+                        domainInput.focus();
+                        return;
+                    }
+                    if (!emailInput.checkValidity()) {
+                        emailInput.reportValidity();
+                        emailInput.focus();
+                        return;
+                    }
+
+                    try {
+                        await navigator.clipboard.writeText(
+                            cmdEl.textContent.trim(),
+                        );
+                        statusEl.textContent = "Command copied to clipboard.";
+                        setTimeout(() => (statusEl.textContent = ""), 2500);
+                    } catch {
+                        statusEl.textContent = "Clipboard copy failed.";
+                    }
+                });
+            </script>
+        </div>
+        <footer>
+            <div>
+                <h2>They financed us:</h2>
+                <div class="patrons">
+                    <a
+                        target="_blank"
+                        href="https://www.ne.ch/Pages/accueil.aspx"
+                        ><img
+                            src="https://be-bop.io/digital-file/raw/ne-transparent-NbEALD?key=b8503da9-7e7f-4a35-b366-1bdd789a409a"
+                            alt="Canton de Neuchâtel"
+                    /></a>
+                    <a
+                        target="_blank"
+                        href="https://www.seco.admin.ch/seco/fr/home/Standortfoerderung/Regional_Raumordnungspolitik/nrp.html"
+                        ><img
+                            src="https://be-bop.io/digital-file/raw/npr-transparent-81ZJJh?key=1cfce8c1-a057-41e0-b6cf-83b43d18e758"
+                            alt="Nouvelles Politiques Régionales"
+                    /></a>
+                    <a target="_blank" href="https://www.watchmakersunited.com/"
+                        ><img
+                            src="https://be-bop.io/digital-file/raw/watchmakersunited-X7FBGa?key=27809770-ca2b-4ec8-808e-296e656705ae"
+                            alt="Watchmakers United"
+                    /></a>
+                    <a target="_blank" href="https://leparadigmebitcoin.ch/"
+                        ><img
+                            src="https://be-bop.io/digital-file/raw/paradigme-3btjMm?key=1657e692-994a-4af7-b84d-3eded544b763"
+                            alt="Le Paradigme Bitcoin"
+                    /></a>
+                    <a target="_blank" href="https://coworking-neuchatel.ch/"
+                        ><img
+                            src="https://coworking-neuchatel.ch/wp-content/uploads/2020/08/cropped-cropped-Logo_coworkingneuchatel.png"
+                            alt="coworking neuchâtel"
+                    /></a>
+                    <a target="_blank" href="https://www.nedao.ch/"
+                        ><img
+                            src="https://be-bop.io/digital-file/raw/nedao-oCvmG6?key=f8acbe3d-4b51-43ee-86bd-ada5de853a0a"
+                            alt="NEDAO"
+                    /></a>
+                </div>
+            </div>
+            <div class="legal-address">
+                be-BOP.io SA<br />
+                Ch. du Petit-Catéchisme 17<br />
+                2000 Neuchâtel<br />
+                Switzerland
+            </div>
+            <a href="mailto:contact@be-bop.io">contact@be-bop.io</a>
+            <div class="boring-links">
+                <a id="partners" href="https://be-bop.io/terms"
+                    >Conditions d'utilisation</a
+                >
+                <a href="https://be-bop.io/privacy"
+                    >Politique de confidentialité</a
+                >
+            </div>
+        </footer>
+    </body>
+</html>

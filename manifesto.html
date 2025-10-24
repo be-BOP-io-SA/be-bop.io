@@ -1,0 +1,436 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Technical Innovations - be-BOP</title>
+  <style>
+    :root {
+      --blue: #003760;
+      --light-blue: #31A5DD;
+      --sky: #C9E7F5;
+      --sky-2: #A5D3EE;
+      --glass: rgba(255,255,255,0.6);
+      --glass-2: rgba(255,255,255,0.4);
+      --radius-xl: 20px;
+      --radius-pill: 999px;
+      --container-pad: clamp(16px, 6vw, 120px);
+      --section-pad-y: clamp(48px, 8vw, 120px);
+    }
+
+    * { box-sizing: border-box; }
+    
+    html, body { 
+      margin: 0; 
+      padding: 0;
+      scroll-behavior: smooth;
+    }
+    
+    body {
+      background-color: var(--sky);
+      color: var(--blue);
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: clamp(16px, 1.4vw, 20px);
+      line-height: 1.6;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, var(--blue) 0%, var(--light-blue) 100%);
+      color: white;
+      padding: calc(var(--section-pad-y) * 1.5) var(--container-pad) var(--section-pad-y);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -10%;
+      width: 60%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      margin: 0 0 1rem;
+      line-height: 1.2;
+      font-weight: 700;
+    }
+
+    .subtitle {
+      font-size: clamp(1.1rem, 2vw, 1.4rem);
+      opacity: 0.95;
+      max-width: 800px;
+      line-height: 1.5;
+    }
+
+    /* Main Content */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 var(--container-pad);
+    }
+
+    section {
+      padding: var(--section-pad-y) 0;
+    }
+
+    h2 {
+      color: var(--light-blue);
+      font-size: clamp(1.6rem, 4vw, 2.5rem);
+      margin: 0 0 1.5rem;
+      line-height: 1.3;
+    }
+
+    h3 {
+      color: var(--blue);
+      font-size: clamp(1.3rem, 3vw, 1.8rem);
+      margin: 2rem 0 1rem;
+      font-weight: 600;
+    }
+
+    p {
+      margin: 1rem 0;
+      max-width: 900px;
+    }
+
+    /* Cards for Problems/Solutions */
+    .card {
+      background: var(--glass);
+      backdrop-filter: blur(8px);
+      border-radius: var(--radius-xl);
+      padding: clamp(20px, 4vw, 32px);
+      margin: 2rem 0;
+      box-shadow: 0px 3px 4px 0px rgba(255,255,255,0.8) inset, 
+                  0px -3px 4px 0px rgba(255,255,255,0.8) inset;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0px 3px 4px 0px rgba(255,255,255,0.8) inset, 
+                  0px -3px 4px 0px rgba(255,255,255,0.8) inset,
+                  0 8px 24px rgba(0, 55, 96, 0.12);
+    }
+
+    .card-title {
+      color: var(--light-blue);
+      font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+      font-weight: 600;
+      margin: 0 0 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .card-title::before {
+      content: '';
+      display: inline-block;
+      width: 4px;
+      height: 1.2em;
+      background: var(--light-blue);
+      border-radius: var(--radius-pill);
+    }
+
+    /* Lists */
+    ul {
+      margin: 1rem 0;
+      padding-left: 0;
+      list-style: none;
+    }
+
+    li {
+      position: relative;
+      padding-left: 2rem;
+      margin: 0.8rem 0;
+      line-height: 1.6;
+    }
+
+    li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--light-blue);
+      font-size: 1.2em;
+    }
+
+    /* Problem Section */
+    .problems-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: clamp(20px, 3vw, 32px);
+      margin: 2rem 0;
+    }
+
+    .problem-card {
+      background: linear-gradient(135deg, var(--glass-2) 0%, var(--glass) 100%);
+      backdrop-filter: blur(8px);
+      border-radius: var(--radius-xl);
+      padding: clamp(20px, 4vw, 32px);
+      border-left: 4px solid var(--light-blue);
+      transition: all 0.3s ease;
+    }
+
+    .problem-card:hover {
+      transform: translateX(8px);
+      border-left-width: 8px;
+      box-shadow: 0 6px 20px rgba(0, 55, 96, 0.1);
+    }
+
+    .problem-title {
+      color: var(--blue);
+      font-weight: 600;
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      margin-bottom: 0.8rem;
+    }
+
+    /* Solution Features */
+    .features-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: clamp(24px, 4vw, 40px);
+      margin: 3rem 0;
+    }
+
+    .feature {
+      display: flex;
+      gap: 1.5rem;
+      align-items: flex-start;
+    }
+
+    .feature-icon {
+      flex-shrink: 0;
+      width: 48px;
+      height: 48px;
+      background: var(--light-blue);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.5rem;
+      box-shadow: 0 4px 12px rgba(49, 165, 221, 0.3);
+    }
+
+    .feature-content {
+      flex: 1;
+    }
+
+    .feature-title {
+      font-weight: 600;
+      color: var(--blue);
+      margin: 0 0 0.5rem;
+      font-size: clamp(1rem, 2vw, 1.2rem);
+    }
+
+    .feature-description {
+      margin: 0;
+      opacity: 0.9;
+    }
+
+    /* Emphasis Box */
+    .emphasis-box {
+      background: linear-gradient(135deg, var(--blue) 0%, var(--light-blue) 100%);
+      color: white;
+      border-radius: var(--radius-xl);
+      padding: clamp(24px, 4vw, 40px);
+      margin: 3rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .emphasis-box::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 50%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .emphasis-box h3 {
+      color: white;
+      margin-top: 0;
+    }
+
+    .emphasis-box ul {
+      margin-bottom: 0;
+    }
+
+    .emphasis-box li::before {
+      color: var(--sky);
+    }
+
+    /* Responsive */
+    @media (min-width: 768px) {
+      .problems-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .feature {
+        gap: 2rem;
+      }
+
+      .feature-icon {
+        width: 56px;
+        height: 56px;
+      }
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .card, .problem-card, .feature {
+      animation: fadeInUp 0.6s ease-out;
+    }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <div class="hero-content">
+      <h1>Technical and Functional Innovations of be-BOP</h1>
+      <p class="subtitle">Solutions provided vs identified problems in the ecosystem</p>
+    </div>
+  </div>
+
+  <div class="container">
+    <section>
+      <p><strong>The priority of someone who wants to share content should be the creation of it and its sharing.</strong></p>
+      
+      <p>While we willingly accept that a certain pragmatism must be present (regarding preparation, work to be done, communication, and economic and fiscal regulation of earnings), we believe that the processes currently enabling people to share content are at best biased and at worst obstructive.</p>
+
+      <div class="card">
+        <div class="card-title">What Content Creators Must Handle</div>
+        <p>Someone who wants to share their content is someone who, in addition to creating it, must:</p>
+        <ul>
+          <li>Make themselves visible, virtually or physically</li>
+          <li>Offer or sell the product of their creation</li>
+          <li>Benefit from patronage by collecting support, donations, sponsorships, and other forms of assistance from their first, second, and third circles</li>
+          <li>Simply declare the product of their creative activities to the competent authorities</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-title">What Supporters Should Be Able to Do</div>
+        <p>Support, on the other hand, whether it be close, as a patron, an enlightened amateur, a dedicated fan, an enthusiastic stranger, or a mere curious observer, should be able to:</p>
+        <ul>
+          <li>Access the news and creations of the person sharing their content</li>
+          <li>Obtain or acquire said creations in the way that suits them best</li>
+          <li>Support the person sharing their content in alternative ways, beyond a simple purchase, through a donation, encouragement, service, subscription, or other means</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2>The Current Problems</h2>
+      
+      <p>And if, in recent years, the emergence of solutions like Sum Up or Twint has allowed content sharers to more easily monetize their creations with their audience during physical encounters, others have suffered the hardships of the Fintech ecosystem that was supposed to be built around content sharing with communities:</p>
+
+      <div class="problems-grid">
+        <div class="problem-card">
+          <div class="problem-title">Platform Specialization</div>
+          <p>One for sales; another for donations; another for subscriptions; another for crowdfunding. This has fragmented the visibility (via SEO) of content creators and complicated public support by requiring them to identify and share their information across multiple centralized sources.</p>
+          <p>These platforms exploit and monetize personal information of the public while charging substantial margins for actions that should be exclusively between the content creator and their supporting audience.</p>
+        </div>
+
+        <div class="problem-card">
+          <div class="problem-title">Platform Censorship</div>
+          <p>Whether it's sudden service shutdowns depriving hundreds of thousands of content creators of their income by unilateral decision of the payment service provider (Mangopay, with UTip), attempts to modify Terms of Use (OnlyFans), or abusive demonetization of multimedia content moderated by algorithms.</p>
+          <p>Service interruption, changes in economic terms, platform closure, or content bans in certain countries remain constant threats.</p>
+        </div>
+      </div>
+
+      <p>Self-hosted solutions, on the other hand, can be so versatile that they could equip large e-commerce groups, integrate PIMs, MDMs, and mimic the functioning and organization of giants (via a freemium base and quickly indispensable paid optional plugins, sometimes even for legal compliance), where the needs of content creators are much simpler, and their skills are creative, not managing an advanced e-commerce system requiring expensive interventions from web agencies.</p>
+    </section>
+
+    <section>
+      <h2>The be-BOP Solution</h2>
+      
+      <p>Therefore, to address these issues, increasingly prevalent among content creators, we have decided to designate be-BOP:</p>
+
+      <div class="features-grid">
+        <div class="feature">
+          <div class="feature-icon">🔓</div>
+          <div class="feature-content">
+            <div class="feature-title">Open-Source & Complete</div>
+            <div class="feature-description">A hosted solution without plugins, open-source and free, for greater stability. Take advantage of a complete ecosystem, activatable or not according to needs, without additional hidden costs (merch, CMS, ARM, analytics, billing tracking, i18n, accessibility...)</div>
+          </div>
+        </div>
+
+        <div class="feature">
+          <div class="feature-icon">🔍</div>
+          <div class="feature-content">
+            <div class="feature-title">Simplified SEO</div>
+            <div class="feature-description">No more double entry of product information and static pages versus meta tags. What is displayed on the site is what is referenced by SEO crawlers.</div>
+          </div>
+        </div>
+
+        <div class="feature">
+          <div class="feature-icon">💳</div>
+          <div class="feature-content">
+            <div class="feature-title">Unified Payment Support</div>
+            <div class="feature-description">Allow support within the same process to make a purchase, donation, periodic subscription, and pre-order without needing to juggle between multiple specialized platforms.</div>
+          </div>
+        </div>
+
+        <div class="feature">
+          <div class="feature-icon">⚡</div>
+          <div class="feature-content">
+            <div class="feature-title">Resilient Payment Methods</div>
+            <div class="feature-description">Native connection to uncensorable payment methods (Bitcoin and Lightning), popular payment service providers, localized methods (iDeal, SoFort, AliPay), mobile money for unbanked populations, and disconnected payments for both online and in-store operation.</div>
+          </div>
+        </div>
+
+        <div class="feature">
+          <div class="feature-icon">🛡️</div>
+          <div class="feature-content">
+            <div class="feature-title">Privacy Respecting</div>
+            <div class="feature-description">Connection via temporary session link or third-party SSO without storing passwords. Minimal use of personal information with no unnecessary data collection. Explicit consent for IP retention when needed for accounting.</div>
+          </div>
+        </div>
+
+        <div class="feature">
+          <div class="feature-icon">📊</div>
+          <div class="feature-content">
+            <div class="feature-title">Legal & Accounting Tools</div>
+            <div class="feature-description">All tools to manage legal and accounting obligations according to regime, location, and customer location. Complete access to transaction logs with one-click export of transaction, VAT, and RTT files.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="emphasis-box">
+        <h3>be-BOP: Built for Creators, by Creators</h3>
+        <p>We understand that your focus should be on creating and sharing your content, not wrestling with technology or losing revenue to middlemen. be-BOP gives you back control over your business, your audience relationships, and your income.</p>
+      </div>
+    </section>
+  </div>
+</body>
+</html>
