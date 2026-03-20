@@ -1,0 +1,129 @@
+/* ===================== FEATURES ===================== */
+.custom-features-header {
+    grid-column: 1 / -1;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.65rem;
+    margin-bottom: 0.5rem;
+}
+
+.custom-features-header p {
+    max-width: 48ch;
+    opacity: 0.75;
+}
+
+.custom-features-block {
+    grid-column: span 6;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.custom-features-block--online {
+    border: 2px solid var(--custom-color-blue-400);
+}
+
+/*
+ * On-site: hardcoded navy-700 border so it stays visible in dark mode.
+ * The background of the header is also hardcoded navy so white text
+ * always has guaranteed contrast regardless of CMS theme.
+ */
+.custom-features-block--onsite {
+    border: 2px solid var(--body-text-color);
+}
+
+.custom-features-block__header {
+    padding: 0.7rem 1.15rem;
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    /* Prevent header from inheriting a transparent/light CMS background */
+    background-color: var(--body-text-color);
+}
+
+.custom-features-block--online .custom-features-block__header {
+    background-color: var(--custom-color-blue-400);
+}
+
+.custom-features-block .custom-features-block__header h3 {
+    font-size: clamp(12px, 0.4vw + 0.5rem, 14px);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+.custom-features-block--onsite .custom-features-block__header h3 {
+    color: var(--body-mainPlan-backgroundColor) !important;
+}
+
+.custom-features-block--online .custom-features-block__header h3 {
+    color: #fff !important;
+}
+
+.custom-features-block__header-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.5);
+    flex-shrink: 0;
+}
+
+.custom-features-block__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    flex: 1;
+    /*
+     * The grid itself gets the CMS background so switching themes
+     * correctly repaints the cells — no floating text in dark mode.
+     */
+    background-color: var(--body-bg-color, transparent);
+}
+
+.custom-features-item {
+    padding: 1.1rem 1.15rem;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    border-right: 1px solid rgba(128, 128, 128, 0.15);
+    border-bottom: 1px solid rgba(128, 128, 128, 0.15);
+    /* Each cell also respects theme background */
+    background-color: var(--body-bg-color, transparent);
+}
+
+.custom-features-item:nth-child(even) {
+    border-right: none;
+}
+
+.custom-features-block__grid .custom-features-item:nth-last-child(-n + 2) {
+    border-bottom: none;
+}
+
+.custom-features-item h4 {
+    color: var(--body-text-color);
+}
+
+.custom-features-item p {
+    line-height: 1.55;
+    color: var(--body-text-color);
+    opacity: 0.65;
+    margin: 0;
+}
+
+/* ===================== TABLET (768–1024px) ===================== */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .custom-features-block {
+        grid-column: 1 / -1;
+    }
+}
+
+/* ===================== MOBILE (< 768px) ===================== */
+@media (max-width: 767px) {
+    .custom-features-block {
+        grid-column: 1 / -1;
+    }
+    .custom-features-item {
+        padding: 0.9rem 1rem;
+    }
+}

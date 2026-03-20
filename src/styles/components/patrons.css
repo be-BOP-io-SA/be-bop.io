@@ -1,0 +1,53 @@
+/* ===================== PATRONS ===================== */
+.custom-patrons-title {
+    grid-column: 1 / -1;
+}
+
+.custom-patrons-list {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: clamp(16px, 3vw, 36px);
+    padding: clamp(24px, 4vw, 40px) 0;
+    margin-bottom: clamp(8px, 2vw, 24px);
+}
+
+.custom-patrons-list a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 1 auto;
+    min-height: 60px;
+    padding: 10px 16px;
+    border-radius: 8px;
+    background-color: var(--custom-color-blue-50);
+    transition:
+        transform 0.25s ease,
+        background-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.custom-patrons-list a:hover {
+    transform: translateY(-3px);
+    background-color: #fff;
+    box-shadow: 0 6px 20px rgba(0, 55, 96, 0.15);
+}
+
+.custom-patrons-list img {
+    max-height: 55px;
+    max-width: 120px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+}
+
+.custom-patrons-cta {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.9rem;
+    margin-bottom: 0.5rem;
+}

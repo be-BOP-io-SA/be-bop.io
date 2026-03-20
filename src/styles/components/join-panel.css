@@ -1,0 +1,82 @@
+/* ===================== PARTNERS PAGE — JOIN US PANEL ===================== */
+/*
+ * Reuses the split-column pattern from the Support page.
+ * Navy gradient background, white text — consistent with
+ * the pricing cloud card and homepage hero.
+ */
+.custom-join-col--panel {
+    grid-column: 1 / span 8;
+    border-radius: 10px;
+    overflow: hidden;
+    filter: var(--custom-shadow-navy);
+}
+
+.custom-join-panel__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: clamp(2rem, 4vw, 3rem);
+    height: 100%;
+}
+
+.custom-join-panel__inner h2 {
+    color: #fff !important;
+    font-size: clamp(26px, 2vw + 1rem, 34px);
+}
+
+.custom-join-panel__inner p {
+    color: rgba(255, 255, 255, 0.82) !important;
+    line-height: 1.75;
+    max-width: 58ch;
+}
+
+/* Side decorative column — subtle blue-tinted placeholder */
+.custom-join-col--aside {
+    grid-column: 9 / span 4;
+    border-radius: 10px;
+    overflow: hidden;
+    min-height: 260px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.custom-join-col--aside img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+/* ===================== TABLET (768–1023px) ===================== */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .custom-join-col--panel,
+    .custom-join-col--aside {
+        grid-column: 1 / -1;
+    }
+
+    .custom-join-col--aside {
+        min-height: 220px;
+    }
+}
+
+/* ===================== MOBILE (< 768px) ===================== */
+@media (max-width: 767px) {
+    .custom-join-col--panel,
+    .custom-join-col--aside {
+        grid-column: 1 / -1;
+    }
+
+    /*
+     * Image appears first on mobile.
+     * Panel (text) is order 2 so it follows beneath.
+     */
+    .custom-join-col--aside {
+        min-height: 220px;
+        order: 1;
+    }
+
+    .custom-join-col--panel {
+        order: 2;
+    }
+}

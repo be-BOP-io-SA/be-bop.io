@@ -1,0 +1,9 @@
+/* ===================== RESET & BOX MODEL ===================== */
+[class^="custom-"] {
+    box-sizing: border-box;
+}
+
+/* ===================== SMOOTH SCROLLING ===================== */
+html {
+    scroll-behavior: smooth;
+}

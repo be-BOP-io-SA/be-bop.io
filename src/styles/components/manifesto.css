@@ -1,0 +1,617 @@
+/* ===================== MANIFESTO — TYPOGRAPHY OVERRIDE ===================== */
+/* Increased base h4 slightly for better hierarchy balance */
+.custom-grid h4 {
+    font-size: clamp(15px, 0.6vw + 0.65rem, 17px);
+    font-weight: 700;
+}
+
+/* ===================== MANIFESTO — HERO ===================== */
+.custom-manifesto-hero {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1.1rem;
+    padding: clamp(1.5rem, 4vw, 3rem) 0 clamp(1.5rem, 4vw, 3rem);
+    max-width: 80ch;
+    margin-inline: auto;
+    width: 100%;
+}
+
+.custom-manifesto-hero__eyebrow {
+    font-family: var(--body-text-fontFamily);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--custom-color-blue-400) !important;
+    margin: 0;
+}
+
+.custom-manifesto-hero__title {
+    font-size: clamp(34px, 4vw + 1rem, 64px);
+    font-weight: 700;
+    line-height: 1.12;
+    letter-spacing: -0.025em;
+    color: var(--body-text-color);
+    margin: 0;
+}
+
+/* ===================== MANIFESTO — SHARED PROSE COLUMN ===================== */
+.custom-manifesto-col {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.custom-manifesto-prose {
+    width: 100%;
+    max-width: 68ch;
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.custom-manifesto-prose p {
+    line-height: 1.85;
+    opacity: 0.88;
+}
+
+/* ===================== MANIFESTO — OPENING QUOTE ===================== */
+.custom-manifesto-quote {
+    grid-column: 1 / -1;
+    max-width: 68ch;
+    margin-inline: auto;
+    width: 100%;
+    border-left: 4px solid var(--custom-color-blue-400);
+    padding: 1.25rem 1.75rem;
+    border-radius: 0 6px 6px 0;
+}
+
+.custom-manifesto-quote p {
+    font-size: clamp(1.05rem, 1.5vw + 0.3rem, 1.25rem);
+    font-style: italic;
+    line-height: 1.75;
+    color: var(--body-text-color);
+    opacity: 0.9;
+    margin: 0;
+    font-family: var(--body-text-fontFamily);
+}
+
+/* ===================== MANIFESTO — SECTION HEADINGS ===================== */
+.custom-manifesto-section-heading {
+    grid-column: 1 / -1;
+    max-width: 68ch;
+    margin-inline: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding-top: clamp(1rem, 3vw, 2rem);
+}
+
+.custom-manifesto-section-heading p {
+    font-size: clamp(14px, 0.5vw + 0.65rem, 16px);
+    line-height: 1.7;
+    opacity: 0.75;
+    font-family: var(--body-text-fontFamily);
+}
+
+/* ===================== MANIFESTO — ACTOR CARDS ===================== */
+.custom-manifesto-actors {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    max-width: 68ch;
+    margin-inline: auto;
+    width: 100%;
+}
+
+.custom-manifesto-actor {
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.custom-manifesto-actor--light {
+    background-color: var(--custom-color-blue-50);
+    border: 1.5px solid var(--custom-color-blue-400-alpha);
+}
+
+.custom-manifesto-actor--dark {
+    background-image: linear-gradient(
+        var(--custom-color-navy-300),
+        var(--custom-color-navy-400)
+    );
+}
+
+.custom-manifesto-actor__badge {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.custom-manifesto-actor__badge--blue {
+    background-color: var(--custom-color-blue-400);
+    color: #fff !important;
+}
+
+.custom-manifesto-actor__badge--outline {
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    background-color: #fff;
+    color: var(--custom-color-navy-700) !important;
+}
+
+.custom-manifesto-actor__heading {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.custom-manifesto-actor__heading h3 {
+    font-size: clamp(16px, 1vw + 0.7rem, 20px);
+}
+
+.custom-manifesto-actor--light .custom-manifesto-actor__heading h3 {
+    color: var(--custom-color-navy-700) !important;
+}
+
+.custom-manifesto-actor--dark .custom-manifesto-actor__heading h3 {
+    color: #fff !important;
+}
+
+.custom-manifesto-actor__intro {
+    font-family: var(--body-text-fontFamily);
+    font-size: clamp(13px, 0.4vw + 0.6rem, 15px);
+    line-height: 1.6;
+    font-weight: 500;
+}
+
+.custom-manifesto-actor--light .custom-manifesto-actor__intro {
+    color: var(--custom-color-navy-700) !important;
+}
+
+.custom-manifesto-actor--dark .custom-manifesto-actor__intro {
+    color: rgba(255, 255, 255, 0.72) !important;
+}
+
+.custom-manifesto-actor__list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.custom-manifesto-actor__list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.55rem;
+    font-family: var(--body-text-fontFamily);
+    font-size: clamp(13px, 0.4vw + 0.6rem, 15px);
+    line-height: 1.6;
+}
+
+.custom-manifesto-actor--light .custom-manifesto-actor__list li {
+    color: var(--custom-color-navy-700) !important;
+    opacity: 0.85;
+}
+
+.custom-manifesto-actor--dark .custom-manifesto-actor__list li {
+    color: rgba(255, 255, 255, 0.75) !important;
+}
+
+.custom-manifesto-actor__list li::before {
+    content: "\2192";
+    color: var(--custom-color-blue-400);
+    flex-shrink: 0;
+    font-weight: 600;
+    margin-top: 0.05em;
+    font-size: 0.85em;
+}
+
+/* ===================== MANIFESTO — PROBLEM LIST ===================== */
+.custom-manifesto-problems {
+    grid-column: 1 / -1;
+    max-width: 68ch;
+    margin-inline: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.custom-manifesto-problem {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+    padding: 1.75rem 0;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.15);
+}
+
+.custom-manifesto-problem:last-child {
+    border-bottom: none;
+}
+
+.custom-manifesto-problem__num {
+    font-size: clamp(2.5rem, 4vw, 3.5rem);
+    font-weight: 800;
+    line-height: 1;
+    color: var(--custom-color-blue-400);
+    opacity: 0.25;
+    flex-shrink: 0;
+    width: 3ch;
+    transition: opacity 0.25s ease;
+    font-family: var(--body-text-fontFamily);
+}
+
+.custom-manifesto-problem:hover .custom-manifesto-problem__num {
+    opacity: 1;
+}
+
+.custom-manifesto-problem__body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding-top: 0.25rem;
+}
+
+.custom-manifesto-problem__body h4 {
+    font-size: clamp(16px, 0.8vw + 0.65rem, 18px);
+    font-weight: 700;
+    color: var(--body-text-color);
+}
+
+.custom-manifesto-problem__body p {
+    line-height: 1.75;
+    opacity: 0.82;
+}
+
+/* ===================== MANIFESTO — PULL QUOTE ===================== */
+.custom-manifesto-pullquote {
+    grid-column: 1 / -1;
+    max-width: 68ch;
+    margin-inline: auto;
+    width: 100%;
+    padding: 1.5rem 1.75rem;
+    border-left: 4px solid var(--custom-color-blue-400);
+    border-radius: 0 6px 6px 0;
+    background-color: var(--custom-color-blue-50);
+}
+
+.custom-manifesto-pullquote p {
+    font-size: clamp(15px, 0.8vw + 0.6rem, 17px);
+    font-style: italic;
+    line-height: 1.8;
+    font-family: var(--body-text-fontFamily);
+    color: var(--custom-color-navy-700) !important;
+    opacity: 1;
+}
+
+/* ===================== MANIFESTO — SOLUTION GRID ===================== */
+.custom-manifesto-solutions {
+    grid-column: 1 / -1;
+    max-width: 68ch;
+    margin-inline: auto;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+}
+
+.custom-manifesto-solution {
+    /* Increased padding for better breathing room with larger text */
+    padding: 1.5rem 1.25rem;
+    border-left: 3px solid rgba(128, 128, 128, 0.15);
+    border-bottom: 1px solid rgba(128, 128, 128, 0.1);
+    display: flex;
+    flex-direction: column;
+    /* Increased gap to separate elements better */
+    gap: 0.6rem;
+    transition: border-left-color 0.2s ease;
+}
+
+.custom-manifesto-solution:hover {
+    border-left-color: var(--custom-color-blue-400);
+}
+
+.custom-manifesto-solution:nth-last-child(-n + 2) {
+    border-bottom: none;
+}
+
+.custom-manifesto-solution__label {
+    font-family: var(--body-text-fontFamily);
+    /* Slightly larger label */
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--custom-color-blue-400) !important;
+}
+
+.custom-manifesto-solution h4 {
+    /* Significantly increased heading size */
+    font-size: clamp(15px, 0.8vw + 0.5rem, 17px);
+    font-weight: 700;
+    color: var(--body-text-color);
+}
+
+.custom-manifesto-solution p {
+    /* Increased body text to match base readability */
+    font-size: clamp(14px, 0.4vw + 0.6rem, 15.5px);
+    line-height: 1.65;
+    opacity: 0.75;
+}
+
+/* ===================== MANIFESTO — HORIZONTAL RULE ===================== */
+.custom-manifesto-rule {
+    grid-column: 1 / -1;
+    max-width: 68ch;
+    margin-inline: auto;
+    width: 100%;
+    height: 1px;
+    background-color: rgba(128, 128, 128, 0.2);
+    border: none;
+}
+
+/* ===================== MANIFESTO — NAVY STATEMENT PANEL ===================== */
+.custom-manifesto-statement {
+    grid-column: 1 / -1;
+    max-width: 68ch;
+    margin-inline: auto;
+    width: 100%;
+    padding: 2rem 2.25rem;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.custom-manifesto-statement p {
+    font-size: clamp(15px, 1vw + 0.5rem, 18px);
+    font-weight: 400;
+    line-height: 1.8;
+    color: #fff !important;
+}
+
+/* ===================== MANIFESTO — VOLTAIRE EPIGRAPH ===================== */
+.custom-manifesto-epigraph {
+    grid-column: 1 / -1;
+    max-width: 68ch;
+    margin-inline: auto;
+    width: 100%;
+    text-align: center;
+    padding: 2rem 1.5rem;
+    border-top: 1px solid rgba(128, 128, 128, 0.2);
+    border-bottom: 1px solid rgba(128, 128, 128, 0.2);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.custom-manifesto-epigraph p {
+    font-style: italic;
+    line-height: 1.9;
+    opacity: 0.82;
+}
+
+.custom-manifesto-epigraph__translation {
+    /* Increased minimum size for better readability */
+    font-size: clamp(12px, 0.35vw + 0.5rem, 14px) !important;
+    font-style: normal !important;
+    opacity: 0.55 !important;
+}
+
+.custom-manifesto-epigraph cite {
+    font-style: normal;
+    font-size: clamp(12px, 0.4vw + 0.55rem, 14px);
+    font-weight: 600;
+    color: var(--custom-color-blue-400);
+    font-family: var(--body-text-fontFamily);
+}
+
+/* ===================== MANIFESTO — FEATURE SUBSECTION ===================== */
+.custom-manifesto-feature {
+    grid-column: 1 / -1;
+    max-width: 68ch;
+    margin-inline: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+}
+
+.custom-manifesto-feature__label {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.custom-manifesto-feature__label span {
+    font-family: var(--body-text-fontFamily);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--custom-color-blue-400) !important;
+    white-space: nowrap;
+}
+
+.custom-manifesto-feature__rule {
+    flex-grow: 1;
+    height: 1px;
+    background-color: rgba(128, 128, 128, 0.2);
+}
+
+.custom-manifesto-feature__lead {
+    font-size: clamp(15px, 0.8vw + 0.6rem, 17px);
+    font-weight: 600;
+    line-height: 1.65;
+    color: var(--body-text-color);
+    opacity: 0.9;
+    font-family: var(--body-text-fontFamily);
+}
+
+.custom-manifesto-feature__list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.custom-manifesto-feature__list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    font-family: var(--body-text-fontFamily);
+    font-size: clamp(13px, 0.4vw + 0.6rem, 15px);
+    line-height: 1.65;
+    color: var(--body-text-color);
+    opacity: 0.82;
+}
+
+.custom-manifesto-feature__list li::before {
+    content: "\2192";
+    color: var(--custom-color-blue-400);
+    font-size: 0.85em;
+    flex-shrink: 0;
+    margin-top: 0.1em;
+}
+
+/* ===================== MANIFESTO — USE CASES ===================== */
+.custom-manifesto-usecases {
+    grid-column: 1 / -1;
+    max-width: 68ch;
+    margin-inline: auto;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.custom-manifesto-usecase {
+    border-radius: 10px;
+    border: 1.5px solid rgba(128, 128, 128, 0.18);
+    /* Increased padding to match solutions */
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    transition:
+        border-color 0.22s ease,
+        background-color 0.22s ease;
+    background-color: var(--body-bg-color, transparent);
+}
+
+.custom-manifesto-usecase:hover {
+    border-color: var(--custom-color-blue-400);
+    background-color: var(--custom-color-blue-50);
+}
+
+.custom-manifesto-usecase__letter {
+    font-family: var(--body-text-fontFamily);
+    font-size: clamp(1.5rem, 2vw, 2rem);
+    font-weight: 800;
+    color: var(--custom-color-blue-400);
+    opacity: 0.3;
+    line-height: 1;
+    transition: opacity 0.22s ease;
+}
+
+.custom-manifesto-usecase:hover .custom-manifesto-usecase__letter {
+    opacity: 1;
+}
+
+.custom-manifesto-usecase:hover p {
+    color: var(--custom-color-navy-700) !important;
+    opacity: 1;
+}
+
+.custom-manifesto-usecase p {
+    /* Increased font size to match solutions body */
+    font-size: clamp(14px, 0.4vw + 0.6rem, 15.5px);
+    line-height: 1.65;
+    opacity: 0.82;
+}
+
+/* ===================== MANIFESTO — CLOSING ===================== */
+.custom-manifesto-closing {
+    grid-column: 1 / -1;
+    max-width: 52ch;
+    margin-inline: auto;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    padding-bottom: clamp(2rem, 4vw, 4rem);
+}
+
+.custom-manifesto-closing__note {
+    font-size: clamp(13px, 0.4vw + 0.6rem, 15px);
+    font-style: italic;
+    line-height: 1.8;
+    opacity: 0.65;
+    font-family: var(--body-text-fontFamily);
+}
+
+.custom-manifesto-closing__statement {
+    font-size: clamp(18px, 1.5vw + 0.75rem, 26px);
+    font-weight: 700;
+    line-height: 1.4;
+    letter-spacing: -0.015em;
+    color: var(--body-text-color);
+    font-family: var(--body-text-fontFamily);
+}
+
+/* ===================== TABLET (768–1023px) ===================== */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .custom-manifesto-solutions {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+/* ===================== MOBILE (< 768px) ===================== */
+@media (max-width: 767px) {
+    .custom-manifesto-actors {
+        grid-template-columns: 1fr;
+    }
+
+    .custom-manifesto-solutions {
+        grid-template-columns: 1fr;
+    }
+
+    .custom-manifesto-solution:nth-last-child(-n + 2) {
+        border-bottom: 1px solid rgba(128, 128, 128, 0.1);
+    }
+
+    .custom-manifesto-solution:last-child {
+        border-bottom: none;
+    }
+
+    .custom-manifesto-usecases {
+        grid-template-columns: 1fr;
+    }
+
+    .custom-manifesto-problem {
+        gap: 1rem;
+    }
+
+    .custom-manifesto-problem__num {
+        font-size: clamp(2rem, 6vw, 2.5rem);
+    }
+}

@@ -1,0 +1,155 @@
+---
+import "../../styles/pages/support.css";
+import { makeStaticPaths, getLangFromParams } from "../../i18n/utils";
+import type { SupportTranslations } from "../../i18n/translations/support/types";
+import { en } from "../../i18n/translations/support/en";
+import { fr } from "../../i18n/translations/support/fr";
+
+export const getStaticPaths = makeStaticPaths("support-2026");
+
+const lang = getLangFromParams(Astro.params);
+const translations: Record<"en" | "fr", SupportTranslations> = { en, fr };
+const t = translations[lang as "en" | "fr"];
+---
+
+<!-- HERO ================================================ -->
+<section class="custom-grid">
+    <div class="custom-install-hero">
+        <p class="custom-install-hero__eyebrow">{t.hero.eyebrow}</p>
+        <h1 class="custom-install-hero__title">
+            {t.hero.title}
+        </h1>
+        <p class="custom-install-hero__subtitle">
+            {t.hero.subtitle}
+        </p>
+    </div>
+</section>
+
+<!-- DONATIONS =========================================== -->
+<section class="custom-grid">
+    <!-- Left-aligned title, no --center modifier -->
+    <div class="custom-section-intro">
+        <h2>{t.donations.sectionTitle}</h2>
+    </div>
+
+    <!-- One-time donation -->
+    <a
+        href="/product/soutien-global-au-developpement-de-be-bop"
+        class="custom-donate-card custom-donate-card--blue custom-gradient--blue custom-radius--lg"
+    >
+        <div class="custom-donate-card__inner">
+            <div class="custom-donate-card__top">
+                <div class="custom-donate-card__icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                        <path
+                            d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+                        ></path>
+                    </svg>
+                </div>
+                <span class="custom-donate-card__label"
+                    >{t.donations.oneTime.label}</span
+                >
+                <h3 class="custom-donate-card__title">{t.donations.oneTime.title}</h3>
+            </div>
+            <span class="custom-donate-card__cta">
+                {t.donations.oneTime.cta}
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+            </span>
+        </div>
+    </a>
+
+    <!-- Monthly donation -->
+    <a
+        href="/product/soutien-global-au-developpement-de-be-bop-mensuel"
+        class="custom-donate-card custom-donate-card--navy custom-gradient--navy custom-radius--lg"
+    >
+        <div class="custom-donate-card__inner">
+            <div class="custom-donate-card__top">
+                <div class="custom-donate-card__icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                        <polyline points="23 4 23 10 17 10"></polyline>
+                        <polyline points="1 20 1 14 7 14"></polyline>
+                        <path
+                            d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"
+                        ></path>
+                    </svg>
+                </div>
+                <span class="custom-donate-card__label">{t.donations.monthly.label}</span>
+                <h3 class="custom-donate-card__title">{t.donations.monthly.title}</h3>
+            </div>
+            <span class="custom-donate-card__cta">
+                {t.donations.monthly.cta}
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+            </span>
+        </div>
+    </a>
+</section>
+
+<!-- PATRON / PARTNER ==================================== -->
+<section class="custom-grid">
+    <div class="custom-split-col--text">
+        <h2>{t.patron.title}</h2>
+        <p>
+            {t.patron.desc}
+        </p>
+        <p set:html={t.patron.contactAndJoin} />
+        <div>
+            <a href="/partners" class="custom-link-cta">
+                {t.patron.partnersLink}
+                <span class="custom-link-cta__arrow" aria-hidden="true">&rarr;</span>
+            </a>
+        </div>
+    </div>
+
+    <div class="custom-split-col--image">
+        <img
+            src="https://be-bop.io/digital-file/raw/patron-illu-story-set-svg-0heovg?key=aa3976c4-2d66-4f35-b97b-0f75d60e44d2"
+            alt={t.patron.imageAlt}
+        />
+    </div>
+</section>
+
+<!-- CONTRIBUTION ======================================== -->
+<section class="custom-grid">
+    <div class="custom-split-col--image-left custom-split-col--image">
+        <img
+            src="https://be-bop.io/digital-file/raw/contributor-illu-story-set-svg-Fn7S0d?key=f25f9cff-9ef7-4e24-849a-c17cb9def8b4"
+            alt={t.contributor.imageAlt}
+        />
+    </div>
+
+    <div class="custom-split-col--text-right custom-split-col--text">
+        <h2>{t.contributor.title}</h2>
+        <p set:html={t.contributor.desc} />
+        <p>
+            {t.contributor.workflowNote}
+        </p>
+        <div
+            style="display:flex; gap: 1rem; flex-wrap: wrap; align-items: center;"
+        >
+            <a
+                href="https://github.com/be-BOP-io-SA/be-BOP"
+                target="_blank"
+                rel="noopener"
+                class="custom-btn custom-btn--blue custom-radius--md"
+            >
+                {t.contributor.viewRepoBtn}
+            </a>
+            <a
+                href="https://github.com/be-BOP-io-SA/be-BOP/blob/main/CONTRIBUTING.md"
+                target="_blank"
+                rel="noopener"
+                class="custom-link-cta"
+            >
+                {t.contributor.contributingGuideLink}
+                <span class="custom-link-cta__arrow" aria-hidden="true">&rarr;</span>
+            </a>
+        </div>
+    </div>
+</section>

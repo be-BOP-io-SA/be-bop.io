@@ -1,0 +1,33 @@
+/* ===================== COLOR UTILITIES ===================== */
+.custom-text--blue {
+    color: var(--custom-color-blue-400) !important;
+}
+.custom-text--white {
+    color: #fff !important;
+}
+.custom-text--navy {
+    color: var(--custom-color-navy-700) !important;
+}
+
+/* ===================== BACKGROUND UTILITIES ===================== */
+.custom-gradient--blue {
+    background-image: linear-gradient(
+        var(--custom-color-blue-300),
+        var(--custom-color-blue-400)
+    );
+}
+
+.custom-gradient--navy {
+    background-image: linear-gradient(
+        var(--custom-color-navy-300),
+        var(--custom-color-navy-400)
+    );
+}
+
+/* ===================== SHAPE UTILITIES ===================== */
+.custom-radius--md {
+    border-radius: 6px;
+}
+.custom-radius--lg {
+    border-radius: 10px;
+}

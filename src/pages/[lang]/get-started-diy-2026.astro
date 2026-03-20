@@ -1,0 +1,289 @@
+---
+import "../../styles/pages/get-started-diy.css";
+import { makeStaticPaths, getLangFromParams } from "../../i18n/utils";
+import type { GetStartedDiyTranslations } from "../../i18n/translations/get-started-diy/types";
+import { en } from "../../i18n/translations/get-started-diy/en";
+import { fr } from "../../i18n/translations/get-started-diy/fr";
+import { sv } from "../../i18n/translations/get-started-diy/sv";
+import type { Lang } from "../../i18n/types";
+
+export const getStaticPaths = makeStaticPaths("get-started-diy-2026");
+
+const lang = getLangFromParams(Astro.params);
+const translations: Record<Lang, GetStartedDiyTranslations> = { en, fr, sv };
+const t = translations[lang];
+---
+
+<!-- HERO ================================================ -->
+<section class="custom-grid">
+    <div class="custom-install-hero">
+        <p class="custom-install-hero__eyebrow">{t.hero.eyebrow}</p>
+        <h1 class="custom-install-hero__title">{t.hero.title}</h1>
+        <p class="custom-install-hero__subtitle">
+            {t.hero.subtitle}
+        </p>
+        <div class="custom-install-hero__actions">
+            <a
+                href="https://www.youtube.com/watch?v=NYxFfcCZLrc&list=PLkSclxVXb0g3rarCd7YwANYqESw_5oWaK"
+                target="_blank"
+                rel="noopener"
+                class="custom-btn custom-btn--blue custom-radius--md"
+            >
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path
+                        d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.75 15.5v-7l6.5 3.5-6.5 3.5z"
+                    ></path>
+                </svg>
+                {t.hero.btnYoutube}
+            </a>
+            <a
+                href="https://peertube.ch/w/p/4MqMoVSho7W2ZbYVdSg3uF"
+                target="_blank"
+                rel="noopener"
+                class="custom-btn custom-btn--outline custom-radius--md"
+            >
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path
+                        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1.5 14.5v-9l7 4.5-7 4.5z"
+                    ></path>
+                </svg>
+                {t.hero.btnPeertube}
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- SYSTEM REQUIREMENTS ================================= -->
+<section class="custom-grid">
+    <h2 class="custom-sysreq-title">{t.sysreq.title}</h2>
+
+    <div class="custom-sysreq-list">
+        <div class="custom-sysreq-card">
+            <div class="custom-sysreq-card__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                    <rect x="2" y="3" width="20" height="15" rx="2"></rect>
+                    <path d="M8 21h8M12 18v3"></path>
+                    <path d="M6 8l3 3-3 3"></path>
+                    <path d="M12 14h4"></path>
+                </svg>
+            </div>
+            <span class="custom-sysreq-card__label">{t.sysreq.os.label}</span>
+            <p class="custom-sysreq-card__value" set:html={t.sysreq.os.value} />
+        </div>
+
+        <div class="custom-sysreq-card">
+            <div class="custom-sysreq-card__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                    <rect x="2" y="2" width="20" height="8" rx="2"></rect>
+                    <rect x="2" y="14" width="20" height="8" rx="2"></rect>
+                    <path d="M6 6h.01M6 18h.01"></path>
+                </svg>
+            </div>
+            <span class="custom-sysreq-card__label">{t.sysreq.hardware.label}</span>
+            <p class="custom-sysreq-card__value" set:html={t.sysreq.hardware.value} />
+        </div>
+
+        <div class="custom-sysreq-card">
+            <div class="custom-sysreq-card__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path
+                        d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10A15.3 15.3 0 0 1 12 2z"
+                    ></path>
+                </svg>
+            </div>
+            <span class="custom-sysreq-card__label">{t.sysreq.domain.label}</span>
+            <p class="custom-sysreq-card__value" set:html={t.sysreq.domain.value} />
+        </div>
+
+        <div class="custom-sysreq-card">
+            <div class="custom-sysreq-card__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                    <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                    <path d="m2 7 10 7 10-7"></path>
+                </svg>
+            </div>
+            <span class="custom-sysreq-card__label">{t.sysreq.email.label}</span>
+            <p class="custom-sysreq-card__value" set:html={t.sysreq.email.value} />
+        </div>
+    </div>
+</section>
+
+<!-- INSTALL COMMAND ====================================== -->
+<section class="custom-grid">
+    <div class="custom-cmd-col--text">
+        <h2>{t.cmd.title}</h2>
+        <p class="custom-cmd-subtitle">
+            {t.cmd.subtitle}
+        </p>
+    </div>
+
+    <div class="custom-cmd-col--terminal">
+        <a
+            href="https://github.com/be-BOP-io-SA/be-BOP-tooling/blob/main/be-bop-bootstrap/be-bop-wizard.sh"
+            target="_blank"
+            rel="noopener"
+            class="custom-link-cta custom-cmd-script-link"
+        >
+            {t.cmd.scriptLink}
+            <span class="custom-link-cta__arrow" aria-hidden="true">&rarr;</span>
+        </a>
+
+        <div class="custom-terminal">
+            <div class="custom-terminal__bar" aria-hidden="true">
+                <span class="custom-terminal__dot custom-terminal__dot--red"
+                ></span>
+                <span class="custom-terminal__dot custom-terminal__dot--yellow"
+                ></span>
+                <span class="custom-terminal__dot custom-terminal__dot--green"
+                ></span>
+                <span class="custom-terminal__label">bash — VPS</span>
+            </div>
+            <div class="custom-terminal__body">
+                <code class="custom-terminal__prompt"
+                    >curl -sfSL "https://be-bop.io/wizard/install.sh" -o
+                    be-bop-wizard.sh && bash ./be-bop-wizard.sh -- --domain
+                    "domain.com" --email "email@email.com"</code
+                >
+            </div>
+        </div>
+
+        <p class="custom-terminal__note">
+            {t.cmd.note}
+        </p>
+    </div>
+</section>
+
+<!-- SETUP GUIDE — ACCORDION ============================== -->
+<section class="custom-grid">
+    <h2 class="custom-accordion-title">{t.accordion.title}</h2>
+
+    <div class="custom-accordion-list">
+        {t.accordion.steps.map((step, i) => (
+            <details class="custom-accordion" name="setup-guide">
+                <summary>
+                    <span class="custom-accordion__num" aria-hidden="true">{i + 1}</span>
+                    {step.title}
+                    <svg
+                        class="custom-accordion__chevron"
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                    >
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </summary>
+                <div class="custom-accordion__body" set:html={step.body} />
+            </details>
+        ))}
+    </div>
+</section>
+
+<!-- TROUBLESHOOTING & HELP =============================== -->
+<section class="custom-grid">
+    <h2 class="custom-help-title" set:html={t.help.title} />
+
+    <!-- Troubleshooting -->
+    <div class="custom-help-col custom-help-col--warn">
+        <div class="custom-help-col__heading">
+            <div class="custom-help-col__icon" aria-hidden="true">
+                <!-- Warning triangle icon -->
+                <svg viewBox="0 0 24 24">
+                    <path
+                        d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"
+                    ></path>
+                    <line x1="12" y1="9" x2="12" y2="13"></line>
+                    <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                </svg>
+            </div>
+            <h3>{t.help.troubleshooting.heading}</h3>
+        </div>
+        <Fragment set:html={t.help.troubleshooting.body} />
+    </div>
+
+    <!-- Help channels -->
+    <div class="custom-help-col custom-help-col--info">
+        <div class="custom-help-col__heading">
+            <div class="custom-help-col__icon" aria-hidden="true">
+                <!-- Speech bubble / help icon -->
+                <svg viewBox="0 0 24 24">
+                    <path
+                        d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+                    ></path>
+                </svg>
+            </div>
+            <h3>{t.help.channels.heading}</h3>
+        </div>
+        <p>
+            {t.help.channels.intro}
+        </p>
+        <div class="custom-help-links">
+            <a class="custom-help-link" href="mailto:contact@be-bop.io">
+                <svg viewBox="0 0 24 24">
+                    <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                    <path d="m2 7 10 7 10-7"></path>
+                </svg>
+                contact@be-bop.io
+            </a>
+
+            <a
+                class="custom-help-link"
+                href="https://njump.me/npub16l9pnrkhhagkucjhxvvztz2czv9ex8s5u7yg80ghw9ccjp4j25pqaku4ha"
+                target="_blank"
+                rel="noopener"
+            >
+                <svg viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path
+                        d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32"
+                    ></path>
+                </svg>
+                Nostr
+            </a>
+
+            <a
+                class="custom-help-link"
+                href={t.help.channels.mastodonUrl}
+                target="_blank"
+                rel="noopener"
+            >
+                <svg viewBox="0 0 24 24">
+                    <path
+                        d="M21.3 14.7c-.3 1.5-2.7 3.2-5.4 3.5-1.4.2-2.8.3-4.3.3-2.4-.1-4.3-.6-4.3-.6v.7c.3 2.4 2.3 2.5 4.2 2.6 1.9 0 3.6-.5 3.6-.5l.1 1.7s-1.3.7-3.7.9c-1.3.1-2.9 0-4.8-.5-4-1.1-4.7-5.5-4.8-9.9V9.3C2 4.4 5 3 5 3c1.5-.7 4-1 6.6-1h.1c2.5 0 5 .3 6.6 1 0 0 3 1.4 3 6.3 0 0 0 3.8-.3 5.4z"
+                    ></path>
+                    <path
+                        d="M17.8 9.4v5h-2V9.5c0-1-.4-1.6-1.3-1.6-1 0-1.5.6-1.5 1.9v2.7h-2V9.8c0-1.2-.5-1.9-1.5-1.9-.9 0-1.3.5-1.3 1.6V14.4h-2V9.4c0-1 .3-1.9.8-2.5.6-.6 1.3-1 2.3-1 1.1 0 1.9.4 2.4 1.3l.5.9.5-.9c.5-.8 1.4-1.3 2.4-1.3 1 0 1.7.3 2.3 1 .5.6.8 1.5.8 2.5z"
+                    ></path>
+                </svg>
+                {t.help.channels.mastodonLabel}
+            </a>
+
+            <a
+                class="custom-help-link"
+                href="https://x.com/beBOPcommunity"
+                target="_blank"
+                rel="noopener"
+            >
+                <svg viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                    <path
+                        d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+                    ></path>
+                </svg>
+                Twitter / X — @beBOPcommunity
+            </a>
+
+            <a
+                class="custom-help-link"
+                href="https://github.com/be-BOP-io-SA/be-BOP/issues"
+                target="_blank"
+                rel="noopener"
+            >
+                <svg viewBox="0 0 24 24">
+                    <path
+                        d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
+                    ></path>
+                </svg>
+                {t.help.channels.githubLabel}
+            </a>
+        </div>
+    </div>
+</section>

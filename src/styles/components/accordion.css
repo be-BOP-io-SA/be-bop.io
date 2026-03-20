@@ -1,0 +1,119 @@
+/* ===================== SETUP GUIDE — ACCORDION ===================== */
+.custom-accordion-title {
+    grid-column: 1 / -1;
+}
+
+.custom-accordion-list {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.custom-accordion {
+    border-radius: 10px;
+    border: 1.5px solid rgba(128, 128, 128, 0.2);
+    overflow: hidden;
+    transition: border-color 0.2s ease;
+}
+
+.custom-accordion[open] {
+    border-color: var(--custom-color-blue-400);
+}
+
+.custom-accordion summary {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.1rem 1.4rem;
+    cursor: pointer;
+    list-style: none;
+    font-family: var(--body-text-fontFamily);
+    font-size: clamp(15px, 0.6vw + 0.7rem, 17px);
+    font-weight: 700;
+    color: var(--body-text-color);
+    background-color: var(--body-bg-color, transparent);
+    transition: background-color 0.2s ease;
+    user-select: none;
+}
+
+.custom-accordion summary::-webkit-details-marker {
+    display: none;
+}
+.custom-accordion summary::marker {
+    display: none;
+}
+
+.custom-accordion[open] summary {
+    background-color: var(--custom-color-blue-400-alpha);
+    color: var(--custom-color-blue-400);
+}
+
+.custom-accordion__num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background-color: var(--custom-color-blue-400);
+    color: #fff !important;
+    font-size: 0.8rem;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.custom-accordion__chevron {
+    margin-left: auto;
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: transform 0.25s ease;
+}
+
+.custom-accordion[open] .custom-accordion__chevron {
+    transform: rotate(180deg);
+}
+
+.custom-accordion__body {
+    padding: 1.25rem 1.4rem 1.4rem calc(1.4rem + 28px + 1rem);
+    background-color: var(--body-bg-color, transparent);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.custom-accordion__body p {
+    line-height: 1.75;
+    opacity: 0.85;
+}
+
+/*
+ * DNS / code blocks: mirror the terminal window aesthetic
+ * (dark hardcoded background, light text) so they are legible
+ * on both light and dark CMS themes.
+ */
+.custom-accordion__code {
+    background-color: #0d1520;
+    border-radius: 8px;
+    border: 1.5px solid #1e2a38;
+    padding: 1rem 1.25rem;
+    font-family: "Courier New", Courier, monospace;
+    font-size: clamp(11px, 0.8vw + 0.3rem, 13px);
+    color: #e2e8f0;
+    line-height: 1.8;
+    white-space: pre;
+    overflow-x: auto;
+}
+
+/* ===================== MOBILE (< 768px) ===================== */
+@media (max-width: 767px) {
+    .custom-accordion__body {
+        padding: 1rem 1.1rem 1.2rem 1.1rem;
+    }
+}

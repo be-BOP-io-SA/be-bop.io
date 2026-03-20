@@ -1,0 +1,5 @@
+/* Extended palette — used by get-started pages */
+:root {
+    --custom-color-amber-400: #f59e0b;
+    --custom-color-amber-400-alpha: rgba(245, 158, 11, 0.15);
+}

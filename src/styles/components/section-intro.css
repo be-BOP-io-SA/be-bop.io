@@ -1,0 +1,15 @@
+/* ===================== SECTION INTRO ===================== */
+.custom-section-intro {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+}
+
+/* Removed --center variant: donation title is now left-aligned */
+
+.custom-section-intro p {
+    max-width: 58ch;
+    line-height: 1.75;
+    opacity: 0.8;
+}

@@ -1,0 +1,12 @@
+/* Inline body-copy link */
+.custom-inline-link {
+    color: var(--custom-color-blue-400);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    font-weight: 600;
+    transition: opacity 0.2s ease;
+}
+
+.custom-inline-link:hover {
+    opacity: 0.78;
+}

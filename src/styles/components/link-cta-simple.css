@@ -1,0 +1,35 @@
+/* ===================== SHARED LINK CTA — SIMPLE STYLE ===================== */
+.custom-link-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--body-text-fontFamily);
+    font-size: clamp(14px, 0.5vw + 0.65rem, 16px);
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--custom-color-blue-400);
+    transition: gap 0.2s ease;
+}
+
+.custom-link-cta:hover {
+    text-decoration: underline;
+    gap: 10px;
+}
+
+.custom-link-cta__arrow {
+    color: var(--custom-color-blue-400) !important;
+    font-style: normal;
+    transition: transform 0.2s ease;
+}
+
+.custom-link-cta:hover .custom-link-cta__arrow {
+    transform: translateX(3px);
+}
+
+.custom-link-cta--theme {
+    color: var(--body-text-color);
+}
+
+.custom-link-cta--theme .custom-link-cta__arrow {
+    color: var(--body-text-color) !important;
+}

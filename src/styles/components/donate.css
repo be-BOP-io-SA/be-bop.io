@@ -1,0 +1,137 @@
+/* ===================== DONATION CARDS ===================== */
+.custom-donate-card {
+    /*
+     * Desktop and tablet (>= 768px): side by side, each half the grid.
+     * Mobile (< 768px): overridden to full width below.
+     */
+    grid-column: span 6;
+    display: flex;
+    text-decoration: none;
+    border-radius: 10px;
+    overflow: hidden;
+    transition:
+        transform 0.25s ease,
+        filter 0.25s ease;
+}
+
+.custom-donate-card:hover {
+    transform: translateY(-5px);
+}
+
+.custom-donate-card--blue {
+    filter: var(--custom-shadow-blue);
+}
+
+.custom-donate-card--blue:hover {
+    filter: var(--custom-shadow-blue) brightness(1.06);
+}
+
+.custom-donate-card--navy {
+    filter: var(--custom-shadow-navy);
+}
+
+.custom-donate-card--navy:hover {
+    filter: var(--custom-shadow-navy) brightness(1.1);
+}
+
+.custom-donate-card__inner {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding: 2.25rem;
+    width: 100%;
+}
+
+.custom-donate-card__top {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.custom-donate-card__icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 12px;
+    background-color: rgba(255, 255, 255, 0.18);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.custom-donate-card__icon svg {
+    width: 26px;
+    height: 26px;
+    fill: none;
+    stroke: #fff;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.custom-donate-card__label {
+    font-family: var(--body-text-fontFamily);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.72) !important;
+}
+
+.custom-donate-card__title {
+    font-size: clamp(22px, 2vw + 0.75rem, 30px);
+    font-weight: 700;
+    line-height: 1.2;
+    color: #fff !important;
+}
+
+.custom-donate-card__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--body-text-fontFamily);
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #fff !important;
+    background-color: rgba(255, 255, 255, 0.18);
+    border: 1.5px solid rgba(255, 255, 255, 0.35);
+    border-radius: 6px;
+    padding: 0.6rem 1.2rem;
+    align-self: flex-start;
+    transition: background-color 0.2s ease;
+}
+
+.custom-donate-card:hover .custom-donate-card__cta {
+    background-color: rgba(255, 255, 255, 0.28);
+}
+
+.custom-donate-card__cta svg {
+    width: 16px;
+    height: 16px;
+    fill: none;
+    stroke: #fff;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    flex-shrink: 0;
+}
+
+/* ===================== TABLET (768–1024px) ===================== */
+@media (min-width: 768px) and (max-width: 1024px) {
+    /*
+     * Donation cards: keep side by side from 768 px upward.
+     * span 6 on a 12-col grid = two equal columns, same as desktop.
+     */
+    .custom-donate-card {
+        grid-column: span 6;
+    }
+}
+
+/* ===================== MOBILE (< 768px) ===================== */
+@media (max-width: 767px) {
+    /* Donation cards: full width, stacked */
+    .custom-donate-card {
+        grid-column: 1 / -1;
+    }
+}

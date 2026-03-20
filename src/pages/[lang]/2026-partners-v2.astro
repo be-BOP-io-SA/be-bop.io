@@ -1,0 +1,185 @@
+---
+import "../../styles/pages/partners-v2.css";
+import { makeStaticPaths, getLangFromParams } from "../../i18n/utils";
+import type { PartnersV2Translations } from "../../i18n/translations/partners-v2/types";
+import { en } from "../../i18n/translations/partners-v2/en";
+import { fr } from "../../i18n/translations/partners-v2/fr";
+
+export const getStaticPaths = makeStaticPaths("2026-partners-v2");
+
+const lang = getLangFromParams(Astro.params);
+const translations: Record<"en" | "fr", PartnersV2Translations> = { en, fr };
+const t = translations[lang as "en" | "fr"];
+---
+
+<!-- HERO ================================================ -->
+<section class="custom-grid">
+    <div class="custom-install-hero">
+        <p class="custom-install-hero__eyebrow">
+            {t.hero.eyebrow}
+        </p>
+        <h1 class="custom-install-hero__title">{t.hero.title}</h1>
+        <p class="custom-install-hero__subtitle">
+            {t.hero.subtitle}
+        </p>
+        <div class="custom-install-hero__actions">
+            <a
+                href="#contact-form"
+                class="custom-btn custom-btn--blue custom-radius--md"
+            >
+                {t.hero.btnApply}
+                <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                >
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+            </a>
+            <a
+                href="#about"
+                class="custom-btn custom-btn--outline custom-radius--md"
+            >
+                {t.hero.btnLearnMore}
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- MAIN CONTENT + ASIDE ================================ -->
+<section class="custom-grid">
+    <!-- ── Left: scrollable content blocks ───────────────────── -->
+    <div class="custom-pilot-main">
+        <!-- What is be-BOP -->
+        <div class="custom-pilot-block" id="about">
+            <h2>{t.whatIs.title}</h2>
+            <p set:html={t.whatIs.description} />
+            <ul class="custom-pilot-tags">
+                {t.whatIs.tags.map((tag) => (
+                    <li set:html={tag} />
+                ))}
+            </ul>
+        </div>
+
+        <!-- Who Can Partner -->
+        <div class="custom-pilot-block">
+            <h2>{t.whoCanPartner.title}</h2>
+            <p set:html={t.whoCanPartner.description} />
+            <hr class="custom-pilot-divider" />
+            <h3>{t.whoCanPartner.fitTitle}</h3>
+            <ul class="custom-pilot-list">
+                {t.whoCanPartner.fitItems.map((item) => (
+                    <li>{item}</li>
+                ))}
+            </ul>
+        </div>
+
+        <!-- Why Partner -->
+        <div class="custom-pilot-block">
+            <h2>{t.whyPartner.title}</h2>
+            <p set:html={t.whyPartner.description} />
+
+            <div class="custom-pilot-cards">
+                <div class="custom-pilot-card">
+                    <div class="custom-pilot-card__icon" aria-hidden="true">
+                        <!-- Priority / roadmap icon -->
+                        <svg viewBox="0 0 24 24">
+                            <path d="M3 3h18v4H3zM3 10h12v4H3zM3 17h8v4H3z"
+                            ></path>
+                        </svg>
+                    </div>
+                    <h3>{t.whyPartner.cards[0].title}</h3>
+                    <p>
+                        {t.whyPartner.cards[0].description}
+                    </p>
+                </div>
+
+                <div class="custom-pilot-card">
+                    <div class="custom-pilot-card__icon" aria-hidden="true">
+                        <!-- No fees / circle-check icon -->
+                        <svg viewBox="0 0 24 24">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                        </svg>
+                    </div>
+                    <h3>{t.whyPartner.cards[1].title}</h3>
+                    <p>
+                        {t.whyPartner.cards[1].description}
+                    </p>
+                </div>
+
+                <div class="custom-pilot-card">
+                    <div class="custom-pilot-card__icon" aria-hidden="true">
+                        <!-- Shield / open source icon -->
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"
+                            ></path>
+                        </svg>
+                    </div>
+                    <h3>{t.whyPartner.cards[2].title}</h3>
+                    <p>
+                        {t.whyPartner.cards[2].description}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── Right: sticky apply panel ────────────────────────── -->
+    <div class="custom-pilot-aside" id="apply">
+        <div class="custom-pilot-apply custom-gradient--blue custom-radius--lg">
+            <div class="custom-pilot-apply__inner">
+                <h3>{t.aside.title}</h3>
+                <p>
+                    {t.aside.description}
+                </p>
+                <ul class="custom-pilot-apply__list">
+                    {t.aside.listItems.map((item) => (
+                        <li>{item}</li>
+                    ))}
+                </ul>
+                <a
+                    href="#contact-form"
+                    class="custom-btn custom-btn--ghost-blue custom-radius--md"
+                >
+                    {t.aside.btnApply}
+                    <svg
+                        width="15"
+                        height="15"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                    >
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </a>
+            </div>
+        </div>
+
+        <!-- Discreet secondary link below the panel -->
+        <a
+            href="/partners"
+            class="custom-link-cta"
+            style="justify-content:center;"
+        >
+            {t.aside.seePartnersLink}
+            <span class="custom-link-cta__arrow" aria-hidden="true">&rarr;</span>
+        </a>
+    </div>
+</section>
+<section id="contact-form">
+    [Form=apply-for-a-partnership-for-2026-hDwfup]
+</section>

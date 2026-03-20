@@ -1,0 +1,103 @@
+/* ===================== SPLIT LAYOUT (patron & contribution) ===================== */
+/*
+ * Text column: 8 cols on desktop and tablet — same comfortable width
+ * at both breakpoints, giving the image room to breathe as a sidebar.
+ */
+.custom-split-col--text {
+    grid-column: 1 / span 8;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    justify-content: center;
+    padding: 0.5rem 0;
+}
+
+/*
+ * Image column: cols 9–12 on desktop and tablet (one clear gap column
+ * between text and image, matching the patron section proportions).
+ */
+.custom-split-col--image {
+    grid-column: 9 / span 4;
+    border-radius: 10px;
+    overflow: hidden;
+    min-height: 320px;
+}
+
+.custom-split-col--image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+/*
+ * Contribution layout — inverted: image left (cols 1–4),
+ * gap col 5 implicit, text right (cols 5–12).
+ * Matches the spacing of the patron layout in reverse.
+ */
+.custom-split-col--image-left {
+    grid-column: 1 / span 4;
+}
+
+.custom-split-col--text-right {
+    grid-column: 5 / span 8;
+}
+
+.custom-split-col--text p {
+    line-height: 1.75;
+    opacity: 0.82;
+    max-width: 58ch;
+}
+
+/* ===================== TABLET (768–1024px) ===================== */
+@media (min-width: 768px) and (max-width: 1024px) {
+    /*
+     * Patron & contribution: text (8 cols) + image (4 cols) on one row,
+     * same as desktop. No stacking at this breakpoint.
+     */
+    .custom-split-col--text {
+        grid-column: 1 / span 8;
+    }
+
+    .custom-split-col--image {
+        grid-column: 9 / span 4;
+        min-height: 280px;
+    }
+
+    .custom-split-col--image-left {
+        grid-column: 1 / span 4;
+        min-height: 280px;
+    }
+
+    .custom-split-col--text-right {
+        grid-column: 5 / span 8;
+    }
+}
+
+/* ===================== MOBILE (< 768px) ===================== */
+@media (max-width: 767px) {
+    /* Split layout: full width, stacked — image always after text */
+    .custom-split-col--text,
+    .custom-split-col--image,
+    .custom-split-col--image-left,
+    .custom-split-col--text-right {
+        grid-column: 1 / -1;
+    }
+
+    .custom-split-col--image {
+        min-height: 220px;
+        order: 2;
+    }
+
+    .custom-split-col--image-left {
+        min-height: 220px;
+        order: 2;
+    }
+
+    .custom-split-col--text {
+        order: 1;
+    }
+    .custom-split-col--text-right {
+        order: 1;
+    }
+}

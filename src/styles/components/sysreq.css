@@ -1,0 +1,73 @@
+/* ===================== SYSTEM REQUIREMENTS ===================== */
+.custom-sysreq-title {
+    grid-column: 1 / -1;
+    text-align: center;
+}
+
+.custom-sysreq-list {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+}
+
+.custom-sysreq-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.85rem;
+    padding: 1.75rem 1.5rem;
+    background-color: #fff;
+    border-radius: 10px;
+    border: 1.5px solid var(--custom-color-blue-400-alpha);
+    flex: 1 1 180px;
+    max-width: 220px;
+    text-align: center;
+    filter: var(--custom-shadow-blue);
+}
+
+.custom-sysreq-card__icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    background-color: var(--custom-color-blue-50);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.custom-sysreq-card__icon svg {
+    width: 24px;
+    height: 24px;
+    fill: none;
+    stroke: var(--custom-color-blue-400);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.custom-sysreq-card__label {
+    font-family: var(--body-text-fontFamily);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--custom-color-blue-400) !important;
+}
+
+.custom-sysreq-card__value {
+    font-family: var(--body-text-fontFamily);
+    font-size: clamp(14px, 0.5vw + 0.65rem, 16px);
+    font-weight: 600;
+    line-height: 1.55;
+    color: var(--custom-color-navy-700) !important;
+}
+
+/* ===================== MOBILE (< 768px) ===================== */
+@media (max-width: 767px) {
+    .custom-sysreq-card {
+        flex: 1 1 140px;
+    }
+}

@@ -1,0 +1,291 @@
+---
+import "../../styles/pages/home.css";
+import { makeStaticPaths, getLangFromParams } from "../../i18n/utils";
+import type { HomeTranslations } from "../../i18n/translations/home/types";
+import { en } from "../../i18n/translations/home/en";
+import { fr } from "../../i18n/translations/home/fr";
+import { sv } from "../../i18n/translations/home/sv";
+import { patrons } from "../../data/patrons";
+import { socialLinks, getSocialUrl } from "../../data/social";
+import type { Lang } from "../../i18n/types";
+
+export const getStaticPaths = makeStaticPaths("home-2026");
+
+const lang = getLangFromParams(Astro.params);
+const translations: Record<Lang, HomeTranslations> = { en, fr, sv };
+const t = translations[lang];
+---
+
+<!-- HERO ================================================ -->
+<section class="custom-grid">
+    <div class="custom-hero">
+        <p class="custom-hero__eyebrow">
+            {t.hero.eyebrow}
+        </p>
+        <h1 class="custom-hero__title">{t.hero.title}</h1>
+        <p class="custom-hero__subtitle">
+            {t.hero.subtitle}
+        </p>
+        <div class="custom-hero__actions">
+            <a
+                href="#get-started"
+                class="custom-btn custom-btn--blue custom-radius--md"
+                >{t.hero.btnGetStarted}</a
+            >
+            <a
+                href="#features"
+                class="custom-btn custom-btn--ghost custom-radius--md"
+                >{t.hero.btnDiscover}</a
+            >
+        </div>
+    </div>
+</section>
+
+<!-- PRICING ============================================= -->
+<section class="custom-grid">
+    <h2 class="custom-pricing-title" id="get-started" set:html={t.pricing.title} />
+
+    <!-- Self-hosted FOSS — left, secondary -->
+    <div
+        class="custom-pricing-card custom-pricing-card--foss custom-radius--lg"
+    >
+        <div class="custom-pricing-inner">
+            <div class="custom-pricing-body">
+                <div
+                    class="custom-pricing-icon custom-pricing-icon--code"
+                    aria-hidden="true"
+                >
+                    &lt;/&gt;
+                </div>
+                <h2 set:html={t.pricing.fossTitle} />
+                <p set:html={t.pricing.fossDesc} />
+            </div>
+            <div class="custom-pricing-actions">
+                <a href="/get-started-diy" class="custom-link-cta">
+                    {t.pricing.fossLink}
+                    <span class="custom-link-cta__arrow" aria-hidden="true"
+                        >&rarr;</span
+                    >
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- be-BOP Cloud — right, dominant -->
+    <div
+        class="custom-pricing-card custom-pricing-card--cloud custom-gradient--navy custom-radius--lg"
+    >
+        <div class="custom-pricing-inner">
+            <div class="custom-pricing-body">
+                <div
+                    class="custom-pricing-icon custom-pricing-icon--cloud"
+                    aria-hidden="true"
+                >
+                    <svg viewBox="0 0 24 24">
+                        <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"
+                        ></path>
+                    </svg>
+                </div>
+                <h2 class="custom-text--white">be-BOP<br />Cloud</h2>
+                <p set:html={t.pricing.cloudDesc} />
+            </div>
+            <div class="custom-pricing-actions">
+                <span class="custom-btn custom-btn--disabled custom-radius--md"
+                    >{t.pricing.cloudBtn}</span
+                >
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- INFO ================================================ -->
+<section class="custom-grid">
+    <div class="custom-info-col--text">
+        <div class="custom-info-intro">
+            <h2>{t.info.title}</h2>
+            <p class="custom-info-subtitle">
+                {t.info.subtitle}
+            </p>
+        </div>
+
+        <div class="custom-info-points">
+            <div class="custom-info-point">
+                <div class="custom-info-point__icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                        <path
+                            d="M12 2v4M8 6h8M7 10v4a5 5 0 0 0 10 0v-4M9 18v2M15 18v2"
+                        ></path>
+                    </svg>
+                </div>
+                <div class="custom-info-point__text">
+                    <h4>{t.info.points[0].title}</h4>
+                    <p>
+                        {t.info.points[0].desc}
+                    </p>
+                </div>
+            </div>
+
+            <div class="custom-info-point">
+                <div class="custom-info-point__icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                        <rect x="4" y="3" width="16" height="18" rx="2"></rect>
+                        <path d="M8 7h8M8 11h8M8 15h5"></path>
+                    </svg>
+                </div>
+                <div class="custom-info-point__text">
+                    <h4>{t.info.points[1].title}</h4>
+                    <p>
+                        {t.info.points[1].desc}
+                    </p>
+                </div>
+            </div>
+
+            <div class="custom-info-point">
+                <div class="custom-info-point__icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                        <rect x="2" y="5" width="20" height="14" rx="2"></rect>
+                        <path d="M2 10h20M6 15h4"></path>
+                    </svg>
+                </div>
+                <div class="custom-info-point__text">
+                    <h4 set:html={t.info.points[2].title} />
+                    <p>
+                        {t.info.points[2].desc}
+                    </p>
+                </div>
+            </div>
+
+            <div class="custom-info-point">
+                <div class="custom-info-point__icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                        <polygon points="12 2 22 8.5 12 15 2 8.5"></polygon>
+                        <path d="M2 15.5l10 6.5 10-6.5M2 12l10 6.5 10-6.5"
+                        ></path>
+                    </svg>
+                </div>
+                <div class="custom-info-point__text">
+                    <h4 set:html={t.info.points[3].title} />
+                    <p>
+                        {t.info.points[3].desc}
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <a
+            href="/bebop-manifesto"
+            class="custom-link-cta custom-link-cta--theme"
+        >
+            {t.info.manifestoLink}
+            <span class="custom-link-cta__arrow" aria-hidden="true">&rarr;</span>
+        </a>
+    </div>
+
+    <div class="custom-info-col--image">
+        <img
+            src="https://be-bop.io/digital-file/raw/why-be-bop-svg-timMdT?key=40c21741-4e35-4a64-bda2-93e2090447a9"
+            alt={t.info.imageAlt}
+        />
+    </div>
+</section>
+
+<!-- FEATURES ============================================ -->
+<section class="custom-grid" id="features">
+    <div class="custom-features-header">
+        <h2>{t.features.headerTitle}</h2>
+        <p>{t.features.headerSubtitle}</p>
+    </div>
+
+    <!-- ONLINE BLOCK -->
+    <div class="custom-features-block custom-features-block--online">
+        <div class="custom-features-block__header">
+            <span class="custom-features-block__header-dot" aria-hidden="true"
+            ></span>
+            <h3>{t.features.online.title}</h3>
+        </div>
+        <div class="custom-features-block__grid">
+            {t.features.online.items.map((item) => (
+                <div class="custom-features-item">
+                    <h4>{item.title}</h4>
+                    <p>{item.desc}</p>
+                </div>
+            ))}
+        </div>
+    </div>
+
+    <!-- ON-SITE BLOCK -->
+    <div class="custom-features-block custom-features-block--onsite">
+        <div class="custom-features-block__header">
+            <span class="custom-features-block__header-dot" aria-hidden="true"
+            ></span>
+            <h3>{t.features.onsite.title}</h3>
+        </div>
+        <div class="custom-features-block__grid">
+            {t.features.onsite.items.map((item) => (
+                <div class="custom-features-item">
+                    <h4>{item.title}</h4>
+                    <p>{item.desc}</p>
+                </div>
+            ))}
+        </div>
+    </div>
+</section>
+
+<!-- PATRONS ============================================ -->
+<section class="custom-grid">
+    <h2 class="custom-patrons-title">{t.patrons.title}</h2>
+
+    <div class="custom-patrons-list">
+        {patrons.map((patron) => (
+            <a target="_blank" href={patron.url}>
+                <img
+                    src={patron.img}
+                    alt={patron.alt[lang]}
+                    style={patron.style}
+                />
+            </a>
+        ))}
+    </div>
+
+    <div class="custom-patrons-cta">
+        <a
+            href="/partners"
+            class="custom-btn custom-btn--blue custom-radius--md"
+        >
+            {t.patrons.partnersBtn}
+        </a>
+        <a href="/donation" class="custom-link-cta custom-link-cta--theme">
+            {t.patrons.supportLink}
+            <span class="custom-link-cta__arrow" aria-hidden="true">&rarr;</span>
+        </a>
+    </div>
+</section>
+
+<!-- SOCIAL ============================================ -->
+<section class="custom-grid">
+    <div class="custom-social-header">
+        <h2>{t.social.title}</h2>
+        <p>
+            {t.social.subtitle}
+        </p>
+    </div>
+
+    <div class="custom-social-list">
+        {socialLinks.map((link) => (
+            <a
+                class="custom-social-card"
+                target="_blank"
+                href={getSocialUrl(link, lang)}
+            >
+                <div class="custom-social-card__icon">
+                    <img
+                        src={link.icon}
+                        alt=""
+                        aria-hidden="true"
+                    />
+                </div>
+                <span class="custom-social-card__label">{link.label}</span>
+            </a>
+        ))}
+    </div>
+</section>

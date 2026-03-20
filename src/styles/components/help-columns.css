@@ -1,0 +1,120 @@
+/* ===================== TROUBLESHOOTING & HELP ===================== */
+.custom-help-title {
+    grid-column: 1 / -1;
+}
+
+/*
+ * Floating columns — no background, no border.
+ * Content is separated visually by the heading icon and spacing alone.
+ */
+.custom-help-col {
+    grid-column: span 6;
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+    padding: 0.5rem 0;
+}
+
+.custom-help-col__heading {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+}
+
+/* Icon badge — same pattern as sysreq cards */
+.custom-help-col__icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.custom-help-col__icon svg {
+    width: 22px;
+    height: 22px;
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* Troubleshooting: orange badge */
+.custom-help-col--warn .custom-help-col__icon {
+    background-color: var(--custom-color-amber-400);
+}
+
+.custom-help-col--warn .custom-help-col__icon svg {
+    stroke: #fff;
+}
+
+/* Help: blue badge — consistent with the rest of the page */
+.custom-help-col--info .custom-help-col__icon {
+    background-color: var(--custom-color-blue-400);
+}
+
+.custom-help-col--info .custom-help-col__icon svg {
+    stroke: #fff;
+}
+
+/* Headings and body text both follow CMS text color */
+.custom-help-col h3 {
+    color: var(--body-text-color) !important;
+}
+
+.custom-help-col p {
+    line-height: 1.75;
+    color: var(--body-text-color) !important;
+    opacity: 0.82;
+}
+
+.custom-help-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    margin-top: 0.25rem;
+}
+
+.custom-help-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: var(--body-text-fontFamily);
+    font-size: clamp(13px, 0.4vw + 0.65rem, 15px);
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--custom-color-blue-400);
+    transition: gap 0.2s ease;
+}
+
+.custom-help-link:hover {
+    text-decoration: underline;
+    gap: 0.85rem;
+}
+
+.custom-help-link svg {
+    width: 16px;
+    height: 16px;
+    fill: none;
+    stroke: var(--custom-color-blue-400);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    flex-shrink: 0;
+}
+
+/* ===================== TABLET (768–1024px) ===================== */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .custom-help-col {
+        grid-column: 1 / -1;
+    }
+}
+
+/* ===================== MOBILE (< 768px) ===================== */
+@media (max-width: 767px) {
+    .custom-help-col {
+        grid-column: 1 / -1;
+    }
+}

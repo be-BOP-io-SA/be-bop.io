@@ -1,0 +1,88 @@
+/* ===================== SOCIAL ===================== */
+.custom-social-header {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    margin-bottom: 0.25rem;
+}
+
+.custom-social-header p {
+    opacity: 0.72;
+}
+
+.custom-social-list {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: stretch;
+}
+
+.custom-social-card {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    padding: 0.85rem 1.25rem;
+    border-radius: 10px;
+    text-decoration: none;
+    background-color: transparent;
+    border: 2px solid var(--custom-color-blue-400);
+    transition:
+        transform 0.22s ease,
+        background-color 0.22s ease,
+        box-shadow 0.22s ease;
+    /*
+     * flex: 0 1 auto lets cards size to content but never stretch alone.
+     * Combined with the mobile fix below this prevents the last orphan
+     * from growing full-width.
+     */
+    flex: 0 1 auto;
+}
+
+.custom-social-card:hover {
+    transform: translateY(-4px);
+    background-color: var(--custom-color-blue-400-alpha);
+    box-shadow: 0 8px 24px var(--custom-color-blue-400-alpha);
+}
+
+.custom-social-card__icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    background-image: linear-gradient(
+        var(--custom-color-blue-300),
+        var(--custom-color-blue-400)
+    );
+}
+
+.custom-social-card__icon img {
+    width: 52%;
+    height: 52%;
+    object-fit: contain;
+}
+
+.custom-social-card__label {
+    font-family: var(--body-text-fontFamily);
+    font-size: clamp(13px, 0.4vw + 0.6rem, 15px);
+    font-weight: 600;
+    color: var(--body-text-color);
+    white-space: nowrap;
+}
+
+/* ===================== MOBILE (< 768px) ===================== */
+@media (max-width: 767px) {
+    /*
+     * Two columns of equal width.
+     * calc(50% - 5px) accounts for the 10px gap (10px / 2 = 5px).
+     * Both flex-grow and flex-shrink are 0 so no card ever
+     * stretches to fill leftover space when alone on a row.
+     */
+    .custom-social-card {
+        flex: 0 0 calc(50% - 5px);
+    }
+}

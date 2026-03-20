@@ -1,0 +1,100 @@
+---
+import "../../styles/pages/partners.css";
+import { makeStaticPaths, getLangFromParams } from "../../i18n/utils";
+import type { PartnersTranslations } from "../../i18n/translations/partners/types";
+import { en } from "../../i18n/translations/partners/en";
+import { fr } from "../../i18n/translations/partners/fr";
+import { patrons } from "../../data/patrons";
+import { partners } from "../../data/partners";
+
+export const getStaticPaths = makeStaticPaths("partners");
+
+const lang = getLangFromParams(Astro.params);
+const translations: Record<string, PartnersTranslations> = { en, fr };
+const t = translations[lang];
+---
+
+<!-- HERO ================================================ -->
+<section class="custom-grid">
+    <div class="custom-install-hero">
+        <p class="custom-install-hero__eyebrow">{t.hero.eyebrow}</p>
+        <h1 class="custom-install-hero__title">
+            {t.hero.title}
+        </h1>
+        <p class="custom-install-hero__subtitle">
+            {t.hero.subtitle}
+        </p>
+    </div>
+</section>
+
+<!-- PATRONS ============================================= -->
+<section class="custom-grid">
+    <h2 class="custom-patrons-title">{t.patrons.title}</h2>
+
+    <div class="custom-patrons-list">
+        {patrons.map((patron) => (
+            <a target="_blank" href={patron.url}>
+                <img
+                    src={patron.img}
+                    alt={patron.alt[lang]}
+                    style={patron.style}
+                />
+            </a>
+        ))}
+    </div>
+</section>
+
+<!-- PARTNERS ============================================ -->
+<section class="custom-grid">
+    <h2 class="custom-partners-section-title">{t.partners.title}</h2>
+
+    <div class="custom-partners-list">
+        {partners.map((partner) => (
+            <a target="_blank" href={partner.url}>
+                <img
+                    src={partner.img}
+                    alt={partner.alt[lang]}
+                />
+            </a>
+        ))}
+    </div>
+</section>
+
+<!-- JOIN US ============================================= -->
+<section class="custom-grid">
+    <div class="custom-join-col--panel custom-gradient--navy custom-radius--lg">
+        <div class="custom-join-panel__inner">
+            <h2>{t.join.title}</h2>
+            <p>
+                {t.join.p1}
+            </p>
+            <p>
+                {t.join.p2}
+            </p>
+            <p set:html={t.join.p3} />
+            <div
+                style="display:flex;gap:0.75rem;flex-wrap:wrap;align-items:center;margin-top:0.5rem;"
+            >
+                <a
+                    href="mailto:contact@be-bop.io"
+                    class="custom-btn custom-btn--blue custom-radius--md"
+                >
+                    {t.join.contactBtn}
+                </a>
+                <a
+                    href={t.join.supportHref}
+                    class="custom-btn custom-btn--ghost-navy custom-radius--md"
+                >
+                    {t.join.supportBtn}
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="custom-join-col--aside custom-radius--lg">
+        <img
+            src="https://be-bop.io/digital-file/raw/partner-illu-story-set-svg-3pOeTu?key=dc3507bf-30e7-4372-bf5a-d74eebfcd2b9"
+            alt={t.join.imageAlt}
+        />
+    </div>
+</section>

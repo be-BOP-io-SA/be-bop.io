@@ -1,0 +1,18 @@
+/* ===================== CSS VARIABLES ===================== */
+:root {
+    --custom-color-blue-50: #ebf5fb;
+    --custom-color-blue-300: #5bb8e2;
+    --custom-color-blue-400: #31a5dc;
+    --custom-color-blue-400-alpha: rgba(48, 164, 220, 0.18);
+    --custom-color-navy-300: #1a5280;
+    --custom-color-navy-400: #003760;
+    --custom-color-navy-400-alpha: rgba(0, 24, 54, 0.3);
+    --custom-color-navy-700: #001c36;
+    --custom-color-slate-400: #2d4a6b;
+    --custom-shadow-blue: drop-shadow(
+        0 4px 16px var(--custom-color-blue-400-alpha)
+    );
+    --custom-shadow-navy: drop-shadow(
+        0 4px 16px var(--custom-color-navy-400-alpha)
+    );
+}

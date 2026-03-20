@@ -1,0 +1,132 @@
+/* ===================== INFO ===================== */
+.custom-info-col--text {
+    grid-column: 1 / span 7;
+    display: flex;
+    flex-direction: column;
+    gap: 2.25rem;
+    padding: 0.5rem 0;
+}
+
+.custom-info-col--text .custom-link-cta {
+    width: 50%;
+}
+
+.custom-info-col--image {
+    grid-column: 9 / span 4;
+    border-radius: 10px;
+    overflow: hidden;
+    min-height: 440px;
+}
+
+.custom-info-col--image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.custom-info-intro {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+}
+
+.custom-info-subtitle {
+    line-height: 1.75;
+    color: var(--body-text-color);
+    opacity: 0.72;
+}
+
+.custom-info-points {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.75rem 2rem;
+}
+
+.custom-info-point {
+    display: flex;
+    gap: 0.9rem;
+    align-items: flex-start;
+}
+
+.custom-info-point__icon {
+    width: 34px;
+    height: 34px;
+    min-width: 34px;
+    border-radius: 8px;
+    background-color: var(--custom-color-blue-400);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1px;
+}
+
+.custom-info-point__icon svg {
+    width: 16px;
+    height: 16px;
+    fill: none;
+    stroke: #fff;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.custom-info-point__text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.custom-info-point__text h4 {
+    color: var(--body-text-color);
+}
+
+.custom-info-point__text p {
+    line-height: 1.6;
+    color: var(--body-text-color);
+    opacity: 0.72;
+}
+
+/* ===================== TABLET (768–1024px) ===================== */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .custom-info-col--text,
+    .custom-info-col--image {
+        grid-column: 1 / -1;
+    }
+
+    .custom-info-col--image {
+        min-height: 300px;
+        width: 50%;
+        margin: auto;
+    }
+
+    .custom-info-points {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+/* ===================== MOBILE (< 768px) ===================== */
+@media (max-width: 767px) {
+    .custom-info-col--text,
+    .custom-info-col--image {
+        grid-column: 1 / -1;
+    }
+
+    .custom-info-col--image {
+        min-height: 220px;
+        order: -1;
+    }
+
+    .custom-info-col--text {
+        gap: 1.75rem;
+    }
+
+    .custom-info-points {
+        grid-template-columns: 1fr;
+        gap: 1.35rem;
+    }
+
+    .custom-info-col--text > .custom-link-cta {
+        align-self: center;
+    }
+}

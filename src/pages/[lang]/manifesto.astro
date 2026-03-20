@@ -1,0 +1,228 @@
+---
+import "../../styles/pages/manifesto.css";
+import { makeStaticPaths, getLangFromParams } from "../../i18n/utils";
+import type { ManifestoTranslations } from "../../i18n/translations/manifesto/types";
+import { en } from "../../i18n/translations/manifesto/en";
+import { fr } from "../../i18n/translations/manifesto/fr";
+
+export const getStaticPaths = makeStaticPaths("manifesto");
+
+const lang = getLangFromParams(Astro.params);
+const translations: Record<"en" | "fr", ManifestoTranslations> = { en, fr };
+const t = translations[lang as "en" | "fr"];
+---
+
+<!-- HERO ================================================ -->
+<section class="custom-grid">
+    <div class="custom-manifesto-hero">
+        <p class="custom-manifesto-hero__eyebrow">
+            {t.hero.eyebrow}
+        </p>
+        <h1 class="custom-manifesto-hero__title" set:html={t.hero.title} />
+    </div>
+</section>
+
+<!-- OPENING STATEMENT =================================== -->
+<section class="custom-grid">
+    <blockquote class="custom-manifesto-quote">
+        <p>
+            {t.opening.quote}
+        </p>
+    </blockquote>
+
+    <div class="custom-manifesto-col">
+        <div class="custom-manifesto-prose">
+            <p>
+                {t.opening.prose}
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- ACTORS ============================================== -->
+<section class="custom-grid">
+    <div class="custom-manifesto-section-heading">
+        <h2>{t.actors.heading}</h2>
+    </div>
+
+    <div class="custom-manifesto-actors">
+        <!-- Creator -->
+        <div class="custom-manifesto-actor custom-manifesto-actor--light">
+            <div class="custom-manifesto-actor__heading">
+                <span
+                    class="custom-manifesto-actor__badge custom-manifesto-actor__badge--blue"
+                    aria-hidden="true">{t.actors.creator.badge}</span
+                >
+                <h3>{t.actors.creator.title}</h3>
+            </div>
+            <p class="custom-manifesto-actor__intro">
+                {t.actors.creator.intro}
+            </p>
+            <ul class="custom-manifesto-actor__list">
+                {t.actors.creator.items.map((item) => (
+                    <li>{item}</li>
+                ))}
+            </ul>
+        </div>
+
+        <!-- Supporter -->
+        <div class="custom-manifesto-actor custom-manifesto-actor--dark">
+            <div class="custom-manifesto-actor__heading">
+                <span
+                    class="custom-manifesto-actor__badge custom-manifesto-actor__badge--outline"
+                    aria-hidden="true">{t.actors.supporter.badge}</span
+                >
+                <h3>{t.actors.supporter.title}</h3>
+            </div>
+            <p class="custom-manifesto-actor__intro">
+                {t.actors.supporter.intro}
+            </p>
+            <ul class="custom-manifesto-actor__list">
+                {t.actors.supporter.items.map((item) => (
+                    <li>{item}</li>
+                ))}
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- PROBLEMS ============================================ -->
+<section class="custom-grid">
+    <div class="custom-manifesto-section-heading">
+        <h2>{t.problems.heading}</h2>
+        <p>
+            {t.problems.headingDesc}
+        </p>
+    </div>
+
+    <div class="custom-manifesto-problems">
+        {t.problems.items.map((problem) => (
+            <div class="custom-manifesto-problem">
+                <span class="custom-manifesto-problem__num" aria-hidden="true"
+                    >{problem.num}</span
+                >
+                <div class="custom-manifesto-problem__body">
+                    <h4>{problem.title}</h4>
+                    <p>
+                        {problem.desc}
+                    </p>
+                </div>
+            </div>
+        ))}
+    </div>
+
+    <blockquote class="custom-manifesto-pullquote">
+        <p>
+            {t.problems.pullquote}
+        </p>
+    </blockquote>
+</section>
+
+<!-- SOLUTIONS =========================================== -->
+<section class="custom-grid">
+    <div class="custom-manifesto-section-heading">
+        <h2>{t.solutions.heading}</h2>
+        <p>{t.solutions.headingDesc}</p>
+    </div>
+
+    <div class="custom-manifesto-solutions">
+        {t.solutions.items.map((solution) => (
+            <div class="custom-manifesto-solution">
+                <span class="custom-manifesto-solution__label">{solution.num}</span>
+                <h4>{solution.title}</h4>
+                <p>
+                    {solution.desc}
+                </p>
+            </div>
+        ))}
+    </div>
+</section>
+
+<!-- FUTURE ============================================== -->
+<section class="custom-grid">
+    <div class="custom-manifesto-section-heading">
+        <h2>{t.future.heading}</h2>
+    </div>
+
+    <div class="custom-manifesto-epigraph">
+        <p set:html={t.future.epigraph.poem} />
+        {t.future.epigraph.translation && (
+            <p class="custom-manifesto-epigraph__translation" set:html={t.future.epigraph.translation} />
+        )}
+        <cite>{t.future.epigraph.cite}</cite>
+    </div>
+
+    <div class="custom-manifesto-col">
+        <div class="custom-manifesto-prose">
+            {t.future.prose.map((paragraph) => (
+                <p>
+                    {paragraph}
+                </p>
+            ))}
+        </div>
+    </div>
+
+    <div class="custom-manifesto-statement custom-gradient--navy">
+        <p>
+            {t.future.statement}
+        </p>
+    </div>
+
+    <!-- Cross-be-BOP -->
+    <div class="custom-manifesto-feature">
+        <div class="custom-manifesto-feature__label">
+            <span>{t.future.crossBeBop.label}</span>
+            <div class="custom-manifesto-feature__rule" aria-hidden="true">
+            </div>
+        </div>
+        <p class="custom-manifesto-feature__lead">
+            {t.future.crossBeBop.lead}
+        </p>
+        <ul class="custom-manifesto-feature__list">
+            {t.future.crossBeBop.items.map((item) => (
+                <li>{item}</li>
+            ))}
+        </ul>
+    </div>
+
+    <!-- Meta-be-BOP -->
+    <div class="custom-manifesto-feature">
+        <div class="custom-manifesto-feature__label">
+            <span>{t.future.metaBeBop.label}</span>
+            <div class="custom-manifesto-feature__rule" aria-hidden="true">
+            </div>
+        </div>
+        <p class="custom-manifesto-feature__lead">
+            {t.future.metaBeBop.lead}
+        </p>
+        <div class="custom-manifesto-prose">
+            <p>
+                {t.future.metaBeBop.prose}
+            </p>
+        </div>
+    </div>
+
+    <!-- Use cases -->
+    <div class="custom-manifesto-usecases">
+        {t.future.useCases.map((useCase) => (
+            <div class="custom-manifesto-usecase">
+                <span class="custom-manifesto-usecase__letter" aria-hidden="true"
+                    >{useCase.letter}</span
+                >
+                <p>
+                    {useCase.desc}
+                </p>
+            </div>
+        ))}
+    </div>
+
+    <!-- Closing -->
+    <div class="custom-manifesto-closing">
+        <p class="custom-manifesto-closing__note">
+            {t.future.closing.note}
+        </p>
+        <p class="custom-manifesto-closing__statement">
+            {t.future.closing.statement}
+        </p>
+    </div>
+</section>
