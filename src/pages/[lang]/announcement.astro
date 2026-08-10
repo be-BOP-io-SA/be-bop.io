@@ -1,0 +1,181 @@
+---
+import "../../styles/pages/announcement.css";
+import { makeStaticPaths, getLangFromParams } from "../../i18n/utils";
+import type { AnnouncementTranslations } from "../../i18n/translations/announcement/types";
+import { en } from "../../i18n/translations/announcement/en";
+import { fr } from "../../i18n/translations/announcement/fr";
+import { sv } from "../../i18n/translations/announcement/sv";
+import { socialLinks, getSocialUrl } from "../../data/social";
+import type { Lang } from "../../i18n/types";
+
+export const getStaticPaths = makeStaticPaths("announcement");
+
+const lang = getLangFromParams(Astro.params);
+const translations: Record<Lang, AnnouncementTranslations> = { en, fr, sv };
+const t = translations[lang];
+---
+
+<!-- ═══════════════════════════════════════════════════════
+     TEASER — eyebrow, title, subtitle, countdown label
+════════════════════════════════════════════════════════ -->
+<section class="custom-grid custom-grid--no-mb">
+    <div class="custom-announce-teaser">
+
+        <p class="custom-announce-teaser__eyebrow">
+            {t.teaser.eyebrow}
+        </p>
+
+        <h1 class="custom-announce-teaser__title">
+            {t.teaser.title}
+        </h1>
+
+        <p class="custom-announce-teaser__subtitle">
+            {t.teaser.subtitle}
+        </p>
+
+        <div class="custom-announce-teaser__divider" aria-hidden="true"></div>
+
+        <p class="custom-announce-teaser__eyebrow">
+            {t.teaser.countdownLabel}
+        </p>
+
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     COUNTDOWN — bare CMS widget, must stay outside any wrapper
+════════════════════════════════════════════════════════ -->
+[Countdown=pipelinostr-rTGEyI]
+
+<div class="custom-countdown-spacer"></div>
+
+<!-- ═══════════════════════════════════════════════════════
+     VIDEO — PeerTube embed (same for all locales)
+════════════════════════════════════════════════════════ -->
+<section class="custom-grid">
+    <div class="custom-announce-video">
+        <iframe
+            title="PipeliNostr peerfunding presentation from be-BOP"
+            src="https://peertube.ch/videos/embed/2BHE8K49JumbAZPYeDFG29"
+            allow="fullscreen"
+            sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
+        ></iframe>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     STOAT + GITHUB — same grid row on desktop
+════════════════════════════════════════════════════════ -->
+<section class="custom-grid">
+
+    <div class="custom-announce-stoat" id="stoat">
+
+        <div class="custom-announce-stoat__logo" aria-hidden="true">
+            <img
+                src="/digital-file/raw/stoat-chat-log-o-webp-Ao1QKn?key=184920af-13a0-4961-97fd-f71373ee77a4"
+                alt="Stoat"
+            />
+        </div>
+
+        <span class="custom-announce-stoat__label">{t.stoat.label}</span>
+
+        <h2 class="custom-announce-stoat__title">
+            {t.stoat.title}
+        </h2>
+
+        <p class="custom-announce-stoat__desc">{t.stoat.desc}</p>
+
+        <div class="custom-announce-stoat__actions">
+            <a
+                href="https://stt.gg/61082NKk"
+                target="_blank"
+                class="custom-btn custom-btn--blue custom-radius--md"
+            >
+                <svg
+                    width="16" height="16" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2.5"
+                    stroke-linecap="round" stroke-linejoin="round"
+                    aria-hidden="true"
+                >
+                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                </svg>
+                {t.stoat.btn}
+            </a>
+        </div>
+
+    </div>
+
+    <div class="custom-announce-github">
+
+        <div class="custom-announce-github__icon" aria-hidden="true">
+            <img
+                src="/digital-file/raw/github-lvuNjO?key=0c5b9899-dcf3-4622-bb3f-bf4617947872"
+                alt=""
+            />
+        </div>
+
+        <span class="custom-announce-github__label">{t.github.label}</span>
+
+        <h2 class="custom-announce-github__title">
+            {t.github.title}
+        </h2>
+
+        <iframe
+            src="https://ghbtns.com/github-btn.html?user=be-BOP-io-SA&repo=be-BOP&type=star&count=true&size=large"
+            frameborder="0" scrolling="0" width="130" height="30"
+            title="GitHub"
+            style="display:block; margin:0 auto;"
+        ></iframe>
+
+        <p class="custom-announce-github__desc">
+            {t.github.desc}
+        </p>
+
+        <div class="custom-announce-github__actions">
+            <a
+                href="https://github.com/be-BOP-io-SA/be-BOP"
+                target="_blank"
+                class="custom-btn custom-btn--blue custom-radius--md"
+            >
+                <svg
+                    width="16" height="16" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2.5"
+                    stroke-linecap="round" stroke-linejoin="round"
+                    aria-hidden="true"
+                >
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                </svg>
+                {t.github.btn}
+            </a>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     SOCIAL — stay in the loop everywhere
+════════════════════════════════════════════════════════ -->
+<section class="custom-grid">
+
+    <div class="custom-social-header custom-social-header--centered">
+        <h2>{t.social.heading}</h2>
+        <p>{t.social.subtitle}</p>
+    </div>
+
+    <div class="custom-social-list custom-social-list--centered">
+        {socialLinks.map((link) => (
+            <a
+                class="custom-social-card"
+                target="_blank"
+                href={getSocialUrl(link, lang)}
+            >
+                <div class="custom-social-card__icon">
+                    <img src={link.icon} alt="" aria-hidden="true" />
+                </div>
+                <span class="custom-social-card__label">{link.label}</span>
+            </a>
+        ))}
+    </div>
+
+</section>

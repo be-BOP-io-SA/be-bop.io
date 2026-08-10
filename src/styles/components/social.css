@@ -7,6 +7,11 @@
     margin-bottom: 0.25rem;
 }
 
+.custom-social-header--centered {
+    align-items: center;
+    text-align: center;
+}
+
 .custom-social-header p {
     opacity: 0.72;
 }
@@ -17,6 +22,10 @@
     flex-wrap: wrap;
     gap: 10px;
     align-items: stretch;
+}
+
+.custom-social-list--centered {
+    justify-content: center;
 }
 
 .custom-social-card {
@@ -74,7 +83,93 @@
     white-space: nowrap;
 }
 
+/* ===================== STOAT FEATURED CARD ===================== */
+.custom-social-stoat {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    gap: 1.75rem;
+    padding: 1.5rem 2rem;
+    border-radius: 14px;
+    background-color: var(--custom-color-blue-400-alpha);
+    border: 2px solid var(--custom-color-blue-400);
+    margin-bottom: 0.5rem;
+}
+
+.custom-social-stoat__logo {
+    width: 64px;
+    height: 64px;
+    flex-shrink: 0;
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: var(--custom-color-navy-800);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.custom-social-stoat__logo img {
+    width: 80%;
+    height: 80%;
+    object-fit: contain;
+}
+
+.custom-social-stoat__body {
+    flex: 1;
+    min-width: 0;
+}
+
+.custom-social-stoat__label {
+    display: inline-block;
+    font-family: var(--body-text-fontFamily);
+    font-size: clamp(10px, 0.3vw + 0.5rem, 12px);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--custom-color-blue-400);
+    margin-bottom: 0.35rem;
+}
+
+.custom-social-stoat__title {
+    font-family: var(--body-text-fontFamily);
+    font-size: clamp(16px, 0.6vw + 0.8rem, 20px);
+    font-weight: 700;
+    color: var(--body-text-color);
+    margin: 0 0 0.4rem;
+}
+
+.custom-social-stoat__desc {
+    font-family: var(--body-text-fontFamily);
+    font-size: clamp(13px, 0.4vw + 0.6rem, 15px);
+    color: var(--body-text-color);
+    opacity: 0.8;
+    margin: 0;
+    line-height: 1.55;
+}
+
+.custom-social-stoat__action {
+    flex-shrink: 0;
+}
+
 /* ===================== MOBILE (< 768px) ===================== */
+@media (max-width: 767px) {
+    .custom-social-stoat {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+        padding: 1.25rem 1.25rem;
+    }
+
+    .custom-social-stoat__action {
+        width: 100%;
+    }
+
+    .custom-social-stoat__action .custom-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
 @media (max-width: 767px) {
     /*
      * Two columns of equal width.

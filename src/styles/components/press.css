@@ -1,0 +1,146 @@
+/* =====================================================================
+ * PRESS / MEDIA — "as seen in" wall, not a plain link list.
+ * One shared card shell for both articles and videos (same photo top,
+ * same white body, same outlet/text styling) so a mixed grid reads as
+ * one consistent media wall. The only difference is the affordance: a
+ * play badge over the thumbnail and a play icon in the CTA for videos
+ * that can't be embedded as an iframe, a diagonal arrow for articles.
+ * ===================================================================== */
+
+.custom-press-grid {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.25rem;
+}
+
+.custom-press-card {
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    text-decoration: none;
+    background-color: #fff;
+    border: 1.5px solid var(--custom-color-blue-400-alpha);
+    border-top: 3px solid var(--custom-color-blue-400);
+    filter: var(--custom-shadow-blue);
+    overflow: hidden;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.custom-press-card:hover {
+    transform: translateY(-4px);
+}
+
+/* Thumbnail bleeds to the card edges; rounding comes from the card's own
+ * overflow:hidden, so the image itself stays a plain rectangle. */
+.custom-press-card__media {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+}
+
+.custom-press-card__media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Video-only affordance: a centered play badge over the thumbnail.
+ * Opaque white circle so it stays visible over any photo. */
+.custom-press-card__play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.92);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
+    transition: transform 0.2s ease;
+}
+
+.custom-press-card:hover .custom-press-card__play {
+    transform: translate(-50%, -50%) scale(1.08);
+}
+
+.custom-press-card__play svg {
+    width: 16px;
+    height: 16px;
+    fill: var(--custom-color-navy-700);
+    margin-left: 2px;
+}
+
+.custom-press-card__body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 0.9rem;
+    padding: 1.25rem 1.4rem 1.5rem;
+}
+
+.custom-press-card__outlet {
+    font-size: clamp(0.95rem, 0.4vw + 0.8rem, 1.05rem);
+    font-weight: 800;
+    letter-spacing: 0.01em;
+    color: var(--custom-color-navy-700) !important;
+    margin: 0;
+}
+
+.custom-press-card__angle {
+    font-family: var(--body-text-fontFamily);
+    font-size: clamp(13px, 0.4vw + 0.6rem, 15px);
+    line-height: 1.55;
+    color: var(--custom-color-navy-700) !important;
+    opacity: 0.72;
+    margin: 0;
+    flex: 1;
+}
+
+.custom-press-card__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: clamp(13px, 0.4vw + 0.6rem, 14px);
+    font-weight: 700;
+    color: var(--custom-color-blue-400) !important;
+}
+
+.custom-press-card__cta svg {
+    width: 16px;
+    height: 16px;
+    fill: none;
+    stroke: var(--custom-color-blue-400);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: transform 0.2s ease;
+}
+
+.custom-press-card:hover .custom-press-card__cta svg {
+    transform: translate(3px, -3px);
+}
+
+/* Play variant of the CTA icon (video links): filled triangle instead
+ * of the stroked arrow, scales in place instead of sliding. */
+.custom-press-card__cta svg.custom-press-card__cta-icon--play {
+    fill: var(--custom-color-blue-400);
+    stroke: none;
+}
+
+.custom-press-card:hover .custom-press-card__cta svg.custom-press-card__cta-icon--play {
+    transform: scale(1.15);
+}
+
+/* ===================== MOBILE (< 768px) ===================== */
+@media (max-width: 767px) {
+    .custom-press-grid {
+        grid-template-columns: 1fr;
+    }
+}

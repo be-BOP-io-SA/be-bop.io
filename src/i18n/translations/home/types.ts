@@ -1,4 +1,8 @@
 export interface HomeTranslations {
+  announce: {
+    text: string;
+    linkLabel: string;
+  };
   hero: {
     eyebrow: string;
     title: string;
@@ -40,6 +44,12 @@ export interface HomeTranslations {
     title: string;
     partnersBtn: string;
     supportLink: string;
+  };
+  stoat: {
+    label: string;
+    title: string;
+    desc: string;
+    btn: string;
   };
   social: {
     title: string;

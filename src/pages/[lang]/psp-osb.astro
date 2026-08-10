@@ -1,0 +1,50 @@
+---
+import "../../styles/pages/psp-osb.css";
+import { makeStaticPaths, getLangFromParams } from "../../i18n/utils";
+import type { PspOsbTranslations } from "../../i18n/translations/psp-osb/types";
+import { en } from "../../i18n/translations/psp-osb/en";
+import { fr } from "../../i18n/translations/psp-osb/fr";
+import { de } from "../../i18n/translations/psp-osb/de";
+
+export const getStaticPaths = makeStaticPaths("psp-osb");
+
+const lang = getLangFromParams(Astro.params);
+const translations: Record<"en" | "fr" | "de", PspOsbTranslations> = { en, fr, de };
+const t = translations[lang as "en" | "fr" | "de"];
+---
+
+<!-- HERO ================================================ -->
+<section class="custom-grid">
+    <div class="custom-install-hero">
+        <p class="custom-install-hero__eyebrow">{t.hero.eyebrow}</p>
+        <h1 class="custom-install-hero__title">{t.hero.title}</h1>
+        <p class="custom-install-hero__subtitle">
+            {t.hero.subtitle}
+        </p>
+    </div>
+    <p class="custom-psp-requirement" set:html={t.requirement} />
+</section>
+
+<!-- SETUP GUIDE — ACCORDION ============================== -->
+<section class="custom-grid">
+    <h2 class="custom-accordion-title">{t.accordion.title}</h2>
+
+    <div class="custom-accordion-list">
+        {t.accordion.steps.map((step, i) => (
+            <details class="custom-accordion" name="setup-guide" open={i === 0}>
+                <summary>
+                    <span class="custom-accordion__num" aria-hidden="true">{i + 1}</span>
+                    {step.title}
+                    <svg
+                        class="custom-accordion__chevron"
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                    >
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </summary>
+                <div class="custom-accordion__body" set:html={step.body} />
+            </details>
+        ))}
+    </div>
+</section>

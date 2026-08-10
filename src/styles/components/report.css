@@ -1,0 +1,65 @@
+/* ===================== REPORT — GUIDE CARDS ===================== */
+.custom-report-cards {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+.custom-report-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    padding: 1.6rem;
+    border-radius: 12px;
+    background-color: var(--custom-color-blue-400-alpha);
+    border: 1px solid var(--custom-color-blue-400-alpha);
+}
+
+.custom-report-card__icon {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    border-radius: 10px;
+    background-color: var(--custom-color-blue-400);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.custom-report-card__icon svg {
+    width: 20px;
+    height: 20px;
+    fill: none;
+    stroke: #fff;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.custom-report-card h3 {
+    color: var(--body-text-color);
+    margin: 0;
+}
+
+.custom-report-card p {
+    line-height: 1.7;
+    color: var(--body-text-color);
+    opacity: 0.78;
+    margin: 0;
+}
+
+/* ===================== TABLET (768–1024px) ===================== */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .custom-report-cards {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ===================== MOBILE (< 768px) ===================== */
+@media (max-width: 767px) {
+    .custom-report-cards {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+}

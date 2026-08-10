@@ -1,0 +1,136 @@
+/* =====================================================================
+ * TENANT HERO — two-column hero with the offer card built in.
+ * Left: pitch + CTA-supporting copy. Right: price/trial/features/CTA,
+ * reusing .custom-cloud-pricing-card as-is. No separate "offer"
+ * section, no detached nav link — the CMS nav already handles that.
+ * ===================================================================== */
+
+.custom-tenant-hero {
+    grid-column: 1 / -1;
+    background-color: var(--custom-color-navy-700);
+    border-radius: 10px;
+    padding: clamp(2rem, 4vw, 3.5rem) clamp(1.5rem, 5vw, 3.5rem);
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: clamp(2rem, 4vw, 3.25rem);
+    align-items: center;
+}
+
+.custom-tenant-hero__content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    gap: 1.1rem;
+}
+
+.custom-tenant-hero__content .custom-hero__title,
+.custom-tenant-hero__content .custom-hero__subtitle {
+    max-width: none;
+}
+
+.custom-tenant-hero__poweredby {
+    font-family: var(--body-text-fontFamily);
+    font-size: clamp(12px, 0.3vw + 0.55rem, 13px);
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.5) !important;
+    max-width: 44ch;
+    margin: 0;
+}
+
+.custom-tenant-hero__card {
+    width: 100%;
+}
+
+.custom-tenant-hero__card .custom-cloud-pricing-card__trial {
+    display: inline-flex;
+    align-self: flex-start;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--custom-color-teal-700) !important;
+    background-color: var(--custom-color-teal-400-alpha);
+    padding: 0.4rem 0.85rem;
+    border-radius: 99px;
+}
+
+.custom-tenant-hero__card .custom-tenant-offer-note {
+    font-family: var(--body-text-fontFamily);
+    font-size: clamp(12px, 0.3vw + 0.55rem, 13px);
+    line-height: 1.5;
+    color: var(--custom-color-navy-700) !important;
+    opacity: 0.6;
+    margin: 0;
+}
+
+/* ===================== TABLET/NARROW (< 1024px) ===================== */
+@media (max-width: 1024px) {
+    .custom-tenant-hero {
+        grid-template-columns: 1fr;
+    }
+
+    .custom-tenant-hero__content {
+        align-items: center;
+        text-align: center;
+    }
+
+    .custom-tenant-hero__poweredby {
+        max-width: 60ch;
+    }
+
+    .custom-tenant-hero__card {
+        max-width: 480px;
+        margin: 0 auto;
+    }
+}
+
+/* ===================== LOCAL PAYMENTS — logo + text cards ============
+ * Single column by default; two columns from tablet-landscape up. Cards
+ * use a fixed white surface (like .custom-cloud-diff-card) so hardcoded
+ * navy text stays safe regardless of the page's active theme.
+ * ===================================================================== */
+.custom-tenant-payments-grid {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+.custom-tenant-payment-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1.75rem 1.6rem;
+    background-color: #fff;
+    border: 1.5px solid var(--custom-color-blue-400-alpha);
+    border-radius: 10px;
+    filter: var(--custom-shadow-blue);
+}
+
+.custom-tenant-payment-card__logo {
+    height: 40px;
+    width: auto;
+    max-width: 160px;
+    object-fit: contain;
+    align-self: flex-start;
+}
+
+.custom-tenant-payment-card p {
+    line-height: 1.6;
+    color: var(--custom-color-navy-700) !important;
+    opacity: 0.75;
+    margin: 0;
+}
+
+/* ===================== TABLET LANDSCAPE AND UP (≥768px) ============== */
+@media (min-width: 768px) {
+    .custom-tenant-payments-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* ===================== MOBILE (< 768px) ===================== */
+@media (max-width: 767px) {
+    .custom-tenant-hero {
+        padding: 2rem 1.25rem;
+    }
+}

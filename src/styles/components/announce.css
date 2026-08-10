@@ -1,0 +1,376 @@
+/* ===================== CTA STOAT — inline teaser link ===================== */
+.cta-stoat {
+    text-decoration: underline;
+}
+
+/* ===================== ANNOUNCE — TEASER ===================== */
+.custom-announce-teaser {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: clamp(2rem, 5vw, 3.5rem) clamp(1.25rem, 6vw, 5rem)
+             clamp(1.5rem, 3vw, 2.5rem);
+    gap: 1.25rem;
+}
+
+.custom-announce-teaser__eyebrow {
+    font-family: var(--body-text-fontFamily);
+    font-size: clamp(0.65rem, 0.3vw + 0.5rem, 0.78rem);
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--custom-color-blue-400) !important;
+    margin: 0;
+}
+
+.custom-announce-teaser__title {
+    font-size: clamp(38px, 4vw + 1.5rem, 72px);
+    font-weight: 700;
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+    color: var(--body-text-color) !important;
+    margin: 0;
+    max-width: 22ch;
+}
+
+.custom-announce-teaser__title em {
+    font-style: normal;
+    color: var(--custom-color-blue-400) !important;
+}
+
+.custom-announce-teaser__subtitle {
+    font-family: var(--body-text-fontFamily);
+    font-size: clamp(1rem, 1.2vw + 0.25rem, 1.15rem);
+    line-height: 1.75;
+    color: var(--body-text-color) !important;
+    opacity: 0.72;
+    margin: 0;
+    max-width: 52ch;
+}
+
+.custom-announce-teaser__divider {
+    width: 48px;
+    height: 2px;
+    background-image: linear-gradient(
+        to right,
+        var(--custom-color-blue-300),
+        var(--custom-color-blue-400)
+    );
+    border-radius: 2px;
+    flex-shrink: 0;
+    margin-bottom: 0.25rem;
+}
+
+/* ===================== COUNTDOWN SPACER ===================== */
+.custom-countdown-spacer {
+    margin-bottom: clamp(56px, 8vw, 120px);
+}
+
+/* ===================== ANNOUNCE — VIDEO ===================== */
+.custom-announce-video {
+    grid-column: 1 / -1;
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: var(--custom-color-navy-700);
+}
+
+.custom-announce-video iframe {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    display: block;
+    border: 0;
+}
+
+/* ===================== ANNOUNCE — STOAT CARD ===================== */
+/*
+ * Desktop (> 1024px): Stoat takes 8 of 12 columns (two thirds),
+ * GitHub takes the remaining 4 (one third). Both sit on the same
+ * row and stretch to equal height via align-items: stretch on the
+ * parent grid.
+ * Tablet and mobile override below collapses them back to full width.
+ */
+.custom-announce-stoat {
+    grid-column: 1 / span 8;
+    border: 2px solid var(--custom-color-blue-400);
+    border-radius: 10px;
+    padding: clamp(1.5rem, 3vw, 2.5rem) clamp(1.5rem, 4vw, 3rem);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+    text-align: center;
+    background-image: linear-gradient(
+        135deg,
+        var(--custom-color-blue-400-alpha) 0%,
+        transparent 70%
+    );
+    transition: box-shadow 0.25s ease;
+}
+
+.custom-announce-stoat:hover {
+    box-shadow: 0 8px 36px rgba(49, 165, 220, 0.22);
+}
+
+.custom-announce-stoat__logo {
+    width: 72px;
+    height: 72px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    overflow: hidden;
+    background-color: var(--custom-color-blue-50);
+}
+
+.custom-announce-stoat__logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.custom-announce-stoat__label {
+    font-size: clamp(0.65rem, 0.3vw + 0.5rem, 0.78rem);
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--custom-color-blue-400) !important;
+    font-family: var(--body-text-fontFamily);
+}
+
+.custom-announce-stoat__title {
+    font-size: clamp(20px, 1.5vw + 0.75rem, 28px);
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--body-text-color);
+    letter-spacing: -0.01em;
+    margin: 0;
+    font-family: var(--body-text-fontFamily);
+    max-width: 38ch;
+}
+
+.custom-announce-stoat__desc {
+    font-size: clamp(14px, 0.5vw + 0.65rem, 16px);
+    line-height: 1.75;
+    color: var(--body-text-color);
+    opacity: 0.75;
+    max-width: 54ch;
+    margin: 0;
+    font-family: var(--body-text-fontFamily);
+    white-space: pre-line;
+}
+
+.custom-announce-stoat__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    align-items: center;
+    justify-content: center;
+    /*
+     * Push the CTA to the bottom of the card so both cards'
+     * buttons align at the same vertical position when side by side.
+     */
+    margin-top: auto;
+}
+
+/* ===================== ANNOUNCE — GITHUB CARD ===================== */
+.custom-announce-github {
+    grid-column: span 4;
+    border: 2px solid rgba(128, 128, 128, 0.2);
+    border-radius: 10px;
+    padding: clamp(1.5rem, 3vw, 2.5rem) clamp(1.5rem, 4vw, 3rem);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+    text-align: center;
+    transition: box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.custom-announce-github:hover {
+    border-color: var(--custom-color-blue-400);
+    box-shadow: 0 8px 36px rgba(49, 165, 220, 0.12);
+}
+
+.custom-announce-github__icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 12px;
+    background-color: var(--custom-color-slate-400);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.custom-announce-github__icon img {
+    width: 58%;
+    height: 58%;
+    object-fit: contain;
+}
+
+.custom-announce-github__label {
+    font-size: clamp(0.65rem, 0.3vw + 0.5rem, 0.78rem);
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--body-text-color);
+    opacity: 0.5;
+    font-family: var(--body-text-fontFamily);
+}
+
+.custom-announce-github__title {
+    font-size: clamp(20px, 1.5vw + 0.75rem, 28px);
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--body-text-color);
+    letter-spacing: -0.01em;
+    margin: 0;
+    font-family: var(--body-text-fontFamily);
+    max-width: 38ch;
+}
+
+.custom-announce-github__desc {
+    font-size: clamp(14px, 0.5vw + 0.65rem, 16px);
+    line-height: 1.75;
+    color: var(--body-text-color);
+    opacity: 0.75;
+    max-width: 54ch;
+    margin: 0;
+    font-family: var(--body-text-fontFamily);
+}
+
+.custom-announce-github__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    align-items: center;
+    justify-content: center;
+    /* Mirror Stoat: push CTA to the bottom */
+    margin-top: auto;
+}
+
+/* ===================== COUNTDOWN WIDGET OVERRIDE ===================== */
+div.tagWidget-main {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 0 !important;
+}
+
+div.tagWidget-main:hover {
+    border-color: transparent !important;
+    box-shadow: none !important;
+}
+
+div.tagWidget-main > *:not(.grow-\[2\]) {
+    display: none !important;
+}
+
+div.tagWidget-main .grow-\[2\] {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 1.5rem !important;
+    width: 100% !important;
+}
+
+div.tagWidget-main .grow-\[2\] .body-title {
+    font-size: clamp(48px, 6vw + 1.5rem, 96px) !important;
+    color: #31a5dc !important;
+    line-height: 1 !important;
+    text-align: center !important;
+    font-weight: 700 !important;
+}
+
+div.tagWidget-main .grow-\[2\] .flex-col {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 0.25rem !important;
+    font-size: 0.62rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.12em !important;
+    text-transform: uppercase !important;
+    opacity: 0.55 !important;
+    color: var(--body-text-color) !important;
+}
+
+div.tagWidget-main .grow-\[2\] .flex-col + .flex-col {
+    border-left: 1px solid rgba(128, 128, 128, 0.25) !important;
+    padding-left: 1.5rem !important;
+}
+
+/* ===================== TABLET (768–1024px) ===================== */
+/*
+ * On tablet the two-column layout is too cramped.
+ * Both cards collapse back to full width and stack vertically.
+ */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .custom-announce-stoat,
+    .custom-announce-github {
+        grid-column: 1 / -1;
+    }
+
+    .custom-announce-stoat__actions,
+    .custom-announce-github__actions {
+        margin-top: 0.25rem;
+    }
+}
+
+/* ===================== MOBILE (< 768px) ===================== */
+@media (max-width: 767px) {
+    .custom-announce-teaser {
+        padding: 1.75rem 1.25rem 1.25rem;
+    }
+
+    div.tagWidget-main {
+        padding-left: clamp(0.75rem, 4vw, 1.25rem) !important;
+        padding-right: clamp(0.75rem, 4vw, 1.25rem) !important;
+        box-sizing: border-box !important;
+    }
+
+    div.tagWidget-main .grow-\[2\] .body-title {
+        font-size: clamp(32px, 8vw, 48px) !important;
+    }
+
+    div.tagWidget-main .grow-\[2\] {
+        gap: 0.75rem !important;
+    }
+
+    div.tagWidget-main .grow-\[2\] .flex-col + .flex-col {
+        padding-left: 0.75rem !important;
+    }
+
+    .custom-announce-video {
+        border-radius: 8px;
+    }
+
+    .custom-announce-stoat,
+    .custom-announce-github {
+        grid-column: 1 / -1;
+    }
+
+    .custom-announce-stoat__actions,
+    .custom-announce-github__actions {
+        flex-direction: column;
+        width: 100%;
+        margin-top: 0.25rem;
+    }
+
+    .custom-announce-stoat__actions .custom-btn,
+    .custom-announce-github__actions .custom-btn,
+    .custom-announce-github__actions .custom-link-cta {
+        width: 100%;
+        justify-content: center;
+    }
+}

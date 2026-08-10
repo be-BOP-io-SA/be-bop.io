@@ -1,0 +1,92 @@
+---
+import "../../styles/pages/psp-btcpay.css";
+import { makeStaticPaths, getLangFromParams } from "../../i18n/utils";
+import type { PspBtcpayTranslations } from "../../i18n/translations/psp-btcpay/types";
+import { en } from "../../i18n/translations/psp-btcpay/en";
+import { fr } from "../../i18n/translations/psp-btcpay/fr";
+import { de } from "../../i18n/translations/psp-btcpay/de";
+
+export const getStaticPaths = makeStaticPaths("psp-btcpay");
+
+const lang = getLangFromParams(Astro.params);
+const translations: Record<"en" | "fr" | "de", PspBtcpayTranslations> = { en, fr, de };
+const t = translations[lang as "en" | "fr" | "de"];
+---
+
+<!-- HERO ================================================ -->
+<section class="custom-grid">
+    <div class="custom-install-hero">
+        <p class="custom-install-hero__eyebrow">{t.hero.eyebrow}</p>
+        <h1 class="custom-install-hero__title">{t.hero.title}</h1>
+        <p class="custom-install-hero__subtitle">
+            {t.hero.subtitle}
+        </p>
+        <div class="custom-install-hero__actions">
+            <a
+                href="https://www.youtube.com/watch?v=Ua9Mh5JkHk0"
+                target="_blank"
+                rel="noopener"
+                class="custom-btn custom-btn--blue custom-radius--md"
+            >
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path
+                        d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.75 15.5v-7l6.5 3.5-6.5 3.5z"
+                    ></path>
+                </svg>
+                {t.hero.btnYoutube}
+            </a>
+            <a
+                href="https://peertube.ch/w/pUWVsgKm3NbjvkzevKWUu1"
+                target="_blank"
+                rel="noopener"
+                class="custom-btn custom-btn--outline custom-radius--md"
+            >
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path
+                        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1.5 14.5v-9l7 4.5-7 4.5z"
+                    ></path>
+                </svg>
+                {t.hero.btnPeertube}
+            </a>
+        </div>
+    </div>
+    <p class="custom-psp-requirement" set:html={t.requirement} />
+</section>
+
+<!-- DISCLAIMER ============================================ -->
+<section class="custom-grid">
+    <div class="custom-psp-note">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path
+                d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"
+            ></path>
+            <line x1="12" y1="9" x2="12" y2="13"></line>
+            <line x1="12" y1="17" x2="12.01" y2="17"></line>
+        </svg>
+        <p set:html={t.note} />
+    </div>
+</section>
+
+<!-- SETUP GUIDE — ACCORDION ============================== -->
+<section class="custom-grid">
+    <h2 class="custom-accordion-title">{t.accordion.title}</h2>
+
+    <div class="custom-accordion-list">
+        {t.accordion.steps.map((step, i) => (
+            <details class="custom-accordion" name="setup-guide" open={i === 0}>
+                <summary>
+                    <span class="custom-accordion__num" aria-hidden="true">{i + 1}</span>
+                    {step.title}
+                    <svg
+                        class="custom-accordion__chevron"
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                    >
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </summary>
+                <div class="custom-accordion__body" set:html={step.body} />
+            </details>
+        ))}
+    </div>
+</section>

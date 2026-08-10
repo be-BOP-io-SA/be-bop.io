@@ -1,0 +1,160 @@
+/* ===================== PEERFUNDING PALIER 1 — CLOSED — CSS AGGREGATOR ===================== */
+
+/* Base */
+@import "../base/reset.css";
+@import "../base/variables.css";
+@import "../base/typography.css";
+@import "../base/utilities.css";
+@import "../base/grid.css";
+
+/* Components */
+@import "../components/button.css";
+@import "../components/peerfunding.css";
+
+/* ── Single-column layout (no sidebar) ────────────────────────────────────── */
+
+.custom-pf-layout {
+    grid-template-columns: 1fr !important;
+    margin-top: clamp(24px, 4vw, 48px);
+}
+
+.custom-pf-sidebar {
+    display: none !important;
+}
+
+/* ── Reduce hero bottom gap — no countdown follows it here ────────────────── */
+
+.custom-pf-hero {
+    padding-bottom: clamp(1rem, 2vw, 1.5rem) !important;
+}
+
+/* ── Closed banner ─────────────────────────────────────────────────────────── */
+/* Full-width card using the same visual language as .custom-pf-section.
+ * Text is forced to navy so it stays legible on the always-light card
+ * background (rgba white) regardless of the theme's body-text-color.         */
+
+.custom-pf-closed-banner {
+    grid-column: 1 / -1;
+    background: rgba(255, 255, 255, 0.85);
+    border: 1px solid rgba(49, 165, 220, 0.3);
+    border-radius: 20px;
+    padding: clamp(2rem, 4vw, 3.25rem) clamp(1.5rem, 4vw, 2.75rem);
+    box-shadow: 0 4px 20px rgba(49, 165, 220, 0.08);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+    /* Force dark text: the card is always light, even in dark mode */
+    color: var(--custom-color-navy-700) !important;
+}
+
+/* Title: explicitly navy so it isn't overridden by typography.css body-text reset */
+.custom-pf-closed-banner__title {
+    font-size: clamp(22px, 2vw + 0.75rem, 32px);
+    font-weight: 900;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--custom-color-navy-700) !important;
+    margin: 0;
+}
+
+/* ── Stats — always 3 equal columns ─────────────────────────────────────────
+ * Border-only cards (no fill): avoids the dark-mode contrast trap where a
+ * semi-opaque white card on a semi-opaque white banner produces an invisible
+ * inner layer.
+ */
+
+.custom-pf-closed-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(8px, 2vw, 16px);
+    width: 100%;
+    max-width: 560px;
+}
+
+.custom-pf-closed-stat {
+    border: 1px solid rgba(49, 165, 220, 0.3);
+    border-radius: 16px;
+    padding: clamp(0.9rem, 2vw, 1.4rem) clamp(0.6rem, 2vw, 1rem);
+    text-align: center;
+}
+
+/* Value: always blue, adapts via CSS variable -------------------------------- */
+.custom-pf-closed-stat__value {
+    color: var(--custom-color-blue-400) !important;
+    font-size: clamp(18px, 2.5vw + 0.4rem, 34px);
+    font-weight: 900;
+    line-height: 1.1;
+    word-break: break-word;
+    margin: 0 0 0.4rem;
+}
+
+.custom-pf-closed-stat__divider {
+    width: 24px;
+    height: 2px;
+    background: var(--custom-color-blue-400);
+    opacity: 0.4;
+    border-radius: 2px;
+    margin: 0 auto 0.4rem;
+}
+
+/* Label: forced navy + reduced opacity for hierarchy -------------------------  */
+.custom-pf-closed-stat__label {
+    font-size: clamp(9px, 0.4vw + 0.45rem, 11px);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--custom-color-navy-700) !important;
+    opacity: 0.55;
+    margin: 0;
+}
+
+/* Thanks text: forced navy ---------------------------------------------------- */
+.custom-pf-closed-banner__thanks {
+    font-size: clamp(13px, 0.5vw + 0.6rem, 15px);
+    font-weight: 300;
+    color: var(--custom-color-navy-700) !important;
+    opacity: 0.72;
+    max-width: 56ch;
+    line-height: 1.75;
+    margin: 0;
+}
+
+/* ── Closed notice (replaces support cards inside obj1) ───────────────────── */
+/* Same look as .custom-pf-suspended — reuses the existing component's style   */
+
+.custom-pf-closed-notice {
+    background: rgba(49, 165, 220, 0.08);
+    border: 1px solid rgba(49, 165, 220, 0.28);
+    border-radius: 14px;
+    padding: clamp(1.25rem, 3vw, 2rem) clamp(1.25rem, 3vw, 1.75rem);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.custom-pf-closed-notice__text {
+    font-size: clamp(13px, 0.4vw + 0.65rem, 15px);
+    line-height: 1.75;
+    font-weight: 300;
+    opacity: 0.75;
+    max-width: 60ch;
+    margin: 0;
+}
+
+/* ===================== MOBILE (< 768px) ===================== */
+@media (max-width: 767px) {
+    .custom-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 8px;
+        margin-bottom: clamp(40px, 6vw, 64px);
+    }
+
+    /* Keep 3-column stats even on small screens; values scale via clamp */
+    .custom-pf-closed-stats {
+        gap: 8px;
+    }
+}

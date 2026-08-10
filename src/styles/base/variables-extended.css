@@ -3,3 +3,11 @@
     --custom-color-amber-400: #f59e0b;
     --custom-color-amber-400-alpha: rgba(245, 158, 11, 0.15);
 }
+
+/* Extended palette — used by the be-BOP Cloud landing page.
+ * Teal is kept only for the pricing discount badge (universal
+ * "savings" convention); everything else uses the site's blue accent. */
+:root {
+    --custom-color-teal-400-alpha: rgba(91, 196, 160, 0.16);
+    --custom-color-teal-700: #1f7a59;
+}

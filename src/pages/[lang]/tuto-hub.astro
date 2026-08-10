@@ -1,0 +1,319 @@
+---
+import "../../styles/pages/tuto-hub.css";
+import { makeStaticPaths, getLangFromParams } from "../../i18n/utils";
+import type { TutoHubTranslations } from "../../i18n/translations/tuto-hub/types";
+import { en } from "../../i18n/translations/tuto-hub/en";
+import { fr } from "../../i18n/translations/tuto-hub/fr";
+import { de } from "../../i18n/translations/tuto-hub/de";
+
+export const getStaticPaths = makeStaticPaths("tuto-hub");
+
+const lang = getLangFromParams(Astro.params);
+const translations: Record<"en" | "fr" | "de", TutoHubTranslations> = { en, fr, de };
+const t = translations[lang as "en" | "fr" | "de"];
+---
+
+<!-- HEADER =============================================== -->
+<section class="custom-grid">
+    <p class="custom-hub-eyebrow">{t.hero.eyebrow}</p>
+    <h1 class="custom-hub-title">{t.hero.title}</h1>
+    <p class="custom-hub-lede" set:html={t.hero.lede} />
+
+    <!--
+        Sommaire: disabled while there is a single chapter (Payment Settings).
+        Kept in the code so it's a one-line uncomment once a second chapter
+        exists — just remove the surrounding {/* ... */} below.
+    -->
+    {/*
+    <nav class="custom-hub-toc" aria-label={t.toc.label}>
+        <span class="custom-hub-toc__label">{t.toc.label}</span>
+        <ol class="custom-hub-toc__list">
+            {t.toc.items.map((item) => (
+                <li>
+                    <a class="custom-hub-toc__link" href={item.href}>
+                        <span class="custom-hub-toc__num">{item.num}</span>
+                        <span class="custom-hub-toc__txt">{item.label}</span>
+                    </a>
+                </li>
+            ))}
+        </ol>
+    </nav>
+    */}
+</section>
+
+<!-- SERVICES DE PAIEMENT ================================= -->
+<section class="custom-grid" id="services-paiement">
+    <div class="custom-hub-section-head">
+        <span class="custom-hub-section-num" aria-hidden="true">{t.section.num}</span>
+        <div>
+            <h2 class="custom-hub-section-title">{t.section.title}</h2>
+            <p class="custom-hub-section-sub">
+                {t.section.subtitle}
+            </p>
+        </div>
+    </div>
+
+    <div class="custom-hub-grid">
+        <!-- BTCPay Server (logo officiel inline) -->
+        <a class="custom-hub-tile" href="/be-bop-io-configurer-btc-pay-server">
+            <span class="custom-hub-logo" aria-hidden="true">
+                <svg viewBox="0 0 105.46 188.47" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        fill="#cedc21"
+                        d="M117.24,247.32a11.06,11.06,0,0,1-11-11.06V69.91a11.06,11.06,0,1,1,22.11,0V236.26A11.06,11.06,0,0,1,117.24,247.32Z"
+                        transform="translate(-106.19 -58.85)"></path>
+                    <path
+                        fill="#51b13e"
+                        d="M117.25,247.32a11.06,11.06,0,0,1-4.75-21l66.66-31.64L110.69,144.2a11.05,11.05,0,1,1,13.11-17.8l83.35,61.41a11,11,0,0,1-1.82,18.88L122,246.25A10.94,10.94,0,0,1,117.25,247.32Z"
+                        transform="translate(-106.19 -58.85)"></path>
+                    <path
+                        fill="#cedc21"
+                        d="M117.25,181.93a11.05,11.05,0,0,1-6.56-20l68.47-50.45L112.5,79.89a11.05,11.05,0,0,1,9.48-20l83.35,39.56a11.05,11.05,0,0,1,1.82,18.89L123.8,179.78A11,11,0,0,1,117.25,181.93Z"
+                        transform="translate(-106.19 -58.85)"></path>
+                    <polygon fill="#1e7a44" points="22.11 70.86 22.11 117.61 53.82 94.25 22.11 70.86"
+                    ></polygon>
+                    <rect fill="#fff" y="51.26" width="22.11" height="53.89"></rect>
+                    <path
+                        fill="#cedc21"
+                        d="M128.3,69.91a11.06,11.06,0,1,0-22.11,0V209H128.3Z"
+                        transform="translate(-106.19 -58.85)"></path>
+                </svg>
+            </span>
+            <div class="custom-hub-tile__body">
+                <span class="custom-hub-tile__name">{t.tiles.btcpay.name}</span>
+                <span class="custom-hub-tile__kind">{t.tiles.btcpay.kind}</span>
+                <span class="custom-hub-tile__cta">
+                    {t.tiles.btcpay.cta}
+                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path
+                            d="M5 12h14M13 6l6 6-6 6"
+                            stroke="currentColor"
+                            stroke-width="2.2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"></path>
+                    </svg>
+                </span>
+            </div>
+        </a>
+
+        <!-- PayPal (logo officiel inline) -->
+        <a class="custom-hub-tile" href="/be-bop-io-configurer-paypal">
+            <span class="custom-hub-logo" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="#002991" xmlns="http://www.w3.org/2000/svg"
+                    ><path
+                        d="M15.607 4.653H8.941L6.645 19.251H1.82L4.862 0h7.995c3.754 0 6.375 2.294 6.473 5.513-.648-.478-2.105-.86-3.722-.86m6.57 5.546c0 3.41-3.01 6.853-6.958 6.853h-2.493L11.595 24H6.74l1.845-11.538h3.592c4.208 0 7.346-3.634 7.153-6.949a5.24 5.24 0 0 1 2.848 4.686M9.653 5.546h6.408c.907 0 1.942.222 2.363.541-.195 2.741-2.655 5.483-6.441 5.483H8.714Z"
+                    ></path></svg>
+            </span>
+            <div class="custom-hub-tile__body">
+                <span class="custom-hub-tile__name">{t.tiles.paypal.name}</span>
+                <span class="custom-hub-tile__kind">{t.tiles.paypal.kind}</span>
+                <span class="custom-hub-tile__cta">
+                    {t.tiles.paypal.cta}
+                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path
+                            d="M5 12h14M13 6l6 6-6 6"
+                            stroke="currentColor"
+                            stroke-width="2.2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"></path>
+                    </svg>
+                </span>
+            </div>
+        </a>
+
+        <!-- OSB (logo appelé par URL source) -->
+        <a class="custom-hub-tile" href="/be-bop-io-configurer-osb">
+            <span class="custom-hub-logo" aria-hidden="true">
+                <img
+                    src="https://www.osb.pf/wp-content/uploads/2024/03/logo-OSB.webp"
+                    alt="OSB"
+                    loading="lazy"
+                />
+            </span>
+            <div class="custom-hub-tile__body">
+                <span class="custom-hub-tile__name">{t.tiles.osb.name}</span>
+                <span class="custom-hub-tile__kind">{t.tiles.osb.kind}</span>
+                <span class="custom-hub-tile__cta">
+                    {t.tiles.osb.cta}
+                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path
+                            d="M5 12h14M13 6l6 6-6 6"
+                            stroke="currentColor"
+                            stroke-width="2.2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"></path>
+                    </svg>
+                </span>
+            </div>
+        </a>
+
+        <!-- Swiss Bitcoin Pay (logo appelé par URL source) -->
+        <a
+            class="custom-hub-tile"
+            href="https://dashboard.swiss-bitcoin-pay.ch/integrations/bebop"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            <span class="custom-hub-logo" aria-hidden="true">
+                <img
+                    src="https://swiss-bitcoin-pay.ch/d6a3c5f7023ed0ff951c.png"
+                    alt="Swiss Bitcoin Pay"
+                    loading="lazy"
+                />
+            </span>
+            <div class="custom-hub-tile__body">
+                <span class="custom-hub-tile__name">{t.tiles.swissBitcoinPay.name}</span>
+                <span class="custom-hub-tile__kind">{t.tiles.swissBitcoinPay.kind}</span>
+                <span class="custom-hub-tile__cta">
+                    {t.tiles.swissBitcoinPay.cta}
+                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path
+                            d="M5 12h14M13 6l6 6-6 6"
+                            stroke="currentColor"
+                            stroke-width="2.2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"></path>
+                    </svg>
+                </span>
+            </div>
+        </a>
+
+        <!-- Stripe (logo officiel inline) -->
+        <a class="custom-hub-tile" href="/be-bop-io-configurer-stripe">
+            <span class="custom-hub-logo" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="#635BFF" xmlns="http://www.w3.org/2000/svg"
+                    ><path
+                        d="M13.976 9.15c-2.172-.806-3.356-1.426-3.356-2.409 0-.831.683-1.305 1.901-1.305 2.227 0 4.515.858 6.09 1.631l.89-5.494C18.252.975 15.697 0 12.165 0 9.667 0 7.589.654 6.104 1.872 4.56 3.147 3.757 4.992 3.757 7.218c0 4.039 2.467 5.76 6.476 7.219 2.585.92 3.445 1.574 3.445 2.583 0 .98-.84 1.545-2.354 1.545-1.875 0-4.965-.921-6.99-2.109l-.9 5.555C5.175 22.99 8.385 24 11.714 24c2.641 0 4.843-.624 6.328-1.813 1.664-1.305 2.525-3.236 2.525-5.732 0-4.128-2.524-5.851-6.594-7.305h.003z"
+                    ></path></svg>
+            </span>
+            <div class="custom-hub-tile__body">
+                <span class="custom-hub-tile__name">{t.tiles.stripe.name}</span>
+                <span class="custom-hub-tile__kind">{t.tiles.stripe.kind}</span>
+                <span class="custom-hub-tile__cta">
+                    {t.tiles.stripe.cta}
+                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path
+                            d="M5 12h14M13 6l6 6-6 6"
+                            stroke="currentColor"
+                            stroke-width="2.2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"></path>
+                    </svg>
+                </span>
+            </div>
+        </a>
+
+        <!-- SumUp (logo officiel inline fourni) -->
+        <a class="custom-hub-tile" href="/be-bop-io-configurer-sum-up">
+            <span class="custom-hub-logo custom-hub-logo--sumup" aria-hidden="true">
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="currentColor"
+                    viewBox="0 0 95 24"
+                    aria-label="Sumup"
+                    ><path
+                        fill="currentColor"
+                        d="M70.824 5.016c-.756 0-1.303.548-1.303 1.305v8.334c0 2.639 1.912 4.555 4.547 4.555 2.633 0 4.545-1.916 4.545-4.555V6.32c0-.757-.547-1.305-1.302-1.305s-1.302.548-1.302 1.305v8.483c0 1.11-.799 1.885-1.941 1.885-1.144 0-1.943-.776-1.943-1.885V6.32c0-.757-.547-1.305-1.301-1.305m-28.367 0c-.756 0-1.302.548-1.302 1.305v8.334c0 2.639 1.911 4.555 4.546 4.555 2.634 0 4.546-1.916 4.546-4.555V6.32c0-.757-.547-1.305-1.303-1.305-.754 0-1.301.548-1.301 1.305v8.483c0 1.11-.799 1.885-1.942 1.885-1.144 0-1.943-.776-1.943-1.885V6.32c0-.757-.546-1.305-1.3-1.305m38.305 18.511h2.604l-.002-5.143c.394.485 1.411.826 2.266.826 2.076 0 4.224-1.707 4.224-4.54V9.455c0-2.643-1.912-4.664-4.546-4.664s-4.546 2.021-4.546 4.66zm4.546-6.838c-1.144 0-1.942-.76-1.942-1.869V9.298c0-1.105.798-1.99 1.942-1.99s1.942.885 1.942 1.99v5.522c0 1.11-.799 1.869-1.942 1.869M67.373 9.34v9.613H64.77V9.186c0-1.089-.715-1.879-1.797-1.879-1.088 0-1.781.76-1.789 1.85v9.797h-2.599V9.158c-.007-1.09-.7-1.85-1.788-1.85-1.082 0-1.797.79-1.797 1.878v9.768h-2.604V9.341c0-2.64 1.81-4.551 4.401-4.551 1.077 0 2.522.647 3.088 1.53.566-.883 2.011-1.53 3.088-1.53 2.59 0 4.4 1.911 4.4 4.55M19.447 0a4.507 4.507 0 0 1 4.502 4.512v14.976A4.507 4.507 0 0 1 19.446 24H4.502A4.507 4.507 0 0 1 0 19.488V4.512A4.507 4.507 0 0 1 4.502 0zM7.292 17.855a5.38 5.38 0 0 0 7.632 0 5.43 5.43 0 0 0 0-7.662zm9.364-11.71a5.38 5.38 0 0 0-7.632 0 5.433 5.433 0 0 0 0 7.663zm13.496 8.73c.152 4.115 3.946 4.335 4.71 4.335 2.11 0 4.38-1.315 4.38-4.182 0-1.978-.996-3.296-2.96-3.917l-.46-.151c-1.82-.6-2.837-.938-2.837-2.338 0-.873.676-1.438 1.72-1.438 1.204 0 1.533.63 1.799 1.135.096.187.19.379.356.515.355.294.874.334 1.302.2.618-.193.923-.712.816-1.39-.333-1.655-2.163-2.854-4.352-2.854-3.157 0-4.29 2.184-4.301 4.058-.013 2.636 1.92 3.669 3.072 4.05.236.078.452.15.657.215 1.903.618 2.611.848 2.611 2.088 0 .792-.476 1.64-1.807 1.64-1.28 0-2.085-.734-2.17-1.966zM93.028 4.79c1.09 0 1.972.885 1.972 1.975s-.883 1.976-1.972 1.976a1.975 1.975 0 0 1-1.971-1.976c0-1.09.883-1.975 1.971-1.975m0 .478a1.497 1.497 0 0 0 0 2.995 1.497 1.497 0 0 0 0-2.995m.058.478c.398 0 .656.232.656.59 0 .28-.18.482-.458.531h.001l.389.407c.057.057.088.115.088.183s-.06.203-.229.203c-.11 0-.148-.04-.208-.107l-.547-.667h-.01v.542c0 .154-.09.232-.22.232-.129 0-.218-.078-.218-.232V5.96c0-.136.1-.214.219-.214zm-.31.407v.415h.289v.001c.139 0 .23-.098.23-.213 0-.125-.1-.203-.23-.203z"
+                    ></path></svg>
+            </span>
+            <div class="custom-hub-tile__body">
+                <span class="custom-hub-tile__name">{t.tiles.sumup.name}</span>
+                <span class="custom-hub-tile__kind">{t.tiles.sumup.kind}</span>
+                <span class="custom-hub-tile__cta">
+                    {t.tiles.sumup.cta}
+                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path
+                            d="M5 12h14M13 6l6 6-6 6"
+                            stroke="currentColor"
+                            stroke-width="2.2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"></path>
+                    </svg>
+                </span>
+            </div>
+        </a>
+
+        <!-- Cash et autres paiements PoS (pictogramme original) -->
+        <a class="custom-hub-tile" href="/be-bop-io-configurer-cash">
+            <span class="custom-hub-logo" aria-hidden="true">
+                <svg viewBox="0 0 64 44" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="6" y="8" width="42" height="24" rx="3.5" fill="#8fd0a8"></rect>
+                    <rect x="2" y="13" width="44" height="25" rx="3.5" fill="#3fa96a"></rect>
+                    <rect
+                        x="6"
+                        y="17"
+                        width="36"
+                        height="17"
+                        rx="2"
+                        fill="none"
+                        stroke="#2c8a55"
+                        stroke-width="1.5"></rect>
+                    <circle
+                        cx="24"
+                        cy="25.5"
+                        r="5.5"
+                        fill="none"
+                        stroke="#2c8a55"
+                        stroke-width="1.5"></circle>
+                    <circle cx="10.5" cy="17.5" r="1.6" fill="#2c8a55"></circle>
+                    <circle cx="37.5" cy="33.5" r="1.6" fill="#2c8a55"></circle>
+                    <circle cx="49" cy="30" r="12" fill="#f4b740" stroke="#fff" stroke-width="2"
+                    ></circle>
+                    <circle
+                        cx="49"
+                        cy="30"
+                        r="8.4"
+                        fill="none"
+                        stroke="#dd9b26"
+                        stroke-width="1.6"></circle>
+                    <rect x="47.7" y="24.6" width="2.6" height="10.8" rx="1" fill="#dd9b26"
+                    ></rect>
+                </svg>
+            </span>
+            <div class="custom-hub-tile__body">
+                <span class="custom-hub-tile__name">{t.tiles.cash.name}</span>
+                <span class="custom-hub-tile__kind">{t.tiles.cash.kind}</span>
+                <span class="custom-hub-tile__cta">
+                    {t.tiles.cash.cta}
+                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path
+                            d="M5 12h14M13 6l6 6-6 6"
+                            stroke="currentColor"
+                            stroke-width="2.2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"></path>
+                    </svg>
+                </span>
+            </div>
+        </a>
+
+        <!-- Bitcoin on-chain (nodeless) — logo Bitcoin officiel — À VENIR -->
+        <div class="custom-hub-tile custom-hub-tile--soon" aria-disabled="true">
+            <span class="custom-hub-badge">{t.soon.badge}</span>
+            <span class="custom-hub-logo" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="#F7931A" xmlns="http://www.w3.org/2000/svg"
+                    ><path
+                        d="M23.638 14.904c-1.602 6.43-8.113 10.34-14.542 8.736C2.67 22.05-1.244 15.525.362 9.105 1.962 2.67 8.475-1.243 14.9.358c6.43 1.605 10.342 8.115 8.738 14.548v-.002zm-6.35-4.613c.24-1.59-.974-2.45-2.64-3.03l.54-2.153-1.315-.33-.525 2.107c-.345-.087-.705-.167-1.064-.25l.526-2.127-1.32-.33-.54 2.165c-.285-.067-.565-.132-.84-.2l-1.815-.45-.35 1.407s.975.225.955.236c.535.136.63.486.615.766l-1.477 5.92c-.075.166-.24.406-.614.314.015.02-.96-.24-.96-.24l-.66 1.51 1.71.426.93.242-.54 2.19 1.32.327.54-2.17c.36.1.705.19 1.05.273l-.51 2.154 1.32.33.545-2.19c2.24.427 3.93.257 4.64-1.774.57-1.637-.03-2.58-1.217-3.196.854-.193 1.5-.76 1.68-1.93h.01zm-3.01 4.22c-.404 1.64-3.157.75-4.05.53l.72-2.9c.896.23 3.757.67 3.33 2.37zm.41-4.24c-.37 1.49-2.662.735-3.405.55l.654-2.64c.744.18 3.137.524 2.75 2.084v.006z"
+                    ></path></svg>
+            </span>
+            <div class="custom-hub-tile__body">
+                <span class="custom-hub-tile__name">{t.soon.bitcoinOnchain.name}</span>
+                <span class="custom-hub-tile__kind">{t.soon.bitcoinOnchain.kind}</span>
+                <span class="custom-hub-tile__cta custom-hub-tile__cta--soon">{t.soon.label}</span>
+            </div>
+        </div>
+
+        <!-- GNU Taler (logo appelé par URL source) — À VENIR -->
+        <div class="custom-hub-tile custom-hub-tile--soon" aria-disabled="true">
+            <span class="custom-hub-badge">{t.soon.badge}</span>
+            <span class="custom-hub-logo" aria-hidden="true">
+                <img src="https://www.taler.net/images/logo-2021.svg" alt="GNU Taler" loading="lazy" />
+            </span>
+            <div class="custom-hub-tile__body">
+                <span class="custom-hub-tile__name">{t.soon.gnuTaler.name}</span>
+                <span class="custom-hub-tile__kind">{t.soon.gnuTaler.kind}</span>
+                <span class="custom-hub-tile__cta custom-hub-tile__cta--soon">{t.soon.label}</span>
+            </div>
+        </div>
+    </div>
+</section>

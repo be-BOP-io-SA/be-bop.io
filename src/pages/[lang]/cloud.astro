@@ -1,0 +1,149 @@
+---
+import "../../styles/pages/cloud.css";
+import { makeStaticPaths, getLangFromParams } from "../../i18n/utils";
+import type { CloudTranslations } from "../../i18n/translations/cloud/types";
+import { fr } from "../../i18n/translations/cloud/fr";
+import { de } from "../../i18n/translations/cloud/de";
+import type { Lang } from "../../i18n/types";
+
+export const getStaticPaths = makeStaticPaths("cloud");
+
+const lang = getLangFromParams(Astro.params);
+const translations: Partial<Record<Lang, CloudTranslations>> = { fr, de };
+const t = translations[lang] ?? fr;
+---
+
+<!-- HERO ================================================ -->
+<section class="custom-grid custom-cloud-section">
+    <div class="custom-hero">
+        <p class="custom-hero__eyebrow">{t.hero.eyebrow}</p>
+        <h1 class="custom-hero__title">{t.hero.title}</h1>
+        <p class="custom-hero__subtitle">{t.hero.subtitle}</p>
+        <div class="custom-hero__actions">
+            <a href="#regions" class="custom-btn custom-btn--blue custom-radius--md">
+                {t.hero.ctaPrimary}
+            </a>
+            <a href="#features" class="custom-btn custom-btn--ghost custom-radius--md">
+                {t.hero.ctaSecondary}
+            </a>
+        </div>
+        <span class="custom-hero__badge">{t.hero.badge}</span>
+    </div>
+</section>
+
+<!-- REGIONS HUB =========================================== -->
+<section class="custom-grid custom-cloud-section" id="regions">
+    <div class="custom-cloud-intro">
+        <p class="custom-cloud-intro__label">{t.regions.label}</p>
+        <h2>{t.regions.title}</h2>
+        <p>{t.regions.subtitle}</p>
+    </div>
+
+    <div class="custom-cloud-region-grid">
+        {
+            t.regions.items.map((region) => (
+                <a href={region.href} class="custom-cloud-region-card">
+                    <span class="custom-cloud-region-card__flag" aria-hidden="true">
+                        {region.flag}
+                    </span>
+                    <p class="custom-cloud-region-card__market">{region.market}</p>
+                    <p class="custom-cloud-region-card__highlight">{region.highlight}</p>
+                    <span class="custom-btn custom-btn--blue custom-radius--md custom-cloud-region-card__cta">
+                        {t.regions.cta}
+                    </span>
+                </a>
+            ))
+        }
+    </div>
+</section>
+
+<!-- FEATURES =============================================== -->
+<section class="custom-grid custom-cloud-section" id="features">
+    <div class="custom-cloud-intro">
+        <p class="custom-cloud-intro__label">{t.features.label}</p>
+        <h2>{t.features.title}</h2>
+        <p>{t.features.subtitle}</p>
+    </div>
+
+    <div class="custom-cloud-feature-list">
+        {
+            t.features.items.map((feature, index) => (
+                <div
+                    class={`custom-cloud-feature-row${
+                        index % 2 === 1 ? " custom-cloud-feature-row--reverse" : ""
+                    }`}
+                >
+                    <div class="custom-cloud-feature-row__media">
+                        <img src={feature.illustration} alt="" loading="lazy" />
+                    </div>
+                    <div class="custom-cloud-feature-row__content">
+                        <h3>{feature.title}</h3>
+                        <p>{feature.description}</p>
+                    </div>
+                </div>
+            ))
+        }
+    </div>
+</section>
+
+<!-- DIFFERENTIATORS ====================================== -->
+<section class="custom-grid custom-cloud-section">
+    <div class="custom-cloud-intro">
+        <p class="custom-cloud-intro__label">{t.differentiators.label}</p>
+        <h2>{t.differentiators.title}</h2>
+        <p>{t.differentiators.subtitle}</p>
+    </div>
+
+    <div class="custom-cloud-diff-grid">
+        <!-- Zero platform fee -->
+        <div class="custom-cloud-diff-card">
+            <div class="custom-cloud-diff-card__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                    <path
+                        d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"
+                    ></path>
+                </svg>
+            </div>
+            <h3>{t.differentiators.cards[0].title}</h3>
+            <p>{t.differentiators.cards[0].desc}</p>
+        </div>
+
+        <!-- Data respect -->
+        <div class="custom-cloud-diff-card">
+            <div class="custom-cloud-diff-card__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                    <path
+                        d="M12 3l8 3.5v5c0 5-3.5 8-8 9.5-4.5-1.5-8-4.5-8-9.5v-5L12 3z"
+                    ></path>
+                </svg>
+            </div>
+            <h3>{t.differentiators.cards[1].title}</h3>
+            <p>{t.differentiators.cards[1].desc}</p>
+        </div>
+
+        <!-- Bitcoin & Lightning -->
+        <div class="custom-cloud-diff-card">
+            <div class="custom-cloud-diff-card__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                    <path
+                        d="M7 4v16M7 7h6.5a3 3 0 0 1 0 6H7M7 13h7a3 3 0 0 1 0 6H7M10 2v2M10 18v2M14 2v2M14 18v2"
+                    ></path>
+                </svg>
+            </div>
+            <h3>{t.differentiators.cards[2].title}</h3>
+            <p>{t.differentiators.cards[2].desc}</p>
+        </div>
+
+        <!-- Open source -->
+        <div class="custom-cloud-diff-card">
+            <div class="custom-cloud-diff-card__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                    <polyline points="16 18 22 12 16 6"></polyline>
+                    <polyline points="8 6 2 12 8 18"></polyline>
+                </svg>
+            </div>
+            <h3>{t.differentiators.cards[3].title}</h3>
+            <p>{t.differentiators.cards[3].desc}</p>
+        </div>
+    </div>
+</section>

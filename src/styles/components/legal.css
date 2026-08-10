@@ -1,0 +1,191 @@
+/* =====================================================================
+ * LEGAL DOCUMENT — be-BOP Cloud Terms / Privacy Policy
+ * Long-form prose rendered from Markdown. Uses the CMS theme variables
+ * (--body-text-color / --body-text-fontFamily) so it stays legible on
+ * both light and dark CMS themes, same as the rest of the site.
+ * ===================================================================== */
+
+/* ===================== HEADER ===================== */
+.custom-legal-header {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.custom-legal-eyebrow {
+    font-size: clamp(0.65rem, 0.3vw + 0.5rem, 0.78rem);
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--custom-color-blue-400) !important;
+    margin: 0;
+}
+
+.custom-legal-header h1 {
+    max-width: 24ch;
+}
+
+.custom-legal-meta {
+    opacity: 0.65;
+    font-size: clamp(13px, 0.4vw + 0.6rem, 14px);
+    line-height: 1.6;
+}
+
+.custom-legal-crossref {
+    font-size: clamp(13px, 0.4vw + 0.6rem, 14px);
+    opacity: 0.85;
+}
+
+.custom-legal-crossref a {
+    color: var(--custom-color-blue-400);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    font-weight: 600;
+    transition: opacity 0.2s ease;
+}
+
+.custom-legal-crossref a:hover {
+    opacity: 0.78;
+}
+
+/* ===================== BODY LAYOUT (TOC + content) ===================== */
+.custom-legal-body {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: minmax(180px, 260px) minmax(0, 72ch);
+    gap: clamp(24px, 3vw, 56px);
+    align-items: start;
+}
+
+.custom-legal-toc {
+    position: sticky;
+    top: 24px;
+    border-left: 2px solid var(--custom-color-blue-400-alpha);
+    padding-left: 1.1rem;
+}
+
+.custom-legal-toc ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.custom-legal-toc a {
+    display: block;
+    color: var(--body-text-color);
+    opacity: 0.7;
+    text-decoration: none;
+    font-family: var(--body-text-fontFamily);
+    font-size: clamp(13px, 0.4vw + 0.6rem, 14px);
+    line-height: 1.5;
+    transition:
+        opacity 0.2s ease,
+        color 0.2s ease;
+}
+
+.custom-legal-toc a:hover {
+    opacity: 1;
+    color: var(--custom-color-blue-400);
+}
+
+/* ===================== PROSE ===================== */
+.custom-legal-doc {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.4rem;
+}
+
+.custom-legal-doc h2 {
+    margin-top: 0.5rem;
+    scroll-margin-top: 24px;
+}
+
+.custom-legal-doc h3 {
+    scroll-margin-top: 24px;
+    opacity: 0.92;
+}
+
+.custom-legal-doc p,
+.custom-legal-doc li {
+    line-height: 1.75;
+    opacity: 0.85;
+}
+
+.custom-legal-doc ul,
+.custom-legal-doc ol {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding-left: 1.4rem;
+    color: var(--body-text-color);
+    font-family: var(--body-text-fontFamily);
+}
+
+.custom-legal-doc strong {
+    color: var(--body-text-color);
+    opacity: 1;
+    font-weight: 700;
+}
+
+.custom-legal-doc a {
+    color: var(--custom-color-blue-400);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    font-weight: 600;
+    transition: opacity 0.2s ease;
+}
+
+.custom-legal-doc a:hover {
+    opacity: 0.78;
+}
+
+.custom-legal-doc hr {
+    border: none;
+    border-top: 1.5px solid rgba(128, 128, 128, 0.2);
+    margin: 0.5rem 0;
+}
+
+/* Tables scroll horizontally on narrow viewports instead of overflowing */
+.custom-legal-doc table {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    font-size: clamp(13px, 0.4vw + 0.6rem, 14px);
+    color: var(--body-text-color);
+    font-family: var(--body-text-fontFamily);
+}
+
+.custom-legal-doc th,
+.custom-legal-doc td {
+    border: 1.5px solid rgba(128, 128, 128, 0.2);
+    padding: 0.65rem 0.9rem;
+    text-align: left;
+    vertical-align: top;
+    line-height: 1.6;
+}
+
+.custom-legal-doc th {
+    font-weight: 700;
+    background-color: var(--custom-color-blue-400-alpha);
+}
+
+/* ===================== MOBILE (< 768px) ===================== */
+@media (max-width: 767px) {
+    .custom-legal-body {
+        grid-template-columns: 1fr;
+    }
+
+    .custom-legal-toc {
+        position: static;
+        border-left: none;
+        border-bottom: 1.5px solid var(--custom-color-blue-400-alpha);
+        padding-left: 0;
+        padding-bottom: 1rem;
+    }
+}

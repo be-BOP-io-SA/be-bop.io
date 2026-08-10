@@ -1,4 +1,8 @@
 /* ===================== GRID — 12 columns ===================== */
+.custom-grid--no-mb {
+    margin-bottom: 0 !important;
+}
+
 .custom-grid {
     display: grid;
     grid-template-columns: repeat(12, 1fr);

@@ -1,0 +1,285 @@
+/* ===================== TUTORIAL HUB ===================== */
+
+/* Header */
+.custom-hub-eyebrow {
+    grid-column: 1 / -1;
+    font-family: var(--body-text-fontFamily);
+    font-size: clamp(0.65rem, 0.3vw + 0.5rem, 0.78rem);
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--custom-color-blue-400) !important;
+    margin: 0;
+}
+
+.custom-hub-title {
+    grid-column: 1 / -1;
+    font-size: clamp(28px, 3vw + 1rem, 46px);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.015em;
+    color: var(--body-text-color);
+    margin-top: 10px;
+}
+
+.custom-hub-lede {
+    grid-column: 1 / -1;
+    margin-top: 14px;
+    max-width: 62ch;
+    font-family: var(--body-text-fontFamily);
+    font-size: clamp(15px, 0.5vw + 0.7rem, 16px);
+    line-height: 1.65;
+    color: var(--body-text-color);
+    opacity: 0.72;
+}
+
+/* Sommaire (currently disabled — see the commented-out markup in the page) */
+.custom-hub-toc {
+    grid-column: 1 / -1;
+    background-color: var(--body-bg-color, transparent);
+    border: 1.5px solid rgba(128, 128, 128, 0.2);
+    border-radius: 14px;
+    padding: 20px 22px;
+}
+
+.custom-hub-toc__label {
+    font-family: var(--body-text-fontFamily);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--body-text-color);
+    opacity: 0.72;
+}
+
+.custom-hub-toc__list {
+    margin-top: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.custom-hub-toc__link {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    padding: 9px 8px;
+    border-radius: 9px;
+    text-decoration: none;
+    transition: background-color 0.15s ease;
+}
+
+.custom-hub-toc__link:hover {
+    background-color: var(--custom-color-blue-400-alpha);
+}
+
+.custom-hub-toc__num {
+    font-family: "Courier New", Courier, monospace;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--custom-color-blue-400) !important;
+    min-width: 22px;
+}
+
+.custom-hub-toc__txt {
+    font-family: var(--body-text-fontFamily);
+    font-size: 15.5px;
+    font-weight: 600;
+    line-height: 1.35;
+    color: var(--body-text-color) !important;
+}
+
+/* Section head */
+.custom-hub-section-head {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.custom-hub-section-num {
+    flex: 0 0 auto;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+    background-color: var(--custom-color-blue-400);
+    width: 34px;
+    height: 34px;
+    border-radius: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2px;
+}
+
+.custom-hub-section-head .custom-hub-section-title {
+    font-size: clamp(20px, 2.4vw, 26px);
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+    color: var(--body-text-color);
+}
+
+.custom-hub-section-sub {
+    margin-top: 6px;
+    font-family: var(--body-text-fontFamily);
+    font-size: 14.5px;
+    line-height: 1.55;
+    color: var(--body-text-color);
+    opacity: 0.72;
+}
+
+/* Tile grid */
+.custom-hub-grid {
+    grid-column: 1 / -1;
+    margin-top: 26px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 16px;
+}
+
+.custom-hub-tile {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 20px;
+    background-color: var(--body-bg-color, transparent);
+    border: 1.5px solid rgba(128, 128, 128, 0.2);
+    border-radius: 16px;
+    filter: var(--custom-shadow-blue);
+    transition:
+        transform 0.18s ease,
+        border-color 0.18s ease;
+    overflow: hidden;
+    text-decoration: none;
+}
+
+a.custom-hub-tile:hover {
+    transform: translateY(-3px);
+    border-color: var(--custom-color-blue-400);
+}
+
+a.custom-hub-tile:focus-visible {
+    outline: 3px solid var(--custom-color-blue-400);
+    outline-offset: 2px;
+}
+
+/* Logo plate — always white so brand-colour logos stay legible in both themes */
+.custom-hub-logo {
+    height: 66px;
+    background-color: #fff;
+    border: 1.5px solid rgba(128, 128, 128, 0.2);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 13px 16px;
+}
+
+.custom-hub-logo svg,
+.custom-hub-logo img {
+    max-height: 40px;
+    max-width: 100%;
+    width: auto;
+    height: auto;
+    display: block;
+    object-fit: contain;
+}
+
+.custom-hub-logo--sumup svg {
+    color: #1d1d1f;
+}
+
+.custom-hub-tile__body {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.custom-hub-tile__name {
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--body-text-color) !important;
+}
+
+.custom-hub-tile__kind {
+    font-family: var(--body-text-fontFamily);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--body-text-color) !important;
+    opacity: 0.72;
+}
+
+.custom-hub-tile__cta {
+    margin-top: 2px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--body-text-fontFamily);
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--custom-color-blue-400) !important;
+}
+
+.custom-hub-tile__cta svg {
+    width: 14px;
+    height: 14px;
+    transition: transform 0.18s ease;
+}
+
+a.custom-hub-tile:hover .custom-hub-tile__cta svg {
+    transform: translateX(3px);
+}
+
+/* Disabled tile */
+.custom-hub-tile--soon {
+    cursor: default;
+}
+
+.custom-hub-tile--soon .custom-hub-tile__name {
+    opacity: 0.6;
+}
+
+.custom-hub-tile__cta--soon {
+    color: var(--body-text-color) !important;
+    opacity: 0.6;
+}
+
+.custom-hub-badge {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--body-text-color);
+    background-color: rgba(128, 128, 128, 0.16);
+    border: 1.5px solid rgba(128, 128, 128, 0.2);
+    padding: 4px 8px;
+    border-radius: 999px;
+    z-index: 1;
+    opacity: 0.85;
+}
+
+/* ===================== MOBILE (< 767px) ===================== */
+@media (max-width: 767px) {
+    .custom-hub-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .custom-hub-tile,
+    .custom-hub-tile__cta svg,
+    .custom-hub-toc__link {
+        transition: none;
+    }
+    a.custom-hub-tile:hover {
+        transform: none;
+    }
+}

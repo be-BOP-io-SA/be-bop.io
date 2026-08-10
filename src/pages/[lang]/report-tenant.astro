@@ -1,0 +1,81 @@
+---
+import "../../styles/pages/report-tenant.css";
+import { makeStaticPaths, getLangFromParams } from "../../i18n/utils";
+import type { ReportTenantTranslations } from "../../i18n/translations/report-tenant/types";
+import { fr } from "../../i18n/translations/report-tenant/fr";
+import { en } from "../../i18n/translations/report-tenant/en";
+import { de } from "../../i18n/translations/report-tenant/de";
+import type { Lang } from "../../i18n/types";
+
+export const getStaticPaths = makeStaticPaths("report-tenant");
+
+const lang = getLangFromParams(Astro.params);
+const translations: Record<"fr" | "en" | "de", ReportTenantTranslations> = { fr, en, de };
+const t = translations[lang as "fr" | "en" | "de"];
+---
+
+<!-- HERO ================================================ -->
+<section class="custom-grid">
+    <div class="custom-install-hero">
+        <p class="custom-install-hero__eyebrow">{t.hero.eyebrow}</p>
+        <h1 class="custom-install-hero__title">{t.hero.title}</h1>
+        <p class="custom-install-hero__subtitle">{t.hero.subtitle}</p>
+    </div>
+</section>
+
+<!-- BEFORE YOU REPORT =================================== -->
+<section class="custom-grid">
+    <div class="custom-section-intro">
+        <h2>{t.guide.title}</h2>
+        <p>{t.guide.intro}</p>
+    </div>
+
+    <div class="custom-report-cards">
+        <div class="custom-report-card">
+            <div class="custom-report-card__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 2 4 5v6c0 5 3.4 8.5 8 11 4.6-2.5 8-6 8-11V5l-8-3z"></path>
+                    <line x1="12" y1="8" x2="12" y2="13"></line>
+                    <line x1="12" y1="16" x2="12" y2="16"></line>
+                </svg>
+            </div>
+            <h3>{t.guide.cards.counts.title}</h3>
+            <p>{t.guide.cards.counts.desc}</p>
+        </div>
+
+        <div class="custom-report-card">
+            <div class="custom-report-card__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                    <path d="M9 4h6a1 1 0 0 1 1 1v1h2a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h2V5a1 1 0 0 1 1-1z"></path>
+                    <line x1="9" y1="12" x2="15" y2="12"></line>
+                    <line x1="9" y1="16" x2="15" y2="16"></line>
+                </svg>
+            </div>
+            <h3>{t.guide.cards.include.title}</h3>
+            <p>{t.guide.cards.include.desc}</p>
+        </div>
+
+        <div class="custom-report-card">
+            <div class="custom-report-card__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+            </div>
+            <h3>{t.guide.cards.next.title}</h3>
+            <p>{t.guide.cards.next.desc}</p>
+        </div>
+    </div>
+</section>
+
+<!-- FORM ================================================ -->
+<section class="custom-grid">
+    <div class="custom-section-intro">
+        <h2>{t.form.title}</h2>
+        <p>{t.form.note}</p>
+    </div>
+</section>
+
+<section id="report-form">
+    [Form=report-ZyclQl]
+</section>

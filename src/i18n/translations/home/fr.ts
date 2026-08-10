@@ -1,6 +1,10 @@
 import type { HomeTranslations } from "./types";
 
 export const fr: HomeTranslations = {
+  announce: {
+    text: "D\u00e9couvrez PipeliNostr, notre nouvelle campagne de peerfunding.",
+    linkLabel: "En savoir plus",
+  },
   hero: {
     eyebrow: "Unifier vos paiements et votre comptabilité",
     title: "Un seul endroit pour tout ce que vous proposez",
@@ -96,6 +100,12 @@ export const fr: HomeTranslations = {
     title: "Nous remercions chaleureusement nos mécènes !",
     partnersBtn: "Découvrir tous nos partenaires !",
     supportLink: "Soutenez-nous !",
+  },
+  stoat: {
+    label: "Espace communautaire",
+    title: "Rejoignez-nous sur Stoat",
+    desc: "Notre hub communautaire principal, un Discord open source. Échangez avec l'équipe, les contributeurs et les utilisateurs, obtenez de l'aide, partagez vos idées, suivez le projet et influencez la suite.",
+    btn: "Rejoindre la communauté",
   },
   social: {
     title: "Rejoignez notre communauté",

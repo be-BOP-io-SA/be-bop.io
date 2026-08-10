@@ -1,0 +1,32 @@
+/* ===================== be-BOP CLOUD SUISSE — TENANT PAGE — CSS AGGREGATOR ===================== */
+
+/* Base */
+@import "../base/reset.css";
+@import "../base/variables.css";
+@import "../base/variables-extended.css";
+@import "../base/typography.css";
+@import "../base/utilities.css";
+@import "../base/grid.css";
+
+/* Components */
+@import "../components/button.css";
+@import "../components/hero-navy.css";
+@import "../components/cloud.css";
+@import "../components/tenant.css";
+@import "../components/press.css";
+
+/* ===================== TABLET (768–1024px) ===================== */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .custom-grid {
+        margin-bottom: clamp(48px, 6vw, 80px);
+    }
+}
+
+/* ===================== MOBILE (< 768px) ===================== */
+@media (max-width: 767px) {
+    .custom-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 8px;
+        margin-bottom: clamp(40px, 6vw, 64px);
+    }
+}

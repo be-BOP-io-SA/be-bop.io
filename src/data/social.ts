@@ -19,6 +19,7 @@ export const socialLinks: SocialLink[] = [
       en: "https://fosstodon.org/@bebop",
       fr: "https://tooting.ch/@bebop",
       sv: "https://fosstodon.org/@bebop",
+      de: "https://fosstodon.org/@bebop",
     },
   },
   {

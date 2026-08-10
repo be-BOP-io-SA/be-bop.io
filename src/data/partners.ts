@@ -53,12 +53,30 @@ export const partners: Partner[] = [
     },
   },
   {
+    url: "https://www.dinovox.com/",
+    img: "https://be-bop.io/digital-file/raw/dinovox-logo-webp-rBdqqI?key=747354f1-d256-4e12-a363-8cd884e93a2a",
+    alt: {
+      en: "DinoVox",
+      fr: "DinoVox",
+      sv: "DinoVox",
+    },
+  },
+  {
     url: "https://hodling.ch/",
     img: "https://hodling.ch/assets/img/hodling-logo.svg",
     alt: {
       en: "Hodling SA",
       fr: "Hodling SA",
       sv: "Hodling SA",
+    },
+  },
+  {
+    url: "https://lamusebar.ch/",
+    img: "https://be-bop.io/digital-file/raw/amuse-bar-logo-webp-W1bObh?key=b0a67b82-2388-480b-af8b-b30622a61fc4",
+    alt: {
+      en: "L'AmuseBar",
+      fr: "L'AmuseBar",
+      sv: "L'AmuseBar",
     },
   },
   {
@@ -77,6 +95,15 @@ export const partners: Partner[] = [
       en: "Nodl",
       fr: "Nodl",
       sv: "Nodl",
+    },
+  },
+  {
+    url: "https://www.osb.pf/",
+    img: "https://be-bop.io/digital-file/raw/os-b-logo-webp-6RQ7wG?key=55d4c0e7-59d8-4278-af91-a0f80bc067c4",
+    alt: {
+      en: "OSB",
+      fr: "OSB",
+      sv: "OSB",
     },
   },
   {
@@ -104,6 +131,15 @@ export const partners: Partner[] = [
       en: "Swiss Bitcoin Pay",
       fr: "Swiss Bitcoin Pay",
       sv: "Swiss Bitcoin Pay",
+    },
+  },
+  {
+    url: "https://tridentiot.com/",
+    img: "https://be-bop.io/digital-file/raw/trident-io-t-logo-png-2YBvcd?key=88e994ae-3fa7-4690-9b55-baed248a753e",
+    alt: {
+      en: "Trident IoT",
+      fr: "Trident IoT",
+      sv: "Trident IoT",
     },
   },
 ];

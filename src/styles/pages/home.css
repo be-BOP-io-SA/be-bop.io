@@ -8,6 +8,7 @@
 @import "../base/grid.css";
 
 /* Components */
+@import "../components/announce-bar.css";
 @import "../components/link-cta-pill.css";
 @import "../components/button.css";
 @import "../components/hero-navy.css";

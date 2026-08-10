@@ -1,0 +1,80 @@
+---
+import "../../styles/pages/peerfunding-palier1-products.css";
+import { makeStaticPaths, getLangFromParams } from "../../i18n/utils";
+import type { PeerfundingProductsTranslations } from "../../i18n/translations/peerfunding-palier1-products/types";
+import { fr } from "../../i18n/translations/peerfunding-palier1-products/fr";
+import type { Lang } from "../../i18n/types";
+
+export const getStaticPaths = makeStaticPaths("peerfunding-palier1-products");
+
+const lang = getLangFromParams(Astro.params);
+const translations: Partial<Record<Lang, PeerfundingProductsTranslations>> = { fr };
+const t = translations[lang] ?? fr;
+---
+
+<!-- BACK ================================================ -->
+<section class="custom-grid">
+    <div class="custom-pf-products-back">
+        <a href="/peerfunding-campaign"
+           class="custom-btn custom-btn--ghost custom-radius--md">
+            &larr; {t.back}
+        </a>
+    </div>
+</section>
+
+<!-- CHALLENGE — bare CMS macro, outside any HTML wrapper -->
+[Challenge=peerfunding-goal-1-pipeli-nostr-KXqoZD]
+
+<!-- TABS ================================================
+     Tab panels are shown/hidden via the CSS :target pseudo-class.
+     Each href="#panel-id" activates the matching panel.
+     The default active tab (don-libre) shows when the URL has no hash.
+     No JavaScript required.
+================================================ -->
+<section class="custom-grid">
+    <div class="custom-pf-products">
+
+        <nav class="custom-pf-products-nav" aria-label={t.navLabel}>
+            <a href="#don-libre"      class="custom-pf-products-tab">{t.tabs.don}</a>
+            <a href="#goodies-bebop"  class="custom-pf-products-tab">{t.tabs.goodies}</a>
+            <a href="#services"       class="custom-pf-products-tab">{t.tabs.services}</a>
+            <a href="#bebop-suspendu" class="custom-pf-products-tab">{t.tabs.suspendu}</a>
+        </nav>
+
+        <!-- DON LIBRE ----------------------------------- -->
+        <div id="don-libre" class="custom-pf-products-panel">
+            <div class="custom-pf-products-panel__inner">
+[Product=soutien-global-au-developpement-de-be-bop]
+[Product=soutien-global-au-developpement-de-be-bop-mensuel]
+            </div>
+        </div>
+
+        <!-- GOODIES BE-BOP ------------------------------ -->
+        <div id="goodies-bebop" class="custom-pf-products-panel">
+            <div class="custom-pf-products-panel__inner">
+[Product=be-bo-ps-adoption-kit]
+[Product=collector-be-bop-og-fabric-patch]
+[Product=collector-bop-og-mug]
+[Product=special-be-bop-magic-surprise]
+            </div>
+        </div>
+
+        <!-- SERVICES ------------------------------------ -->
+        <div id="services" class="custom-pf-products-panel">
+            <div class="custom-pf-products-panel__inner">
+[Product=earlybird-3-month-be-bop-subscription]
+[Product=website-creation-by-be-bop]
+[Product=individual-training-on-be-bop-1-hour]
+[Product=collective-training-on-be-bop-2-hours]
+            </div>
+        </div>
+
+        <!-- BE-BOP SUSPENDU ------------------------------ -->
+        <div id="bebop-suspendu" class="custom-pf-products-panel">
+            <div class="custom-pf-products-panel__inner">
+[Product=pending-be-bop-for-associations]
+            </div>
+        </div>
+
+    </div>
+</section>

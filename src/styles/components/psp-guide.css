@@ -1,0 +1,76 @@
+/* ===================== PSP SETUP GUIDE ===================== */
+
+/* "Account required" badge, sits right under the hero subtitle */
+.custom-psp-requirement {
+    grid-column: 1 / -1;
+    justify-self: center;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin: -0.5rem auto 0;
+    padding: 0.55rem 1.15rem;
+    border-radius: 999px;
+    background-color: var(--custom-color-blue-400-alpha);
+    font-family: var(--body-text-fontFamily);
+    font-size: clamp(13px, 0.4vw + 0.65rem, 14px);
+    font-weight: 600;
+    color: var(--body-text-color) !important;
+    text-align: center;
+}
+
+.custom-psp-requirement svg {
+    width: 18px;
+    height: 18px;
+    stroke: var(--custom-color-blue-400);
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    flex-shrink: 0;
+}
+
+.custom-psp-requirement strong {
+    color: var(--custom-color-blue-400) !important;
+}
+
+/* Inline breadcrumb for admin paths, e.g. "be-BOP Admin > Payment Settings > PayPal" */
+.custom-psp-path {
+    display: inline-block;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 0.92em;
+    padding: 0.1rem 0.5rem;
+    border-radius: 5px;
+    background-color: var(--custom-color-blue-400-alpha);
+    color: var(--body-text-color) !important;
+}
+
+/* Warning-style callout, e.g. Sandbox vs Live credentials */
+.custom-psp-note {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.85rem;
+    padding: 1.1rem 1.4rem;
+    border-radius: 10px;
+    background-color: var(--custom-color-amber-400-alpha);
+    border: 1.5px solid var(--custom-color-amber-400);
+}
+
+.custom-psp-note svg {
+    width: 22px;
+    height: 22px;
+    margin-top: 0.15rem;
+    stroke: var(--custom-color-amber-400);
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    flex-shrink: 0;
+}
+
+.custom-psp-note p {
+    margin: 0;
+    line-height: 1.7;
+    color: var(--body-text-color) !important;
+    opacity: 0.9;
+}

@@ -1,0 +1,184 @@
+---
+import "../../styles/pages/ch-tenant.css";
+import { makeStaticPaths, getLangFromParams } from "../../i18n/utils";
+import type { ChTenantTranslations } from "../../i18n/translations/ch-tenant/types";
+import { fr } from "../../i18n/translations/ch-tenant/fr";
+import { de } from "../../i18n/translations/ch-tenant/de";
+import type { Lang } from "../../i18n/types";
+
+export const getStaticPaths = makeStaticPaths("ch-tenant");
+
+const lang = getLangFromParams(Astro.params);
+const translations: Partial<Record<Lang, ChTenantTranslations>> = { fr, de };
+const t = translations[lang] ?? fr;
+---
+
+<!-- HERO + OFFER ========================================= -->
+<section class="custom-grid custom-cloud-section">
+    <div class="custom-tenant-hero">
+        <div class="custom-tenant-hero__content">
+            <p class="custom-hero__eyebrow">{t.hero.eyebrow}</p>
+            <h1 class="custom-hero__title" set:html={t.hero.title} />
+            <span class="custom-hero__badge">{t.hero.badge}</span>
+            <p class="custom-tenant-hero__poweredby">{t.hero.poweredBy}</p>
+        </div>
+
+        <div class="custom-cloud-pricing-card custom-tenant-hero__card">
+            <span class="custom-cloud-pricing-card__trial">
+                {t.hero.offer.trialBadge}
+            </span>
+            <div>
+                <p class="custom-cloud-pricing-card__price">
+                    {t.hero.offer.price}
+                </p>
+                <div class="custom-cloud-pricing-card__compare">
+                    <span class="custom-cloud-pricing-card__old">
+                        {t.hero.offer.oldPrice}
+                    </span>
+                    <span class="custom-cloud-pricing-card__badge">
+                        {t.hero.offer.discount}
+                    </span>
+                </div>
+                <p class="custom-tenant-offer-note">{t.hero.offer.periodNote}</p>
+            </div>
+            <ul class="custom-cloud-pricing-card__features">
+                {
+                    t.hero.offer.features.map((feature) => (
+                        <li>
+                            <svg
+                                class="custom-cloud-pricing-card__check"
+                                viewBox="0 0 24 24"
+                                aria-hidden="true"
+                            >
+                                <polyline points="20 6 9 17 4 12" />
+                            </svg>
+                            {feature}
+                        </li>
+                    ))
+                }
+            </ul>
+            <a href="#" class="custom-btn custom-btn--blue custom-radius--md">
+                {t.hero.offer.cta}
+            </a>
+            <p class="custom-tenant-offer-note">{t.hero.offer.ctaNote}</p>
+        </div>
+    </div>
+</section>
+
+<!-- LOCAL SPECIFICS ====================================== -->
+<section class="custom-grid custom-cloud-section">
+    <div class="custom-cloud-intro">
+        <p class="custom-cloud-intro__label">{t.specifics.label}</p>
+        <h2>{t.specifics.title}</h2>
+        <p>{t.specifics.subtitle}</p>
+    </div>
+
+    <div class="custom-cloud-feature-list">
+        {
+            t.specifics.items.map((item, index) => (
+                <div
+                    class={`custom-cloud-feature-row${
+                        index % 2 === 1 ? " custom-cloud-feature-row--reverse" : ""
+                    }`}
+                >
+                    <div class="custom-cloud-feature-row__media">
+                        <img src={item.illustration} alt="" loading="lazy" />
+                    </div>
+                    <div class="custom-cloud-feature-row__content">
+                        <h3>{item.title}</h3>
+                        <p>{item.description}</p>
+                    </div>
+                </div>
+            ))
+        }
+    </div>
+</section>
+
+<!-- PRESS ================================================= -->
+<section class="custom-grid custom-cloud-section">
+    <div class="custom-cloud-intro">
+        <p class="custom-cloud-intro__label">{t.press.eyebrow}</p>
+        <h2>{t.press.title}</h2>
+        <p>{t.press.intro}</p>
+    </div>
+
+    <div class="custom-press-grid">
+        {
+            t.press.articles.map((article) => (
+                <a
+                    href={article.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="custom-press-card"
+                >
+                    <div class="custom-press-card__media">
+                        <img src={article.image} alt={article.outlet} loading="lazy" />
+                    </div>
+                    <div class="custom-press-card__body">
+                        <p class="custom-press-card__outlet">{article.outlet}</p>
+                        <p class="custom-press-card__angle">{article.angle}</p>
+                        <span class="custom-press-card__cta">
+                            {t.press.readArticleLabel}
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M7 17L17 7M17 7H9M17 7V15" />
+                            </svg>
+                        </span>
+                    </div>
+                </a>
+            ))
+        }
+
+        {
+            t.press.video && (
+                <a
+                    href={t.press.video.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="custom-press-card"
+                >
+                    <div class="custom-press-card__media">
+                        <img
+                            src={t.press.video.thumbnail}
+                            alt={t.press.video.outlet}
+                            loading="lazy"
+                        />
+                        <span class="custom-press-card__play" aria-hidden="true">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M8 5v14l11-7z" />
+                            </svg>
+                        </span>
+                    </div>
+                    <div class="custom-press-card__body">
+                        <p class="custom-press-card__outlet">{t.press.video.outlet}</p>
+                        <p class="custom-press-card__angle">{t.press.video.title}</p>
+                        <span class="custom-press-card__cta">
+                            {t.press.watchVideoLabel}
+                            <svg
+                                class="custom-press-card__cta-icon--play"
+                                viewBox="0 0 24 24"
+                                aria-hidden="true"
+                            >
+                                <path d="M8 5v14l11-7z" />
+                            </svg>
+                        </span>
+                    </div>
+                </a>
+            )
+        }
+    </div>
+</section>
+
+<!-- FINAL CTA ============================================= -->
+<section class="custom-grid custom-cloud-section">
+    <div class="custom-hero">
+        <p class="custom-hero__eyebrow">{t.finalCta.eyebrow}</p>
+        <h2 class="custom-hero__title">{t.finalCta.title}</h2>
+        <p class="custom-hero__subtitle">{t.finalCta.subtitle}</p>
+        <div class="custom-hero__actions">
+            <a href="#" class="custom-btn custom-btn--blue custom-radius--md">
+                {t.finalCta.cta}
+            </a>
+        </div>
+        <span class="custom-hero__badge">{t.finalCta.note}</span>
+    </div>
+</section>

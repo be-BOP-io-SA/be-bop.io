@@ -1,0 +1,340 @@
+/* =====================================================================
+ * be-BOP CLOUD — LANDING PAGE
+ * Reuses the site's established card/icon/tag/button language
+ * (sysreq cards, info-point icons, peerfunding tags) instead of a
+ * one-off visual style, so the page reads as part of be-BOP.io.
+ * ===================================================================== */
+
+/* ===================== SECTION INTRO (label + title + subtitle) ===== */
+.custom-cloud-intro {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    margin-bottom: 2rem;
+}
+
+.custom-cloud-intro__label {
+    font-size: clamp(0.65rem, 0.3vw + 0.5rem, 0.78rem);
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--custom-color-blue-400) !important;
+    margin: 0;
+}
+
+.custom-cloud-intro p {
+    max-width: 62ch;
+    line-height: 1.7;
+    opacity: 0.78;
+}
+
+/* ===================== DIFFERENTIATORS — 4-col card grid ============ */
+.custom-cloud-diff-grid {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+}
+
+.custom-cloud-diff-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    padding: 1.6rem 1.5rem;
+    background-color: #fff;
+    border: 1.5px solid var(--custom-color-blue-400-alpha);
+    border-radius: 10px;
+    filter: var(--custom-shadow-blue);
+    transition: border-color 0.2s ease;
+}
+
+/* Border-only highlight on hover, same idea as .custom-manifesto-solution:hover.
+ * No transform/cursor change: these cards aren't clickable. */
+.custom-cloud-diff-card:hover {
+    border-color: var(--custom-color-blue-400);
+}
+
+.custom-cloud-diff-card__icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    background-color: var(--custom-color-blue-400);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.custom-cloud-diff-card__icon svg {
+    width: 20px;
+    height: 20px;
+    fill: none;
+    stroke: #fff;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.custom-cloud-diff-card h3 {
+    color: var(--custom-color-navy-700) !important;
+}
+
+.custom-cloud-diff-card p {
+    line-height: 1.6;
+    color: var(--custom-color-navy-700) !important;
+    opacity: 0.72;
+    margin: 0;
+}
+
+/* ===================== REGIONS HUB — clickable region cards =========
+ * No price anywhere: a country name, one localized highlight line, and
+ * a CTA that only reveals the offer (incl. price) once clicked through
+ * to the tenant page. Whole card is the link, like .custom-press-card.
+ */
+.custom-cloud-region-grid {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+}
+
+.custom-cloud-region-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 2rem 1.85rem;
+    background-color: #fff;
+    border: 1.5px solid var(--custom-color-blue-400-alpha);
+    border-radius: 10px;
+    filter: var(--custom-shadow-blue);
+    text-decoration: none;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.custom-cloud-region-card:hover {
+    border-color: var(--custom-color-blue-400);
+    transform: translateY(-3px);
+}
+
+.custom-cloud-region-card__flag {
+    font-size: 2rem;
+    line-height: 1;
+}
+
+.custom-cloud-region-card__market {
+    font-size: clamp(17px, 1.2vw + 0.5rem, 21px);
+    font-weight: 700;
+    color: var(--custom-color-navy-700) !important;
+    margin: 0;
+}
+
+.custom-cloud-region-card__highlight {
+    line-height: 1.6;
+    color: var(--custom-color-navy-700) !important;
+    opacity: 0.72;
+    margin: 0 0 0.5rem;
+    flex-grow: 1;
+}
+
+.custom-cloud-region-card .custom-cloud-region-card__cta {
+    align-self: flex-start;
+    color: #fff !important;
+    pointer-events: none;
+}
+
+/* ===================== FEATURES — alternating media/text rows ======== */
+.custom-cloud-feature-list {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(3rem, 5vw, 4.5rem);
+}
+
+.custom-cloud-feature-row {
+    display: flex;
+    align-items: center;
+    gap: clamp(2rem, 4vw, 3.5rem);
+}
+
+.custom-cloud-feature-row--reverse {
+    flex-direction: row-reverse;
+}
+
+.custom-cloud-feature-row__media {
+    flex: 0 0 42%;
+}
+
+.custom-cloud-feature-row__media img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.custom-cloud-feature-row__content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+}
+
+/* Normal rows (media left, content right) read as more cramped than the
+ * reversed rows: the illustrations carry their own internal whitespace on
+ * the side that faces the gap in reversed rows, but not here. Add extra
+ * breathing room only on this side instead of widening the shared gap. */
+.custom-cloud-feature-row:not(.custom-cloud-feature-row--reverse) .custom-cloud-feature-row__content {
+    margin-left: clamp(1.5rem, 7vw, 6rem);
+}
+
+.custom-cloud-feature-row .custom-cloud-feature-row__content h3 {
+    font-size: clamp(20px, 1.4vw + 0.6rem, 26px);
+}
+
+.custom-cloud-feature-row__content p {
+    max-width: 46ch;
+    line-height: 1.7;
+    opacity: 0.78;
+}
+
+/* ===================== PRICING — 3 equal columns ===================== */
+.custom-cloud-pricing-grid {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+}
+
+.custom-cloud-pricing-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1.3rem;
+    padding: 2rem 1.85rem;
+    background-color: #fff;
+    border: 2px solid var(--custom-color-blue-400);
+    border-radius: 10px;
+    filter: var(--custom-shadow-blue);
+}
+
+.custom-cloud-pricing-card__market {
+    font-size: clamp(0.65rem, 0.3vw + 0.5rem, 0.78rem);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--custom-color-blue-400) !important;
+    margin: 0;
+}
+
+.custom-cloud-pricing-card__price {
+    font-size: clamp(26px, 2.2vw + 0.75rem, 34px);
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--custom-color-navy-700) !important;
+    margin: 0;
+}
+
+.custom-cloud-pricing-card__compare {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.custom-cloud-pricing-card__old {
+    font-size: clamp(13px, 0.4vw + 0.6rem, 15px);
+    color: var(--custom-color-navy-700) !important;
+    opacity: 0.45;
+    text-decoration: line-through;
+}
+
+.custom-cloud-pricing-card__badge {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--custom-color-teal-700) !important;
+    background-color: var(--custom-color-teal-400-alpha);
+    padding: 0.2rem 0.55rem;
+    border-radius: 99px;
+}
+
+.custom-cloud-pricing-card__features {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.custom-cloud-pricing-card__features li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.55rem;
+    font-size: clamp(14px, 0.5vw + 0.65rem, 16px);
+    line-height: 1.5;
+    color: var(--custom-color-navy-700) !important;
+    opacity: 0.8;
+}
+
+.custom-cloud-pricing-card__check {
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+    margin-top: 1px;
+    fill: none;
+    stroke: var(--custom-color-blue-400);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.custom-cloud-pricing-card .custom-btn {
+    align-self: flex-start;
+}
+
+/* ===================== TABLET (768–1024px) ===================== */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .custom-cloud-diff-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .custom-cloud-pricing-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .custom-cloud-region-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .custom-cloud-feature-row__media {
+        flex: 0 0 38%;
+    }
+}
+
+/* ===================== MOBILE (< 768px) ===================== */
+@media (max-width: 767px) {
+    .custom-cloud-diff-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .custom-cloud-pricing-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .custom-cloud-region-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .custom-cloud-feature-row,
+    .custom-cloud-feature-row--reverse {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1.5rem;
+    }
+
+    .custom-cloud-feature-row__media {
+        flex: none;
+    }
+
+    .custom-cloud-feature-row:not(.custom-cloud-feature-row--reverse) .custom-cloud-feature-row__content {
+        margin-left: 0;
+    }
+}

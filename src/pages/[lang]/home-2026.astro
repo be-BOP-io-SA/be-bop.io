@@ -5,6 +5,7 @@ import type { HomeTranslations } from "../../i18n/translations/home/types";
 import { en } from "../../i18n/translations/home/en";
 import { fr } from "../../i18n/translations/home/fr";
 import { sv } from "../../i18n/translations/home/sv";
+import { de } from "../../i18n/translations/home/de";
 import { patrons } from "../../data/patrons";
 import { socialLinks, getSocialUrl } from "../../data/social";
 import type { Lang } from "../../i18n/types";
@@ -12,7 +13,7 @@ import type { Lang } from "../../i18n/types";
 export const getStaticPaths = makeStaticPaths("home-2026");
 
 const lang = getLangFromParams(Astro.params);
-const translations: Record<Lang, HomeTranslations> = { en, fr, sv };
+const translations: Record<Lang, HomeTranslations> = { en, fr, sv, de };
 const t = translations[lang];
 ---
 
@@ -41,9 +42,25 @@ const t = translations[lang];
     </div>
 </section>
 
+<!-- ANNOUNCE BAR ======================================== -->
+<section class="custom-grid">
+    <div class="custom-announce-bar">
+        <p class="custom-announce-bar__text">{t.announce.text}</p>
+        <a class="custom-announce-bar__link" href={`/peerfunding-campaign`}>
+            {t.announce.linkLabel}
+            <em class="custom-announce-bar__arrow" aria-hidden="true">&rarr;</em
+            >
+        </a>
+    </div>
+</section>
+
 <!-- PRICING ============================================= -->
 <section class="custom-grid">
-    <h2 class="custom-pricing-title" id="get-started" set:html={t.pricing.title} />
+    <h2
+        class="custom-pricing-title"
+        id="get-started"
+        set:html={t.pricing.title}
+    />
 
     <!-- Self-hosted FOSS — left, secondary -->
     <div
@@ -177,7 +194,8 @@ const t = translations[lang];
             class="custom-link-cta custom-link-cta--theme"
         >
             {t.info.manifestoLink}
-            <span class="custom-link-cta__arrow" aria-hidden="true">&rarr;</span>
+            <span class="custom-link-cta__arrow" aria-hidden="true">&rarr;</span
+            >
         </a>
     </div>
 
@@ -204,12 +222,14 @@ const t = translations[lang];
             <h3>{t.features.online.title}</h3>
         </div>
         <div class="custom-features-block__grid">
-            {t.features.online.items.map((item) => (
-                <div class="custom-features-item">
-                    <h4>{item.title}</h4>
-                    <p>{item.desc}</p>
-                </div>
-            ))}
+            {
+                t.features.online.items.map((item) => (
+                    <div class="custom-features-item">
+                        <h4>{item.title}</h4>
+                        <p>{item.desc}</p>
+                    </div>
+                ))
+            }
         </div>
     </div>
 
@@ -221,12 +241,14 @@ const t = translations[lang];
             <h3>{t.features.onsite.title}</h3>
         </div>
         <div class="custom-features-block__grid">
-            {t.features.onsite.items.map((item) => (
-                <div class="custom-features-item">
-                    <h4>{item.title}</h4>
-                    <p>{item.desc}</p>
-                </div>
-            ))}
+            {
+                t.features.onsite.items.map((item) => (
+                    <div class="custom-features-item">
+                        <h4>{item.title}</h4>
+                        <p>{item.desc}</p>
+                    </div>
+                ))
+            }
         </div>
     </div>
 </section>
@@ -236,15 +258,17 @@ const t = translations[lang];
     <h2 class="custom-patrons-title">{t.patrons.title}</h2>
 
     <div class="custom-patrons-list">
-        {patrons.map((patron) => (
-            <a target="_blank" href={patron.url}>
-                <img
-                    src={patron.img}
-                    alt={patron.alt[lang]}
-                    style={patron.style}
-                />
-            </a>
-        ))}
+        {
+            patrons.map((patron) => (
+                <a target="_blank" href={patron.url}>
+                    <img
+                        src={patron.img}
+                        alt={patron.alt[lang]}
+                        style={patron.style}
+                    />
+                </a>
+            ))
+        }
     </div>
 
     <div class="custom-patrons-cta">
@@ -256,7 +280,8 @@ const t = translations[lang];
         </a>
         <a href="/donation" class="custom-link-cta custom-link-cta--theme">
             {t.patrons.supportLink}
-            <span class="custom-link-cta__arrow" aria-hidden="true">&rarr;</span>
+            <span class="custom-link-cta__arrow" aria-hidden="true">&rarr;</span
+            >
         </a>
     </div>
 </section>
@@ -270,22 +295,44 @@ const t = translations[lang];
         </p>
     </div>
 
-    <div class="custom-social-list">
-        {socialLinks.map((link) => (
+    <!-- Stoat — featured community space card -->
+    <div class="custom-social-stoat">
+        <div class="custom-social-stoat__logo">
+            <img
+                src="https://be-bop.io/digital-file/raw/stoat-chat-log-o-webp-Ao1QKn?key=184920af-13a0-4961-97fd-f71373ee77a4"
+                alt="Stoat"
+            />
+        </div>
+        <div class="custom-social-stoat__body">
+            <span class="custom-social-stoat__label">{t.stoat.label}</span>
+            <h3 class="custom-social-stoat__title">{t.stoat.title}</h3>
+            <p class="custom-social-stoat__desc">{t.stoat.desc}</p>
+        </div>
+        <div class="custom-social-stoat__action">
             <a
-                class="custom-social-card"
+                href="https://stt.gg/61082NKk"
                 target="_blank"
-                href={getSocialUrl(link, lang)}
+                class="custom-btn custom-btn--blue custom-radius--md"
             >
-                <div class="custom-social-card__icon">
-                    <img
-                        src={link.icon}
-                        alt=""
-                        aria-hidden="true"
-                    />
-                </div>
-                <span class="custom-social-card__label">{link.label}</span>
+                {t.stoat.btn}
             </a>
-        ))}
+        </div>
+    </div>
+
+    <div class="custom-social-list">
+        {
+            socialLinks.map((link) => (
+                <a
+                    class="custom-social-card"
+                    target="_blank"
+                    href={getSocialUrl(link, lang)}
+                >
+                    <div class="custom-social-card__icon">
+                        <img src={link.icon} alt="" aria-hidden="true" />
+                    </div>
+                    <span class="custom-social-card__label">{link.label}</span>
+                </a>
+            ))
+        }
     </div>
 </section>

@@ -4,12 +4,13 @@ import { makeStaticPaths, getLangFromParams } from "../../i18n/utils";
 import type { ManifestoTranslations } from "../../i18n/translations/manifesto/types";
 import { en } from "../../i18n/translations/manifesto/en";
 import { fr } from "../../i18n/translations/manifesto/fr";
+import { de } from "../../i18n/translations/manifesto/de";
 
 export const getStaticPaths = makeStaticPaths("manifesto");
 
 const lang = getLangFromParams(Astro.params);
-const translations: Record<"en" | "fr", ManifestoTranslations> = { en, fr };
-const t = translations[lang as "en" | "fr"];
+const translations: Record<"en" | "fr" | "de", ManifestoTranslations> = { en, fr, de };
+const t = translations[lang as "en" | "fr" | "de"];
 ---
 
 <!-- HERO ================================================ -->

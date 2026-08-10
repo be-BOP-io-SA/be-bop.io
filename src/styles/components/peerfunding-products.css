@@ -1,0 +1,106 @@
+/* ===================== PEERFUNDING PRODUCTS — BACK BUTTON ===================== */
+.custom-pf-products-back {
+    grid-column: 1 / -1;
+}
+
+/* ===================== PEERFUNDING PRODUCTS — WRAPPER ===================== */
+/*
+ * Single full-width container. :has() scopes the active-tab logic here
+ * so it does not bleed into other page sections via the CMS injection.
+ */
+.custom-pf-products {
+    grid-column: 1 / -1;
+}
+
+/* ===================== TAB NAVIGATION ===================== */
+.custom-pf-products-nav {
+    display: flex;
+    border-bottom: 2px solid rgba(49, 165, 220, 0.18);
+    gap: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    margin-bottom: 2rem;
+}
+
+.custom-pf-products-nav::-webkit-scrollbar {
+    display: none;
+}
+
+.custom-pf-products-tab {
+    display: inline-block;
+    padding: 14px 24px;
+    font-family: var(--body-text-fontFamily);
+    font-size: clamp(12px, 0.4vw + 0.6rem, 14px);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--body-text-color);
+    opacity: 0.4;
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -2px;
+    white-space: nowrap;
+    transition: opacity 0.2s ease, border-bottom-color 0.2s ease, color 0.2s ease;
+    user-select: none;
+}
+
+.custom-pf-products-tab:hover {
+    opacity: 0.7;
+}
+
+/*
+ * Active tab highlight.
+ * Uses :has() on the .custom-pf-products wrapper to scope queries to
+ * this component only, preventing CMS cross-page bleed.
+ *
+ * Default (no hash in URL): don-libre is active.
+ * When a panel is :target, its matching nav link becomes active.
+ */
+.custom-pf-products:not(:has(.custom-pf-products-panel:target)) .custom-pf-products-tab[href="#don-libre"],
+.custom-pf-products:has(#don-libre:target)      .custom-pf-products-tab[href="#don-libre"],
+.custom-pf-products:has(#goodies-bebop:target)  .custom-pf-products-tab[href="#goodies-bebop"],
+.custom-pf-products:has(#services:target)       .custom-pf-products-tab[href="#services"],
+.custom-pf-products:has(#bebop-suspendu:target) .custom-pf-products-tab[href="#bebop-suspendu"] {
+    opacity: 1;
+    color: var(--custom-color-blue-400);
+    border-bottom-color: var(--custom-color-blue-400);
+}
+
+/* ===================== TAB PANELS ===================== */
+.custom-pf-products-panel {
+    display: none;
+}
+
+/* Default panel: show don-libre when no hash is present */
+.custom-pf-products:not(:has(.custom-pf-products-panel:target)) #don-libre {
+    display: block;
+}
+
+/* Show the panel that matches the URL hash */
+.custom-pf-products-panel:target {
+    display: block;
+}
+
+/* ===================== PANEL INNER LAYOUT ===================== */
+/*
+ * Flex-wrap lets CMS product cards sit side by side on wide screens
+ * and stack cleanly on mobile. align-items: flex-start prevents cards
+ * from stretching to match the tallest sibling.
+ */
+.custom-pf-products-panel__inner {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+/* ===================== MOBILE (< 768px) ===================== */
+@media (max-width: 767px) {
+    .custom-pf-products-tab {
+        padding: 12px 16px;
+    }
+
+    .custom-pf-products-panel__inner {
+        flex-direction: column;
+        gap: 16px;
+    }
+}

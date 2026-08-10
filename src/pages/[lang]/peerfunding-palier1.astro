@@ -1,0 +1,523 @@
+---
+import "../../styles/pages/peerfunding-palier1.css";
+import { makeStaticPaths, getLangFromParams } from "../../i18n/utils";
+import type { PeerfundingPalier1Translations } from "../../i18n/translations/peerfunding-palier1/types";
+import { en } from "../../i18n/translations/peerfunding-palier1/en";
+import { fr } from "../../i18n/translations/peerfunding-palier1/fr";
+
+export const getStaticPaths = makeStaticPaths("peerfunding-palier1");
+
+const lang = getLangFromParams(Astro.params);
+const translations: Record<"en" | "fr", PeerfundingPalier1Translations> = {
+    en,
+    fr,
+};
+const t = translations[lang as "en" | "fr"];
+
+const SUPPORT_URL = "#";
+const GITHUB_URL = "https://github.com/be-BOP-io-SA/be-BOP";
+const STOAT_URL = "https://stt.gg/61082NKk";
+const STOAT_IMG =
+    "/digital-file/raw/stoat-chat-log-o-webp-Ao1QKn?key=184920af-13a0-4961-97fd-f71373ee77a4";
+
+/* Map each association tab id to its colour variant */
+const ASSO_COLORS: Record<
+    string,
+    { panel: string; location: string; tag: string }
+> = {
+    mwasi: {
+        panel: "custom-pf-asso-panel--blue",
+        location: "custom-pf-asso-location--blue",
+        tag: "custom-pf-asso-tag--blue",
+    },
+    kongo: {
+        panel: "custom-pf-asso-panel--green",
+        location: "custom-pf-asso-location--green",
+        tag: "custom-pf-asso-tag--green",
+    },
+    alle: {
+        panel: "custom-pf-asso-panel--orange",
+        location: "custom-pf-asso-location--orange",
+        tag: "custom-pf-asso-tag--orange",
+    },
+    sarah: {
+        panel: "custom-pf-asso-panel--blue",
+        location: "custom-pf-asso-location--blue",
+        tag: "custom-pf-asso-tag--blue",
+    },
+    avenir: { panel: "custom-pf-asso-panel--dashed", location: "", tag: "" },
+};
+
+const assoEntries = Object.entries(t.obj3.assos) as Array<
+    [string, typeof t.obj3.assos.mwasi | typeof t.obj3.assos.avenir]
+>;
+---
+
+<!-- ═══════════════════════════════════════════════════════
+     HERO — eyebrow, title, divider, video, subtitle, countdown label
+════════════════════════════════════════════════════════ -->
+<section class="custom-grid custom-grid--no-mb">
+    <div class="custom-pf-hero">
+        <p class="custom-pf-hero__eyebrow">{t.hero.eyebrow}</p>
+
+        <h1 class="custom-pf-hero__title" set:html={t.hero.title} />
+
+        <div class="custom-pf-hero__divider" aria-hidden="true"></div>
+
+        <div class="custom-pf-hero__video">
+            <iframe
+                title={t.hero.video.title}
+                src={t.hero.video.src}
+                allow="fullscreen"
+                sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
+            ></iframe>
+        </div>
+
+        <p class="custom-pf-hero__subtitle" set:html={t.hero.subtitle} />
+
+        <p class="custom-pf-hero__countdown-label">{t.hero.countdownLabel}</p>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     CMS MACROS — must stay bare, outside any HTML wrapper
+════════════════════════════════════════════════════════ -->
+[Countdown=peerfunding-end-ktGPmD] [Challenge=peerfunding-goal-1-pipeli-nostr-KXqoZD]
+
+<!-- ═══════════════════════════════════════════════════════
+     MOBILE TABS — radios must precede both the tab bar and the layout
+     so the ~ sibling selector can reach them. Hidden on desktop.
+════════════════════════════════════════════════════════ -->
+<input
+    type="radio"
+    class="custom-pf-tab-radio"
+    id="pf-tab-campagne"
+    name="pf-mobile-tab"
+    checked
+/>
+<input
+    type="radio"
+    class="custom-pf-tab-radio"
+    id="pf-tab-contreparties"
+    name="pf-mobile-tab"
+/>
+
+<div class="custom-pf-mobile-tabs">
+    <label for="pf-tab-campagne" class="custom-pf-mobile-tab">Campagne</label>
+    <label for="pf-tab-contreparties" class="custom-pf-mobile-tab"
+        >Contreparties</label
+    >
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     TWO-COLUMN LAYOUT — main content + sticky sidebar
+════════════════════════════════════════════════════════ -->
+<div class="custom-pf-layout">
+    <!-- ─────────────────────────────── MAIN COLUMN ─────────────────────────────── -->
+    <div class="custom-pf-main">
+        <!-- ── BRIEF ─────────────────────────────────────────────────── -->
+        <div class="custom-pf-section" style="text-align: center;">
+            <p class="custom-pf-section__eyebrow">{t.brief.eyebrow}</p>
+            <h2 class="custom-pf-section__title">{t.brief.title}</h2>
+
+            <p class="custom-pf-brief__desc" set:html={t.brief.desc} />
+
+            <ul class="custom-pf-brief__bullets">
+                {
+                    t.brief.bullets.map((b) => (
+                        <li class="custom-pf-brief__bullet">
+                            <span
+                                class="custom-pf-brief__bullet-line"
+                                aria-hidden="true"
+                            />
+                            <p>
+                                <strong>{b.title} : </strong>
+                                {b.body}
+                            </p>
+                        </li>
+                    ))
+                }
+            </ul>
+
+            <div class="custom-pf-brief__stats">
+                {
+                    t.brief.stats.map((s) => (
+                        <div class="custom-pf-brief__stat">
+                            <p class="custom-pf-brief__stat-value">{s.value}</p>
+                            <div
+                                class="custom-pf-brief__stat-divider"
+                                aria-hidden="true"
+                            />
+                            <p class="custom-pf-brief__stat-label">{s.label}</p>
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+
+        <!-- ── BE-BOP INTRO ──────────────────────────────────────────── -->
+        <div class="custom-pf-section custom-pf-bebop-intro">
+            <p class="custom-pf-section__eyebrow">{t.beBopIntro.eyebrow}</p>
+            <h2 class="custom-pf-section__title">{t.beBopIntro.title}</h2>
+            <div class="custom-pf-intro-video">
+                <iframe
+                    title={t.beBopIntro.video.title}
+                    src={t.beBopIntro.video.src}
+                    allow="fullscreen"
+                    sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
+                ></iframe>
+            </div>
+        </div>
+
+        <!-- ── AGENDA ─────────────────────────────────────────────────── -->
+        <div>
+            <p class="custom-pf-agenda__eyebrow">{t.agenda.eyebrow}</p>
+            <h2 class="custom-pf-agenda__title">{t.agenda.title}</h2>
+
+            {
+                t.agenda.events.map((ev) => (
+                    <div
+                        class:list={[
+                            "custom-pf-agenda__item",
+                            ev.active && "custom-pf-agenda__item--active",
+                        ]}
+                    >
+                        <div class="custom-pf-agenda__date">{ev.date}</div>
+                        <div>
+                            <p class="custom-pf-agenda__name">{ev.name}</p>
+                            <p class="custom-pf-agenda__location">
+                                {ev.location}
+                            </p>
+                        </div>
+                    </div>
+                ))
+            }
+        </div>
+
+        <!-- ── OBJECTIF 01 — PIPELINOSTR ─────────────────────────────── -->
+        <div class="custom-pf-section">
+            <p class="custom-pf-section__eyebrow">{t.obj1.eyebrow}</p>
+            <h2 class="custom-pf-section__title" set:html={t.obj1.title} />
+            <p class="custom-pf-section__body">{t.obj1.desc}</p>
+
+            <div class="custom-pf-usecases">
+                {
+                    t.obj1.usecases.map((uc) => (
+                        <div class="custom-pf-usecase">
+                            <span class="custom-pf-usecase__trigger">
+                                {uc.trigger}
+                            </span>
+                            <span class="custom-pf-usecase__action">
+                                {uc.action}
+                            </span>
+                        </div>
+                    ))
+                }
+            </div>
+
+            <hr class="custom-pf-divider" />
+
+            <p class="custom-pf-goal-eyebrow">{t.obj1.goalEyebrow}</p>
+            <div class="custom-pf-goals">
+                {
+                    t.obj1.goals.map((g) => (
+                        <div class="custom-pf-goal">
+                            <p class="custom-pf-goal__label">{g.label}</p>
+                            <p class="custom-pf-goal__amount">{g.amount}</p>
+                            <p class="custom-pf-goal__name">{g.name}</p>
+                            <p class="custom-pf-goal__desc">{g.desc}</p>
+                        </div>
+                    ))
+                }
+            </div>
+
+            <hr class="custom-pf-divider" />
+
+            <p id="pf-contreparties" class="custom-pf-goal-eyebrow">
+                {t.obj1.supportEyebrow}
+            </p>
+            <div class="custom-pf-supports">
+                {
+                    t.obj1.supports.map((s) => (
+                        <a href={s.url} class="custom-pf-support-card">
+                            <p class="custom-pf-support-card__title">
+                                {s.title} →
+                            </p>
+                            <p class="custom-pf-support-card__body">{s.body}</p>
+                        </a>
+                    ))
+                }
+            </div>
+        </div>
+
+        <!-- ── OBJECTIF 02 — GITHUB / NOSTRIBUTEUR ───────────────────── -->
+        <div class="custom-pf-section custom-pf-github">
+            <div class="custom-pf-github__icon" aria-hidden="true">
+                <svg
+                    width="36"
+                    height="36"
+                    viewBox="0 0 14 13"
+                    xmlns="http://www.w3.org/2000/svg"
+                    style="fill-rule:evenodd;clip-rule:evenodd;"
+                >
+                    <g transform="matrix(1,0,0,1,-151.902,-58.0435)">
+                        <g transform="matrix(1,0,0,1,151.052,57.1935)">
+                            <path
+                                d="M7.499,0.85C3.828,0.85 0.85,3.827 0.85,7.5C0.85,10.438 2.755,12.931 5.398,13.81C5.73,13.871 5.852,13.666 5.852,13.49C5.852,13.332 5.846,12.914 5.843,12.359C3.993,12.76 3.603,11.467 3.603,11.467C3.3,10.699 2.864,10.494 2.864,10.494C2.26,10.082 2.91,10.09 2.91,10.09C3.577,10.137 3.929,10.775 3.929,10.775C4.522,11.792 5.485,11.498 5.864,11.328C5.924,10.898 6.096,10.605 6.286,10.439C4.809,10.271 3.257,9.701 3.257,7.152C3.257,6.426 3.516,5.833 3.942,5.368C3.873,5.2 3.645,4.524 4.007,3.608C4.007,3.608 4.565,3.429 5.835,4.289C6.366,4.142 6.935,4.069 7.5,4.066C8.065,4.069 8.634,4.142 9.165,4.289C10.435,3.429 10.992,3.608 10.992,3.608C11.355,4.524 11.127,5.2 11.058,5.368C11.485,5.833 11.742,6.426 11.742,7.152C11.742,9.707 10.187,10.269 8.706,10.434C8.944,10.639 9.157,11.045 9.157,11.666C9.157,12.554 9.149,13.272 9.149,13.49C9.149,13.668 9.269,13.875 9.606,13.81C12.246,12.928 14.15,10.438 14.15,7.5C14.15,3.827 11.172,0.85 7.499,0.85Z"
+                            ></path>
+                        </g>
+                    </g>
+                </svg>
+            </div>
+
+            <p class="custom-pf-section__eyebrow">{t.obj2.eyebrow}</p>
+            <h2 class="custom-pf-section__title" set:html={t.obj2.title} />
+            <p class="custom-pf-section__body">{t.obj2.desc1}</p>
+            <p class="custom-pf-section__body" set:html={t.obj2.desc2} />
+
+            <iframe
+                src="https://ghbtns.com/github-btn.html?user=be-BOP-io-SA&repo=be-BOP&type=star&count=true&size=large"
+                frameborder="0"
+                scrolling="0"
+                width="132"
+                height="30"
+                title="GitHub"
+                class="custom-pf-github__stars"></iframe>
+
+            <a
+                href={GITHUB_URL}
+                target="_blank"
+                rel="noopener"
+                class="custom-btn custom-btn--blue custom-radius--md"
+            >
+                {t.obj2.cta}
+            </a>
+        </div>
+
+        <!-- ── OBJECTIF 03 — ASSOCIATIONS ───────────────────────────── -->
+        <div class="custom-pf-section">
+            <p class="custom-pf-section__eyebrow">{t.obj3.eyebrow}</p>
+            <h2 class="custom-pf-section__title" set:html={t.obj3.title} />
+            <p class="custom-pf-section__body">{t.obj3.desc}</p>
+
+            <div class="custom-pf-suspended">
+                <p class="custom-pf-suspended__title">
+                    {t.obj3.suspended.title}
+                </p>
+                <p class="custom-pf-suspended__body">{t.obj3.suspended.body}</p>
+            </div>
+
+            <p class="custom-pf-goal-eyebrow">{t.obj3.assosLabel}</p>
+
+            <!-- Pure-CSS tab system: radios must come before .custom-pf-asso-tabs -->
+            {
+                t.obj3.tabs.map((tab) => (
+                    <input
+                        type="radio"
+                        class="custom-pf-asso-radio"
+                        id={`pf-ar-${tab.id}`}
+                        name="pf-asso-group"
+                        checked={tab.id === "sarah"}
+                    />
+                ))
+            }
+
+            <div class="custom-pf-asso-tabs">
+                <!-- Tab bar -->
+                <nav class="custom-pf-asso-nav" aria-label="Associations">
+                    {
+                        t.obj3.tabs.map((tab) => (
+                            <label
+                                for={`pf-ar-${tab.id}`}
+                                class="custom-pf-asso-tab"
+                            >
+                                {tab.label}
+                            </label>
+                        ))
+                    }
+                </nav>
+
+                <!-- Panels: sarah, mwasi, kongo, alle -->
+                {
+                    (["sarah", "mwasi", "kongo", "alle"] as const).map(
+                        (key) => {
+                            const asso = t.obj3.assos[
+                                key
+                            ] as typeof t.obj3.assos.mwasi;
+                            const colors = ASSO_COLORS[key];
+                            return (
+                                <div
+                                    id={`pf-panel-${key}`}
+                                    class:list={[
+                                        "custom-pf-asso-panel",
+                                        colors.panel,
+                                    ]}
+                                >
+                                    <div class="custom-pf-asso-header">
+                                        <div>
+                                            <p
+                                                class:list={[
+                                                    "custom-pf-asso-location",
+                                                    colors.location,
+                                                ]}
+                                            >
+                                                {asso.location}
+                                            </p>
+                                            <p class="custom-pf-asso-name">
+                                                {asso.name}
+                                            </p>
+                                        </div>
+                                        <div class="custom-pf-asso-tags">
+                                            {asso.tags.map((tag) => (
+                                                <span
+                                                    class:list={[
+                                                        "custom-pf-asso-tag",
+                                                        colors.tag,
+                                                    ]}
+                                                >
+                                                    {tag}
+                                                </span>
+                                            ))}
+                                        </div>
+                                    </div>
+                                    <p class="custom-pf-asso-desc">
+                                        {asso.desc}
+                                    </p>
+                                    <div class="custom-pf-asso-facts">
+                                        {asso.facts.map((fact) => (
+                                            <div class="custom-pf-asso-fact">
+                                                <p class="custom-pf-asso-fact__title">
+                                                    {fact.title}
+                                                </p>
+                                                <p class="custom-pf-asso-fact__body">
+                                                    {fact.body}
+                                                </p>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            );
+                        },
+                    )
+                }
+
+                <!-- Panel: à venir -->
+                <div
+                    id="pf-panel-avenir"
+                    class="custom-pf-asso-panel custom-pf-asso-panel--dashed"
+                >
+                    <p class="custom-pf-asso-avenir__desc">
+                        {t.obj3.assos.avenir.desc}
+                    </p>
+                    <p class="custom-pf-asso-avenir__regions">
+                        {t.obj3.assos.avenir.regions}
+                    </p>
+                </div>
+            </div><!-- end .custom-pf-asso-tabs -->
+        </div>
+
+        <!-- ── OBJECTIF 04 — COMMUNAUTÉ ─────────────────────────────── -->
+        <div class="custom-pf-section custom-pf-section--community">
+            <p class="custom-pf-section__eyebrow">{t.obj4.eyebrow}</p>
+            <h2 class="custom-pf-section__title" set:html={t.obj4.title} />
+
+            <div class="custom-pf-stoat">
+                <div class="custom-pf-stoat__logo">
+                    <img src={STOAT_IMG} alt="Stoat" width="64" height="64" />
+                </div>
+
+                <span class="custom-pf-stoat__label">{t.obj4.stoat.label}</span>
+
+                <h3 class="custom-pf-stoat__title">{t.obj4.stoat.title}</h3>
+
+                <p class="custom-pf-stoat__desc">{t.obj4.stoat.desc}</p>
+
+                <a
+                    href={STOAT_URL}
+                    target="_blank"
+                    rel="noopener"
+                    class="custom-btn custom-btn--stoat custom-radius--md"
+                >
+                    &rarr;&nbsp;{t.obj4.stoat.cta}
+                </a>
+            </div>
+        </div>
+
+        <!-- ── FINAL CTA BAR ─────────────────────────────────────────── -->
+        <div class="custom-pf-cta-bar">
+            <div>
+                <p class="custom-pf-cta-bar__eyebrow">{t.ctaBar.eyebrow}</p>
+                <p class="custom-pf-cta-bar__title">{t.ctaBar.title}</p>
+            </div>
+            <div class="custom-pf-cta-bar__rewards">
+                {
+                    t.sidebar.supports.map((s) => (
+                        <a href={s.url} class="custom-pf-sidebar-card">
+                            <span class="custom-pf-sidebar-card__text">
+                                <span class="custom-pf-sidebar-card__title">
+                                    {s.title}
+                                </span>
+                                <span class="custom-pf-sidebar-card__body">
+                                    {s.body}
+                                </span>
+                            </span>
+                            <span
+                                class="custom-pf-sidebar-card__arrow"
+                                aria-hidden="true"
+                            >
+                                →
+                            </span>
+                        </a>
+                    ))
+                }
+            </div>
+        </div>
+    </div><!-- end .custom-pf-main -->
+
+    <!-- ─────────────────────────────── SIDEBAR ─────────────────────────────── -->
+    <aside class="custom-pf-sidebar">
+        <!-- Contreparties panel -->
+        <div class="custom-pf-sidebar-panel">
+            <p class="custom-pf-sidebar__eyebrow">{t.sidebar.eyebrow}</p>
+            <h3 class="custom-pf-sidebar__title">{t.sidebar.title}</h3>
+
+            {
+                t.sidebar.supports.map((s) => (
+                    <a href={s.url} class="custom-pf-sidebar-card">
+                        <span class="custom-pf-sidebar-card__text">
+                            <span class="custom-pf-sidebar-card__title">
+                                {s.title}
+                            </span>
+                            <span class="custom-pf-sidebar-card__body">
+                                {s.body}
+                            </span>
+                        </span>
+                        <span
+                            class="custom-pf-sidebar-card__arrow"
+                            aria-hidden="true"
+                        >
+                            →
+                        </span>
+                    </a>
+                ))
+            }
+        </div>
+
+        <!-- Community panel -->
+        <div class="custom-pf-sidebar-panel custom-pf-sidebar-panel--community">
+            <p class="custom-pf-sidebar__eyebrow">
+                {t.sidebar.community.eyebrow}
+            </p>
+            <p class="custom-pf-sidebar__title">{t.sidebar.community.title}</p>
+            <a
+                href={STOAT_URL}
+                target="_blank"
+                rel="noopener"
+                class="custom-btn custom-btn--stoat custom-radius--md"
+                style="width:100%;justify-content:center;"
+            >
+                {t.sidebar.community.cta}&nbsp;&rarr;
+            </a>
+        </div>
+    </aside>
+</div><!-- end .custom-pf-layout -->

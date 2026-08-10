@@ -111,9 +111,22 @@
     overflow-x: auto;
 }
 
+/* Screenshots inside a step body */
+.custom-accordion__body img {
+    width: 100%;
+    max-width: 560px;
+    border-radius: 8px;
+    border: 1.5px solid rgba(128, 128, 128, 0.2);
+    filter: var(--custom-shadow-blue);
+}
+
 /* ===================== MOBILE (< 768px) ===================== */
 @media (max-width: 767px) {
     .custom-accordion__body {
         padding: 1rem 1.1rem 1.2rem 1.1rem;
+    }
+
+    .custom-accordion__body img {
+        max-width: 100%;
     }
 }

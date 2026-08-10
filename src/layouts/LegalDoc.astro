@@ -1,0 +1,57 @@
+---
+import "../styles/pages/legal.css";
+
+interface Props {
+    frontmatter: {
+        title: string;
+        version: string;
+        updated: string;
+        company: string;
+        crossRefText?: string;
+        crossRefLabel?: string;
+        crossRefHref?: string;
+    };
+    headings: { depth: number; slug: string; text: string }[];
+}
+
+const { frontmatter, headings } = Astro.props;
+const toc = headings.filter((h) => h.depth === 2);
+---
+
+<section class="custom-grid">
+    <div class="custom-legal-header">
+        <p class="custom-legal-eyebrow">be-BOP Cloud</p>
+        <h1>{frontmatter.title}</h1>
+        <p class="custom-legal-meta">
+            {frontmatter.version}, {frontmatter.updated}<br />
+            {frontmatter.company}
+        </p>
+        {
+            frontmatter.crossRefHref && (
+                <p class="custom-legal-crossref">
+                    {frontmatter.crossRefText}{" "}
+                    <a href={frontmatter.crossRefHref}>{frontmatter.crossRefLabel}</a>
+                </p>
+            )
+        }
+    </div>
+</section>
+
+<section class="custom-grid">
+    <div class="custom-legal-body">
+        <nav class="custom-legal-toc" aria-label="Table of contents">
+            <ul>
+                {
+                    toc.map((h) => (
+                        <li>
+                            <a href={`#${h.slug}`}>{h.text}</a>
+                        </li>
+                    ))
+                }
+            </ul>
+        </nav>
+        <div class="custom-legal-doc">
+            <slot />
+        </div>
+    </div>
+</section>

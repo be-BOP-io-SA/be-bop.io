@@ -15,6 +15,7 @@ export const patrons: Patron[] = [
       en: "Canton de Neuchâtel",
       fr: "Canton de Neuchâtel",
       sv: "Canton de Neuchâtel",
+      de: "Canton de Neuchâtel",
     },
   },
   {
@@ -24,6 +25,7 @@ export const patrons: Patron[] = [
       en: "Nouvelles Politiques Régionales",
       fr: "Nouvelles Politiques Régionales",
       sv: "Nouvelles Politiques Régionales",
+      de: "Nouvelles Politiques Régionales",
     },
   },
   {
@@ -33,6 +35,7 @@ export const patrons: Patron[] = [
       en: "Watchmakers United",
       fr: "Watchmakers United",
       sv: "Watchmakers United",
+      de: "Watchmakers United",
     },
   },
   {
@@ -42,6 +45,7 @@ export const patrons: Patron[] = [
       en: "Le Paradigme Bitcoin",
       fr: "Le Paradigme Bitcoin",
       sv: "Le Paradigme Bitcoin",
+      de: "Le Paradigme Bitcoin",
     },
   },
   {
@@ -51,6 +55,7 @@ export const patrons: Patron[] = [
       en: "Coworking Neuchâtel",
       fr: "Coworking Neuchâtel",
       sv: "Coworking Neuchâtel",
+      de: "Coworking Neuchâtel",
     },
   },
   {
@@ -60,6 +65,7 @@ export const patrons: Patron[] = [
       en: "NEDAO",
       fr: "NEDAO",
       sv: "NEDAO",
+      de: "NEDAO",
     },
   },
   {
@@ -69,7 +75,18 @@ export const patrons: Patron[] = [
       en: "Zulip",
       fr: "Zulip",
       sv: "Zulip",
+      de: "Zulip",
     },
     style: "min-height:40px;width:auto;",
+  },
+  {
+    url: "https://maison-absinthe.fr/",
+    img: "https://be-bop.io/digital-file/raw/maison-de-l-absinthe-log-o-png-8ypwJw?key=46f32e9d-a305-48de-9d74-ecb2b02461cd",
+    alt: {
+      en: "Maison de l'Absinthe",
+      fr: "Maison de l'Absinthe",
+      sv: "Maison de l'Absinthe",
+      de: "Maison de l'Absinthe",
+    },
   },
 ];
